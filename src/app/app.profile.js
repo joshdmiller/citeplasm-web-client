@@ -62,7 +62,7 @@ var profile = {
         'dojo/dojo': {
             // In addition to the loader (dojo/dojo) and the loader configuration file (app/run), we’re also including
             // the main application (app/main) and the dojo/domReady module because it is one of the conditional
-            // dependencies in app/main (the other being app/Dialog) but we don’t want to have to make an extra HTTP
+            // dependencies in app/main (the other being citeplasm/Dialog) but we don’t want to have to make an extra HTTP
             // request for such a tiny file.
             include: [ 'dojo/dojo', 'dojo/domReady', 'app/main', 'app/run' ],
 
@@ -75,7 +75,7 @@ var profile = {
 
         // In the demo application, we conditionally require app/Dialog on the client-side, so we’re building a
         // separate layer containing just that client-side code.
-        'app/Dialog': { include: [ 'app/Dialog' ] }
+        'citeplasm/Dialog': { include: [ 'citeplasm/Dialog' ] }
     },
 
     // Providing hints to the build system allows code to be conditionally removed on a more granular level than

@@ -1,0 +1,29 @@
+/**
+ * If you are developing a project that makes use of Dijit widgets, you will probably want to include the two files
+ * below; otherwise, you can remove them. When building for release, Dojo will automatically combine all of your
+ * @imported CSS files into a single file.
+ *
+ * It is highly, highly recommended that you develop your CSS using LESS: http://lesscss.org.
+ */
+
+// CSS Reset
+@import 'bootstrap/less/reset.less';
+
+// Core variables and mixins
+@import "bootstrap/less/variables.less"; // Modify this for custom colors, font-sizes, etc
+@import "bootstrap/less/mixins.less";
+
+// Grid system and page structure
+@import "bootstrap/less/scaffolding.less";
+@import "bootstrap/less/grid.less";
+@import "bootstrap/less/layouts.less";
+
+// Base CSS
+@import "bootstrap/less/type.less";
+@import "bootstrap/less/code.less";
+@import "bootstrap/less/forms.less";
+@import "bootstrap/less/tables.less";
+
+/* import Dijit style */
+@import '../../dijit/themes/claro/claro.css';
+

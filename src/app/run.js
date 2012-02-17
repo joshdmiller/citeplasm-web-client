@@ -24,6 +24,7 @@ require({
         'dijit',
         'dojox',
         'app',
+        'citeplasm'
 
         // For reference, this is what a more verbose package declaration looks like.
         //{ name: 'dbp', location: 'dbp', packageMap: {} }
