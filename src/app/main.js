@@ -33,7 +33,7 @@ define([ 'dojo/has', 'require' ], function (has, require) {
          * require just “dojo/domReady”, it would load that module just like any other module, without any of the
          * special plugin functionality.
          */
-        require([ 'citeplasm/Dialog', 'dojo/domReady!' ], function (Dialog) {
+        /*require([ 'citeplasm/Dialog', 'dojo/domReady!' ], function (Dialog) {
             app.dialog = new Dialog().placeAt(document.body);
 
             // It is important to remember to always call startup on widgets after you have added them to the DOM.
@@ -42,7 +42,7 @@ define([ 'dojo/has', 'require' ], function (has, require) {
 
             // And now…
             app.dialog.show();
-        });
+        });*/
     }
     else {
         console.log('Hello from the server!');

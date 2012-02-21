@@ -8,6 +8,81 @@
     <link rel="stylesheet" href="app/resources/app.css">
 </head>
 <body class="claro">
+
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a class="brand" href="#">[citeplasm]</a>
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="active"><a href="">Dashboard</a>
+                        <li><a href="">Open Documents</a>
+                        <li><a href="">Josh Miller</a>
+                    </ul>
+                    <p class="navbar-text pull-right">Search Bar</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="notifications">
+                <div class="alert alert-success">
+                    <a class="close" data-dismiss="alert">×</a>
+                    <strong>Published!</strong>
+                    Version 5 of your document is now available for everyone to
+                    see at <a href="#">http://cite.io/my-document-name.pdf</a>.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span3">
+                <div class="sidebar-nav">
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Tools</li>
+                        
+                        <li><a href="#">Export</a></li>
+                        <li><a href="#">Publish</a></li>
+                        <li><a href="#">History</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="#">Close</a></li>
+
+                        <li class="nav-header">Resources</li>
+                        
+                        <li><a href="#">Resource 1</a></li>
+                        <li><a href="#">Another Resource</a></li>
+                        <li><a href="#">Resource the Third</a></li>
+                        <li><a href="#">Last Resource</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="span9">
+                <div class="document">
+                    <div class="title editable" contenteditable="true">
+                        Main Body
+                    </div>
+                    <div class="author">
+                        <a href="#">Joshua D Miller</a>
+                    </div>
+                    <div class="abstract editable" contenteditable="true">
+                        This is the document abstract.
+                    </div>
+                    <div class="separator"></div>
+                    <div class="heading1 editable" contenteditable="true">
+                        Heading
+                    </div>
+                    <div class="paragraph editable" contenteditable="true">
+                        This is a paragraph of text.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- dojo.js is an AMD-compliant loader script. It accepts configuration either from a data-dojo-config attribute,
          as shown here, from a global dojoConfig object (which must be defined *before* dojo.js is loaded), or from
          a global require object.
