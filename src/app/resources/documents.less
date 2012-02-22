@@ -2,13 +2,28 @@
  * Documents
  */
 
-.document {
+.bounded-box {
     background: #fff;
     -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
     -moz-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
-    padding: 20px;
+    
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
 
+    padding: 10px;
+    margin-bottom: 20px;
+
+    .nav {
+        .nav-header {
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+.document {
     counter-reset: section 0;
 
     .editable:focus {
