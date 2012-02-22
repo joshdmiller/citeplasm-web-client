@@ -33,8 +33,22 @@
 @import "bootstrap/less/buttons.less";
 @import "bootstrap/less/alerts.less";
 
+// Misc
+@import "bootstrap/less/sprites.less";
+
 /* import Dijit style */
 /*@import '../../dijit/themes/claro/claro.css';*/
+
+/*
+ * Global Variables
+ */
+
+@iconSpritePath: "bootstrap/img/glyphicons-halflings.png";
+@iconSpritePathWhite: "bootstrap/img/glyphicons-halflings-white.png";
+
+/*
+ * General Page Styles
+ */
 
 html, body {
     background: #ddd;
@@ -47,6 +61,10 @@ body {
 .pull-right {
     float:right;
 }
+
+/*
+ * Submenu Styles
+ */
 
 .submenu {
     top: 40px !important;
@@ -67,30 +85,46 @@ body {
 
         .container-fluid {
             background-color: #aaa;
-            background-image: -moz-linear-gradient(top, #aaa, #bbb);
+            background-image: -moz-linear-gradient(top, #bbb, #ccc);
             background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#aaa), to(#999));
-            background-image: -webkit-linear-gradient(top, #aaa, #bbb);
+            background-image: -webkit-linear-gradient(top, #bbb, #ccc);
             background-image: -o-linear-gradient(top, #333, #222);
-            background-image: linear-gradient(top, #aaa, #bbb);
+            background-image: linear-gradient(top, #bbb, #ccc);
             background-repeat: repeat-x;
 
             ul.nav {
                 li {
-                    border-left: 1px solid #a0a0a0;
+                    border-right: 1px solid #a0a0a0;
+                    border-left: 1px solid #ddd;
                 }
 
                 li:first-child {
                     border-left: none;
+                    a {
+                        padding-left: 0;
+                    }
+                }
+
+                li:last-child {
+                    border-right: none;
                 }
 
                 a, a:visited {
                     color: #000;
                     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+                    
+                    i {
+                        background-image: url(@iconSpritePath);
+                    }
                 }
 
                 a:hover, a:active {
                     color: #fff;
                     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+                    
+                    i {
+                        background-image: url(@iconSpritePathWhite);
+                    }
                 }
             }
 
