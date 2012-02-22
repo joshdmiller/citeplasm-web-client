@@ -51,7 +51,7 @@
  */
 
 html, body {
-    background: #ddd;
+    background: #999;
 }
 
 body {
@@ -63,8 +63,37 @@ body {
 }
 
 /*
- * Submenu Styles
+ * Menu & Submenu Styles
  */
+
+.topbar {
+    .brand {
+        margin-right: 20px;
+    }
+
+    .nav li, .nav li a, .navbar-text {
+        line-height: 40px;
+    }
+
+    .nav li a {
+        padding: 0 10px !important;
+        
+    }
+        
+    i {
+        line-height: 40px;
+        margin-right: 10px;
+    }
+
+    .navbar-text a, .navbar-text:visited {
+        color: #999;
+    }
+
+    .navbar-text a:hover, .navbar-text:active {
+        color: #fff;
+        text-decoration: none;
+    }
+}
 
 .submenu {
     top: 40px !important;
@@ -76,25 +105,25 @@ body {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
-    -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
-    -moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
-    box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    -webkit-box-shadow: inset 0 3px 0 #fff, 0 3px 6px rgba(0,0,0,.2);
+    -moz-box-shadow: inset 0 3px 0 #fff, 0 3px 6px rgba(0,0,0,.2);
+    box-shadow: inset 0 3px 0 #fff, 0 3px 6px rgba(0,0,0,.2);
 
     .submenu-inner {
         background: transparent !important;
 
         .container-fluid {
             background-color: #aaa;
-            background-image: -moz-linear-gradient(top, #bbb, #ccc);
-            background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#aaa), to(#999));
-            background-image: -webkit-linear-gradient(top, #bbb, #ccc);
-            background-image: -o-linear-gradient(top, #333, #222);
-            background-image: linear-gradient(top, #bbb, #ccc);
+            background-image: -moz-linear-gradient(top, #CCF, #9CF);
+            background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#CCF), to(#9CF));
+            background-image: -webkit-linear-gradient(top, #CCF, #9CF);
+            background-image: -o-linear-gradient(top, #CCF, #9CF);
+            background-image: linear-gradient(top, #CCF, #9CF);
             background-repeat: repeat-x;
 
             ul.nav {
                 li {
-                    border-right: 1px solid #a0a0a0;
+                    border-right: 1px solid #90C0F0;
                     border-left: 1px solid #ddd;
                 }
 
@@ -134,10 +163,41 @@ body {
 
 .notifications {
     .alert {
-        -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
-        -moz-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
-        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
+        -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
+        -moz-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
     }
+
+    .alert-success {
+        border: 1px solid #5f9f5f;
+    }
+
+    .alert-error {
+        border: 1px solid #E97A78;
+    }
+}
+
+[class^="icon-large"], [class*=" icon-large-"] {
+    width: 24px;
+    height: 24px;
+    background-position: top left;
+    vertical-align: middle;
+}
+
+.icon-large-layers {
+    background-image: url("img/new_window_24x24.png");
+}
+
+.icon-large-user {
+    background-image: url("img/user_18x24.png");
+}
+
+.icon-large-folder {
+    background-image: url("img/folder_stroke_24x24.png");
+}
+
+.icon-large-search {
+    background-image: url("img/magnifying_glass_24x24.png");
 }
 
 @import "documents.less";
