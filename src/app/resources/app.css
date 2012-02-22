@@ -2702,6 +2702,10 @@ body {
   border-bottom: 1px solid #ccc;
   margin-bottom: 10px;
 }
+.bounded-box .nav a,
+.bounded-box .nav .nav-header {
+  padding: 3px 5px;
+}
 .document {
   counter-reset: section 0;
 }
