@@ -2630,6 +2630,30 @@ body {
 .pull-right {
   float: right;
 }
+.topbar .brand {
+  margin-right: 20px;
+}
+.topbar .nav li,
+.topbar .nav li a,
+.topbar .navbar-text {
+  line-height: 40px;
+}
+.topbar .nav li a {
+  padding: 0 10px !important;
+}
+.topbar i {
+  line-height: 40px;
+  margin-right: 10px;
+}
+.topbar .navbar-text a,
+.topbar .navbar-text:visited {
+  color: #999;
+}
+.topbar .navbar-text a:hover,
+.topbar .navbar-text:active {
+  color: #fff;
+  text-decoration: none;
+}
 .notifications .alert {
   -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
   -moz-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
