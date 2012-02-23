@@ -24,6 +24,61 @@
 @import "bootstrap/less/forms.less";
 @import "bootstrap/less/tables.less";
 
+// Nav
+@import "bootstrap/less/navs.less";
+
+// Misc
+@import "bootstrap/less/thumbnails.less";
+
 /* import Dijit style */
 @import '../../dijit/themes/claro/claro.css';
+
+body {
+    background-color: #AAA;
+}
+
+.main_body {
+    margin: 50px;
+
+    .brand {
+        margin-bottom: 40px;
+        font-size: 30px;
+
+        a, a:visited {
+            color: #000;
+        }
+
+        a:hover, a:active {
+            color: #CCC;
+            text-decoration: none;
+        }
+    }
+
+    .main-menu {
+        a, a:visited {
+            color: #666;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, .2);
+
+            border-radius: 4px;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+        }
+
+        a:hover, a:active {
+            color: #444;
+            background-color: #CCC;
+        }
+    }
+
+    .docs-list {
+        .thumbnail {
+            width: 200px;
+            border-color: #666;
+        }
+
+        .thumbnail:hover {
+            border-color: #09C;
+        }
+    }
+}
 

@@ -34,14 +34,14 @@ define([ 'dojo/has', 'require' ], function (has, require) {
          * special plugin functionality.
          */
         require([ 'citeplasm/Dialog', 'dojo/domReady!' ], function (Dialog) {
-            app.dialog = new Dialog().placeAt(document.body);
+            /*app.dialog = new Dialog().placeAt(document.body);
 
             // It is important to remember to always call startup on widgets after you have added them to the DOM.
             // It won’t hurt if you do it twice, but things will often not work right if you forget to do it.
             app.dialog.startup();
 
             // And now…
-            app.dialog.show();
+            app.dialog.show();*/
         });
     }
     else {
