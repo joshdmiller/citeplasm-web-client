@@ -2695,9 +2695,9 @@ body {
   -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
   -moz-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
   padding: 10px;
   margin-bottom: 20px;
 }
@@ -2709,7 +2709,13 @@ body {
 .bounded-box .nav .nav-header {
   padding: 3px 5px;
 }
+.bounded-box .nav a {
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+}
 .document {
+  padding: 30px;
   counter-reset: section 0;
 }
 .document .editable:focus {
