@@ -1602,9 +1602,13 @@ a.thumbnail:hover {
 /* import Dijit style */
 body {
   background-color: #AAA;
+  background-image: url("img/bg.jpg");
+  background-repeat: repeat;
+  background-position: top left;
 }
 .main_body {
   margin: 50px;
+  color: #DDD;
 }
 .main_body .brand {
   margin-bottom: 40px;
@@ -1612,7 +1616,7 @@ body {
 }
 .main_body .brand a,
 .main_body .brand a:visited {
-  color: #000;
+  color: #FFF;
 }
 .main_body .brand a:hover,
 .main_body .brand a:active {
@@ -1621,7 +1625,7 @@ body {
 }
 .main_body .main-menu a,
 .main_body .main-menu a:visited {
-  color: #666;
+  color: #999;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
   border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -1634,8 +1638,18 @@ body {
 }
 .main_body .docs-list .thumbnail {
   width: 200px;
-  border-color: #666;
+  border-color: #999;
+}
+.main_body .docs-list .thumbnail a,
+.main_body .docs-list .thumbnail a:visited {
+  color: #DDD;
 }
 .main_body .docs-list .thumbnail:hover {
-  border-color: #09C;
+  border-color: #F60;
+}
+.main_body .docs-list .thumbnail:hover a,
+.main_body .docs-list .thumbnail:hover a:visited,
+.main_body .docs-list .thumbnail:hover a:hover,
+.main_body .docs-list .thumbnail:hover a:active {
+  color: #F60;
 }
