@@ -2462,6 +2462,7 @@ body {
 }
 .main_body .docs-list .thumbnail:hover {
   border-color: #F60;
+  background-color: #FFC;
 }
 .main_body .docs-list .thumbnail:hover a,
 .main_body .docs-list .thumbnail:hover a:visited,
