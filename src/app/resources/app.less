@@ -30,9 +30,14 @@
 // Misc
 @import "bootstrap/less/thumbnails.less";
 @import "bootstrap/less/buttons.less";
+@import "bootstrap/less/button-groups.less";
+@import "bootstrap/less/sprites.less";
 
 /* import Dijit style */
 @import '../../dijit/themes/claro/claro.css';
+
+@iconSpritePath: "bootstrap/img/glyphicons-halflings.png";
+@iconWhiteSpritePath: "bootstrap/img/glyphicons-halflings-white.png";
 
 body {
     background-color: #AAA;
@@ -95,5 +100,21 @@ body {
             }
         }
     }
+
+    .menu {
+        margin: -20px -10px 20px 0;
+        text-align: right;
+
+        a, a:visited {
+            margin-left: 10px;
+            color: #888;
+        }
+
+        a:hover, a:active {
+            color: #F60;
+            text-decoration: none;
+        }
+    }
 }
 
+@import "documents.less";
