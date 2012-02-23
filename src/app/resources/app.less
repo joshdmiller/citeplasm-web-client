@@ -76,6 +76,7 @@ body {
 .topbar {
     .brand {
         margin-right: 20px;
+        padding-left: 0;
     }
 
     .nav li, .nav li a, .navbar-text {
@@ -117,53 +118,50 @@ body {
     box-shadow: inset 0 3px 0 #fff, 0 3px 6px rgba(0,0,0,.2);
 
     .submenu-inner {
-        background: transparent !important;
+        background-color: #aaa;
+        background-image: -moz-linear-gradient(top, #CCF, #9CF);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#CCF), to(#9CF));
+        background-image: -webkit-linear-gradient(top, #CCF, #9CF);
+        background-image: -o-linear-gradient(top, #CCF, #9CF);
+        background-image: linear-gradient(top, #CCF, #9CF);
+        background-repeat: repeat-x;
 
-        .container-fluid {
-            background-color: #aaa;
-            background-image: -moz-linear-gradient(top, #CCF, #9CF);
-            background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#CCF), to(#9CF));
-            background-image: -webkit-linear-gradient(top, #CCF, #9CF);
-            background-image: -o-linear-gradient(top, #CCF, #9CF);
-            background-image: linear-gradient(top, #CCF, #9CF);
-            background-repeat: repeat-x;
+        ul.nav {
+            margin-left: 0;
+            li {
+                border-right: 1px solid #90C0F0;
+                border-left: 1px solid #ddd;
+            }
 
-            ul.nav {
-                li {
-                    border-right: 1px solid #90C0F0;
-                    border-left: 1px solid #ddd;
-                }
-
-                li:first-child {
-                    border-left: none;
-                    a {
-                        padding-left: 0;
-                    }
-                }
-
-                li:last-child {
-                    border-right: none;
-                }
-
-                a, a:visited {
-                    color: #000;
-                    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
-                    
-                    i {
-                        background-image: url(@iconSpritePath);
-                    }
-                }
-
-                a:hover, a:active {
-                    color: #fff;
-                    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
-                    
-                    i {
-                        background-image: url(@iconSpritePathWhite);
-                    }
+            li:first-child {
+                border-left: none;
+                a {
+                    padding-left: 0;
+                    margin-left: -20px;
                 }
             }
 
+            li:last-child {
+                border-right: none;
+            }
+
+            a, a:visited {
+                color: #000;
+                text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+                
+                i {
+                    background-image: url(@iconSpritePath);
+                }
+            }
+
+            a:hover, a:active {
+                color: #fff;
+                text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+                
+                i {
+                    background-image: url(@iconSpritePathWhite);
+                }
+            }
         }
     }
 }

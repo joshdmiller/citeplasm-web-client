@@ -2641,6 +2641,7 @@ body {
  */
 .topbar .brand {
   margin-right: 20px;
+  padding-left: 0;
 }
 .topbar .nav li,
 .topbar .nav li a,
@@ -2678,9 +2679,6 @@ body {
   box-shadow: inset 0 3px 0 #ffffff, 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 .submenu .submenu-inner {
-  background: transparent !important;
-}
-.submenu .submenu-inner .container-fluid {
   background-color: #aaa;
   background-image: -moz-linear-gradient(top, #ccccff, #99ccff);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ccccff), to(#99ccff));
@@ -2689,35 +2687,39 @@ body {
   background-image: linear-gradient(top, #ccccff, #99ccff);
   background-repeat: repeat-x;
 }
-.submenu .submenu-inner .container-fluid ul.nav li {
+.submenu .submenu-inner ul.nav {
+  margin-left: 0;
+}
+.submenu .submenu-inner ul.nav li {
   border-right: 1px solid #90C0F0;
   border-left: 1px solid #ddd;
 }
-.submenu .submenu-inner .container-fluid ul.nav li:first-child {
+.submenu .submenu-inner ul.nav li:first-child {
   border-left: none;
 }
-.submenu .submenu-inner .container-fluid ul.nav li:first-child a {
+.submenu .submenu-inner ul.nav li:first-child a {
   padding-left: 0;
+  margin-left: -20px;
 }
-.submenu .submenu-inner .container-fluid ul.nav li:last-child {
+.submenu .submenu-inner ul.nav li:last-child {
   border-right: none;
 }
-.submenu .submenu-inner .container-fluid ul.nav a,
-.submenu .submenu-inner .container-fluid ul.nav a:visited {
+.submenu .submenu-inner ul.nav a,
+.submenu .submenu-inner ul.nav a:visited {
   color: #000;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
 }
-.submenu .submenu-inner .container-fluid ul.nav a i,
-.submenu .submenu-inner .container-fluid ul.nav a:visited i {
+.submenu .submenu-inner ul.nav a i,
+.submenu .submenu-inner ul.nav a:visited i {
   background-image: url("bootstrap/img/glyphicons-halflings.png");
 }
-.submenu .submenu-inner .container-fluid ul.nav a:hover,
-.submenu .submenu-inner .container-fluid ul.nav a:active {
+.submenu .submenu-inner ul.nav a:hover,
+.submenu .submenu-inner ul.nav a:active {
   color: #fff;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
 }
-.submenu .submenu-inner .container-fluid ul.nav a:hover i,
-.submenu .submenu-inner .container-fluid ul.nav a:active i {
+.submenu .submenu-inner ul.nav a:hover i,
+.submenu .submenu-inner ul.nav a:active i {
   background-image: url("bootstrap/img/glyphicons-halflings-white.png");
 }
 .notifications .alert {
