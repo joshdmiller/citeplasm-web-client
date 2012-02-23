@@ -2631,7 +2631,9 @@ body {
   float: right;
 }
 .topbar {
-  border-bottom: 1px solid #1a1a1a;
+  /*border-bottom: 1px solid #1a1a1a;*/
+
+  border-bottom: 2px solid #5f9f5f;
 }
 .topbar .brand {
   margin-right: 20px;
