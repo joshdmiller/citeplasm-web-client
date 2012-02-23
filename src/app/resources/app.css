@@ -2621,10 +2621,11 @@ input[type="submit"].btn.small {
  * General Page Styles
  */
 body {
-  margin-top: 100px;
-  background-image: url(img/bg.png);
-  background-position: top left;
-  background-repeat: repeat;
+  /*background-image: url(img/bg.png);
+    background-position: top left;
+    background-repeat: repeat;*/
+
+  background-color: #bbb;
   margin-top: 60px;
 }
 .pull-right {
@@ -2633,22 +2634,26 @@ body {
 .topbar {
   /*border-bottom: 1px solid #1a1a1a;*/
 
-  border-bottom: 2px solid #5f9f5f;
+  border-bottom: 2px solid #0C0;
 }
 .topbar .brand {
   margin-right: 20px;
 }
-.topbar .nav li,
-.topbar .nav li a,
-.topbar .navbar-text {
-  line-height: 40px;
+.topbar .nav {
+  float: right;
+  margin-right: 0;
 }
 .topbar .nav li a {
-  padding: 0 10px !important;
-}
-.topbar i {
   line-height: 40px;
-  margin-right: 10px;
+  padding: 0 !important;
+  margin-left: 20px;
+}
+.topbar .nav li a i {
+  line-height: 40px;
+}
+.topbar .nav li.active a,
+.topbar .nav li.active:hover {
+  background-color: transparent;
 }
 .topbar .navbar-text a,
 .topbar .navbar-text:visited {

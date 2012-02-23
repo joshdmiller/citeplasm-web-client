@@ -50,10 +50,11 @@
  * General Page Styles
  */
 body {
-    margin-top: 100px;
-    background-image: url(img/bg.png);
+    /*background-image: url(img/bg.png);
     background-position: top left;
-    background-repeat: repeat;
+    background-repeat: repeat;*/
+
+    background-color: #bbb;
 
     margin-top: 60px;
  }
@@ -64,24 +65,32 @@ body {
 
 .topbar {
     /*border-bottom: 1px solid #1a1a1a;*/
-    border-bottom: 2px solid #5f9f5f;
+    border-bottom: 2px solid #0C0;
 
     .brand {
         margin-right: 20px;
     }
 
-    .nav li, .nav li a, .navbar-text {
-        line-height: 40px;
-    }
+    .nav {
+        float: right;
+        margin-right: 0;
+        
+        li {
+            a {
+                line-height: 40px;
+                padding: 0 !important;
+                margin-left: 20px;
+                
+                i {
+                    line-height: 40px;
+                }
+            }
+        }
 
-    .nav li a {
-        padding: 0 10px !important;
+        li.active a, li.active:hover {
+            background-color: transparent;
+        }
         
-    }
-        
-    i {
-        line-height: 40px;
-        margin-right: 10px;
     }
 
     .navbar-text a, .navbar-text:visited {
