@@ -33,7 +33,7 @@ define([ 'dojo/has', 'require' ], function (has, require) {
          * require just “dojo/domReady”, it would load that module just like any other module, without any of the
          * special plugin functionality.
          */
-        require([ 'citeplasm/Dialog', 'dojo/domReady!' ], function (Dialog) {
+        require([ 'citeplasm/Dialog', 'dojo/parser', 'dijit/Declaration', 'dojo/query', 'dojo/dom-geometry', 'dojox/html/ellipsis', 'dojo/domReady!' ], function (Dialog, parser, Declaration, query, domGeom) {
             /*app.dialog = new Dialog().placeAt(document.body);
 
             // It is important to remember to always call startup on widgets after you have added them to the DOM.
@@ -42,6 +42,9 @@ define([ 'dojo/has', 'require' ], function (has, require) {
 
             // And now…
             app.dialog.show();*/
+
+            // parse the DOM
+            parser.parse();
         });
     }
     else {

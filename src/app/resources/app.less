@@ -35,19 +35,55 @@
 
 /* import Dijit style */
 @import '../../dijit/themes/claro/claro.css';
+@import "../../dojox/html/resources/ellipsis.css";
 
 @iconSpritePath: "bootstrap/img/glyphicons-halflings.png";
 @iconWhiteSpritePath: "bootstrap/img/glyphicons-halflings-white.png";
 
+.bounded-box {
+    color: #444;
+
+    background: #fff;
+    
+    -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
+    -moz-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
+    
+    border: 1px solid #666;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+
+    padding: 10px;
+    margin-bottom: 20px;
+
+    .nav {
+        .nav-header {
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        a, .nav-header {
+            padding: 3px 5px;
+        }
+        
+        a {
+            border-radius: 4px;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+        }
+    }
+}
+
 body {
-    background-color: #AAA;
-    background-image: url("img/bg.jpg");
-    background-repeat: repeat;
-    background-position: top left;
+    background-color: #38A;
+    //background-image: url("img/bg.jpg");
+    //background-repeat: repeat;
+    //background-position: top left;
 }
 
 .main_body {
-    margin: 50px;
+    padding: 50px;
 
     .brand {
         margin-bottom: 40px;
@@ -65,43 +101,65 @@ body {
 
     .main-menu {
         margin-bottom: 20px;
-        color: #DDD;
+
+        .nav-header {
+            color: #222;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, .2);
+        }
 
         a, a:visited {
-            color: #999;
-            text-shadow: 0 1px 0 rgba(255, 255, 255, .2);
-
-            border-radius: 4px;
-            -webkit-border-radius: 4px;
-            -moz-border-radius: 4px;
+            color: #FFF;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+            font-weight: bold;
         }
 
         a:hover, a:active {
-            color: #444;
-            background-color: #CCC;
+            text-decoration: underline;
+            background-color: transparent;
         }
     }
 
     .docs-list {
         .thumbnail {
             width: 140px;
+            max-height: 166px;
+            min-height: 166px;
             padding: 10px;
-            border-color: #999;
-            background-color: #fff;
-
+            overflow: hidden;
+            
             img, h5 {
                 margin-bottom: 5px;
+            }
+
+            h6 a {
+                color: #aaa;
+                text-decoration: none;
+            }
+            h6 {
+                margin-bottom: 10px;
+            }
+
+            h5, h6 {
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            h5, h6 {
+                white-space: nowrap;
+            }
+
+            h6 a:hover, h6 a:active {
+                color: #aaa;
+                text-decoration: underline;
             }
         }
 
         .thumbnail:hover {
-            border-color: #F60;
-            background-color: #FFC;
-            
-            a, a:visited, a:hover, a:active {
-                color: #F60;
-                text-decoration: none;
-            }
+            border-color: #999;
+
+            -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.75), inset 0px 6px 6px rgba(255, 255, 255, 0.15);
+            -moz-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.75), inset 0px 6px 6px rgba(255, 255, 255, 0.15);
+            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.75), inset 0px 6px 6px rgba(255, 255, 255, 0.15);
         }
     }
 

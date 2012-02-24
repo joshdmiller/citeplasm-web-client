@@ -17,7 +17,7 @@
                         <a href="#">[citeplasm]</a>
                     </div>
                     
-                    <form class="well form-search">
+                    <form class="form-search">
                         <input type="text" class="input-medium search-query">
                         <button type="submit" class="btn">Search</button>
                     </form>
@@ -26,49 +26,40 @@
                         <li><a href="#">Your Documents</a></li>
                         <li><a href="#">Your Notes</a></li>
                         <li><a href="#">Your Resources</a></li>
+
+                        <li class="nav-header">Open Documents</li>
+                        <li><a href="#">Dashboard</a></li>
+                        <li><a href="#">This is a Document</a></li>
                     </ul>
                 </div>
                 <div class="span9">
                     <ul class="thumbnails docs-list">
-                        <li><div class="thumbnail">
-                            <a href="#"><img src="http://placehold.it/140x80" alt="" /></a>
-                            <h5><a href="#">Document Title</a></h5>
-                            <p>This is the document abstract, or at least part of it.</p>
+                        <div data-dojo-type="dijit.Declaration" data-dojo-props="widgetClass: 'DocumentThumbnail', defaults: {}">
+                            <li><div class="thumbnail bounded-box">
+                                <a href="#"><img src="http://placehold.it/140x80" alt="" /></a>
+                                <h5><a href="#">${title}</a></h5>
+                                <h6><a href="#">${author}</a></h4>
+                                <p class="dojoxEllipsis">This is a slice of the abstract, but some of it no doubt has been clipped.</p>
+                            </div></li>
+                        </div>
+
+                        <li><div data-dojo-type="DocumentThumbnail" 
+                            data-dojo-props="title: 'This is a Document', author: 'Joshua D Miller'">
                         </div></li>
-                        <li><div class="thumbnail">
-                            <a href="#"><img src="http://placehold.it/140x80" alt="" /></a>
-                            <h5><a href="#">Document Title</a></h5>
-                            <p>This is the document abstract, or at least part of it.</p>
+                        <li><div data-dojo-type="DocumentThumbnail" 
+                            data-dojo-props="title: 'A Report on Poverty', author: 'Joshua D Miller'">
                         </div></li>
-                        <li><div class="thumbnail">
-                            <a href="#"><img src="http://placehold.it/140x80" alt="" /></a>
-                            <h5><a href="#">Document Title</a></h5>
-                            <p>This is the document abstract, or at least part of it.</p>
+                        <li><div data-dojo-type="DocumentThumbnail" 
+                            data-dojo-props="title: 'A Third Doc', author: 'Joshua D Miller'">
                         </div></li>
-                        <li><div class="thumbnail">
-                            <a href="#"><img src="http://placehold.it/140x80" alt="" /></a>
-                            <h5><a href="#">Document Title</a></h5>
-                            <p>This is the document abstract, or at least part of it.</p>
+                        <li><div data-dojo-type="DocumentThumbnail" 
+                            data-dojo-props="title: 'Safety & Efficacy of Placebo', author: 'Joshua D Miller'">
                         </div></li>
-                        <li><div class="thumbnail">
-                            <a href="#"><img src="http://placehold.it/140x80" alt="" /></a>
-                            <h5><a href="#">Document Title</a></h5>
-                            <p>This is the document abstract, or at least part of it.</p>
+                        <li><div data-dojo-type="DocumentThumbnail" 
+                            data-dojo-props="title: 'A way out of the woods for Europe', author: 'Joshua D Miller'">
                         </div></li>
-                        <li><div class="thumbnail">
-                            <a href="#"><img src="http://placehold.it/140x80" alt="" /></a>
-                            <h5><a href="#">Document Title</a></h5>
-                            <p>This is the document abstract, or at least part of it.</p>
-                        </div></li>
-                        <li><div class="thumbnail">
-                            <a href="#"><img src="http://placehold.it/140x80" alt="" /></a>
-                            <h5><a href="#">Document Title</a></h5>
-                            <p>This is the document abstract, or at least part of it.</p>
-                        </div></li>
-                        <li><div class="thumbnail">
-                            <a href="#"><img src="http://placehold.it/140x80" alt="" /></a>
-                            <h5><a href="#">Document Title</a></h5>
-                            <p>This is the document abstract, or at least part of it.</p>
+                        <li><div data-dojo-type="DocumentThumbnail" 
+                            data-dojo-props="title: 'Short Title', author: 'Someone Else'">
                         </div></li>
                     </ul>
                 </div>

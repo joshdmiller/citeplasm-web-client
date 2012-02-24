@@ -1,4 +1,6 @@
 @import '../../dijit/themes/claro/claro.css';
+
+@import "../../dojox/html/resources/ellipsis.css";
 /**
  * If you are developing a project that makes use of Dijit widgets, you will probably want to include the two files
  * below; otherwise, you can remove them. When building for release, Dojo will automatically combine all of your
@@ -2411,14 +2413,37 @@ input[type="submit"].btn.small {
   background-position: -456px -118px;
 }
 /* import Dijit style */
+.bounded-box {
+  color: #444;
+  background: #fff;
+  -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
+  -moz-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
+  border: 1px solid #666;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+.bounded-box .nav .nav-header {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+.bounded-box .nav a,
+.bounded-box .nav .nav-header {
+  padding: 3px 5px;
+}
+.bounded-box .nav a {
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+}
 body {
-  background-color: #AAA;
-  background-image: url("img/bg.jpg");
-  background-repeat: repeat;
-  background-position: top left;
+  background-color: #38A;
 }
 .main_body {
-  margin: 50px;
+  padding: 50px;
 }
 .main_body .brand {
   margin-bottom: 40px;
@@ -2435,41 +2460,59 @@ body {
 }
 .main_body .main-menu {
   margin-bottom: 20px;
-  color: #DDD;
+}
+.main_body .main-menu .nav-header {
+  color: #222;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
 }
 .main_body .main-menu a,
 .main_body .main-menu a:visited {
-  color: #999;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
+  color: #FFF;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  font-weight: bold;
 }
 .main_body .main-menu a:hover,
 .main_body .main-menu a:active {
-  color: #444;
-  background-color: #CCC;
+  text-decoration: underline;
+  background-color: transparent;
 }
 .main_body .docs-list .thumbnail {
   width: 140px;
+  max-height: 166px;
+  min-height: 166px;
   padding: 10px;
-  border-color: #999;
-  background-color: #fff;
+  overflow: hidden;
 }
 .main_body .docs-list .thumbnail img,
 .main_body .docs-list .thumbnail h5 {
   margin-bottom: 5px;
 }
-.main_body .docs-list .thumbnail:hover {
-  border-color: #F60;
-  background-color: #FFC;
-}
-.main_body .docs-list .thumbnail:hover a,
-.main_body .docs-list .thumbnail:hover a:visited,
-.main_body .docs-list .thumbnail:hover a:hover,
-.main_body .docs-list .thumbnail:hover a:active {
-  color: #F60;
+.main_body .docs-list .thumbnail h6 a {
+  color: #aaa;
   text-decoration: none;
+}
+.main_body .docs-list .thumbnail h6 {
+  margin-bottom: 10px;
+}
+.main_body .docs-list .thumbnail h5,
+.main_body .docs-list .thumbnail h6 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.main_body .docs-list .thumbnail h5,
+.main_body .docs-list .thumbnail h6 {
+  white-space: nowrap;
+}
+.main_body .docs-list .thumbnail h6 a:hover,
+.main_body .docs-list .thumbnail h6 a:active {
+  color: #aaa;
+  text-decoration: underline;
+}
+.main_body .docs-list .thumbnail:hover {
+  border-color: #999;
+  -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.75), inset 0px 6px 6px rgba(255, 255, 255, 0.15);
+  -moz-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.75), inset 0px 6px 6px rgba(255, 255, 255, 0.15);
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.75), inset 0px 6px 6px rgba(255, 255, 255, 0.15);
 }
 .main_body .menu {
   margin: -20px -10px 20px 0;
@@ -2488,33 +2531,8 @@ body {
 /*
  * Documents
  */
-.bounded-box {
-  color: #444;
-  background: #fff;
-  -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
-  -moz-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-.bounded-box .nav .nav-header {
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 10px;
-}
-.bounded-box .nav a,
-.bounded-box .nav .nav-header {
-  padding: 3px 5px;
-}
-.bounded-box .nav a {
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-}
 .document {
-  padding: 30px 30px 30px 30px;
+  padding: 30px;
   counter-reset: section 0;
 }
 .document .editable:focus {
@@ -2553,7 +2571,7 @@ body {
   font-size: 20px;
   line-height: 24px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 .document .heading1::before {
   counter-increment: section;
