@@ -28,40 +28,49 @@
                         <li><a href="#">Your Resources</a></li>
 
                         <li class="nav-header">Open Documents</li>
-                        <li><a href="#">Dashboard</a></li>
-                        <li><a href="#">This is a Document</a></li>
+                        <li><a id="test-stack-dashboard-link" href="#">Dashboard</a></li>
+                        <li><a id="test-stack-document-link" href="#">This is a Document</a></li>
                     </ul>
                 </div>
                 <div class="span9">
-                    <ul class="thumbnails docs-list">
-                        <div data-dojo-type="dijit.Declaration" data-dojo-props="widgetClass: 'DocumentThumbnail', defaults: {}">
-                            <li><div class="thumbnail bounded-box">
-                                <a href="#"><img src="http://placehold.it/140x80" alt="" /></a>
-                                <h5><a href="#">${title}</a></h5>
-                                <h6><a href="#">${author}</a></h4>
-                                <p class="dojoxEllipsis">This is a slice of the abstract, but some of it no doubt has been clipped.</p>
-                            </div></li>
-                        </div>
+                    <div data-dojo-type="dijit.layout.StackContainer" id="mdi-container">
+                        <div data-dojo-type="dijit.layout.ContentPane" title="Dashboard" id="mdi-child-1" data-dojo-id="mdi-child-1">
+                            <ul class="thumbnails docs-list">
+                                <div data-dojo-type="dijit.Declaration" data-dojo-props="widgetClass: 'DocumentThumbnail', defaults: {}">
+                                    <li><div class="thumbnail bounded-box">
+                                        <a href="#"><img src="http://placehold.it/140x80" alt="" /></a>
+                                        <h5><a href="#">${title}</a></h5>
+                                        <h6><a href="#">${author}</a></h4>
+                                        <p class="dojoxEllipsis">This is a slice of the abstract, but some of it no doubt has been clipped.</p>
+                                    </div></li>
+                                </div>
 
-                        <li><div data-dojo-type="DocumentThumbnail" 
-                            data-dojo-props="title: 'This is a Document', author: 'Joshua D Miller'">
-                        </div></li>
-                        <li><div data-dojo-type="DocumentThumbnail" 
-                            data-dojo-props="title: 'A Report on Poverty', author: 'Joshua D Miller'">
-                        </div></li>
-                        <li><div data-dojo-type="DocumentThumbnail" 
-                            data-dojo-props="title: 'A Third Doc', author: 'Joshua D Miller'">
-                        </div></li>
-                        <li><div data-dojo-type="DocumentThumbnail" 
-                            data-dojo-props="title: 'Safety & Efficacy of Placebo', author: 'Joshua D Miller'">
-                        </div></li>
-                        <li><div data-dojo-type="DocumentThumbnail" 
-                            data-dojo-props="title: 'A way out of the woods for Europe', author: 'Joshua D Miller'">
-                        </div></li>
-                        <li><div data-dojo-type="DocumentThumbnail" 
-                            data-dojo-props="title: 'Short Title', author: 'Someone Else'">
-                        </div></li>
-                    </ul>
+                                <li><div data-dojo-type="DocumentThumbnail" 
+                                    data-dojo-props="title: 'This is a Document', author: 'Joshua D Miller'">
+                                </div></li>
+                                <li><div data-dojo-type="DocumentThumbnail" 
+                                    data-dojo-props="title: 'A Report on Poverty', author: 'Joshua D Miller'">
+                                </div></li>
+                                <li><div data-dojo-type="DocumentThumbnail" 
+                                    data-dojo-props="title: 'A Third Doc', author: 'Joshua D Miller'">
+                                </div></li>
+                                <li><div data-dojo-type="DocumentThumbnail" 
+                                    data-dojo-props="title: 'Safety & Efficacy of Placebo', author: 'Joshua D Miller'">
+                                </div></li>
+                                <li><div data-dojo-type="DocumentThumbnail" 
+                                    data-dojo-props="title: 'A way out of the woods for Europe', author: 'Joshua D Miller'">
+                                </div></li>
+                                <li><div data-dojo-type="DocumentThumbnail" 
+                                    data-dojo-props="title: 'Short Title', author: 'Someone Else'">
+                                </div></li>
+                            </ul>
+                        </div>
+                        <div data-dojo-type="dijit.layout.ContentPane" title="This is a Document" data-dojo-id="mdi-child-2" id="mdi-child-2">
+                            <div data-dojo-type="citeplasm.Editor" 
+                                 data-dojo-props="title: 'This is a Document', author: 'Joshua D Miller'">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
