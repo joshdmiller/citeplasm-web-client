@@ -27,22 +27,9 @@ define([ 'dojo/has', 'require' ], function (has, require) {
                     'dojox/html/ellipsis', 
                     'dojo/domReady!', 
                     'citeplasm/Editor',
-                    'dijit/layout/ContentPane',
-                    'dijit/layout/StackContainer'
         ], function (parser, registry) {
             // parse the DOM
             parser.parse();
-
-            var mdiContainer = registry.byId("mdi-container");
-            var mdiChildDb = registry.byId("mdi-child-1");
-            var mdiChildDoc = registry.byId("mdi-child-2");
-            dojo.query("#test-stack-dashboard-link").on("click", function() {
-                mdiContainer.selectChild(mdiChildDb, true);
-            });
-            
-            dojo.query("#test-stack-document-link").on("click", function() {
-                mdiContainer.selectChild(mdiChildDoc, true);
-            });
         });
     }
     else {

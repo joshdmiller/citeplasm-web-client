@@ -1,12 +1,11 @@
-<div class="document bounded-box">
-    <div class="menu">
-        <a class="" href="#"><i class="icon-share"></i> Export</a>
-        <a class="" href="#"><i class="icon-file"></i> Publish</a>
-        <a class="" href="#"><i class="icon-time"></i> History</a>
-        <a class="" href="#"><i class="icon-cog"></i> Settings</a>
-        <a class="" href="#"><i class="icon-remove"></i> Close</a>
-        <a class="" href="#"><i class="icon-list-alt"></i> Resources</a>
-    </div>
+<div>
+    <!--<div class="CiteplasmEditor-Menu">
+        <button data-dojo-type="dijit.form.Button" data-dojo-props="iconClass: 'dijitEditorIcon dijitEditorIconSave'">Save</button>
+        <button data-dojo-type="dijit.form.Button" data-dojo-props="iconClass: 'dijitEditorIcon dijitEditorIconSave'">Publish</button>
+        <button data-dojo-type="dijit.form.Button" data-dojo-props="iconClass: 'dijitEditorIcon dijitEditorIconPrint'">Export</button>
+        <button data-dojo-type="dijit.form.Button" data-dojo-props="iconClass: 'dijitEditorIconConfigure'">History</button>
+        <button data-dojo-type="dijit.form.Button" data-dojo-props="iconClass: 'dijitIconApplication'">Settings</button>
+    </div>-->
     <div class="title editable" contenteditable="true" data-dojo-attach-point="titleNode">
         ${title}
     </div>
@@ -16,17 +15,77 @@
     <div class="abstract editable" contenteditable="true">
         This is the document abstract.
     </div>
-    <div class="separator"></div>
-    <div class="heading1 editable" contenteditable="true">
+    
+    <div class="section heading1 editable" contenteditable="true">
+        <div class="drag-handle"></div>
         Sample Heading
     </div>
-    <div class="paragraph editable" contenteditable="true">
-        This is a paragraph of text.
+    <div class="section heading2 editable" contenteditable="true">
+        <div class="drag-handle" contenteditable="false"></div>
+        Sample Subheading
     </div>
-    <div class="heading1 editable" contenteditable="true">
+    <div class="section text editable" contenteditable="true">
+        <div class="drag-handle"></div>
+        <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+        volutpat, nisl quis blandit vulputate <span class="citation" contenteditable="false"><a href="#">Bohr 1965</a></span>, orci lorem blandit elit, at
+        semper libero quam non nunc. Vestibulum ornare blandit elit non
+        hendrerit. In eget libero diam, a gravida neque. Aliquam erat volutpat.
+        Nulla cursus volutpat malesuada. Etiam molestie feugiat tincidunt.
+        Nullam ultricies, risus non porta sagittis, nulla ipsum rutrum magna,
+        sit amet interdum massa felis vel nunc. Proin est dui, blandit vel
+        viverra sed, aliquet a nulla. Etiam ut metus ligula. Vestibulum
+        laoreet, mi eget feugiat ultrices, justo leo blandit risus, fermentum
+        malesuada magna lacus a diam. Cras iaculis dictum neque sit amet
+        volutpat. Nullam metus elit, tristique a egestas quis, luctus vel mi.
+        </p>
+        <p>
+        Curabitur faucibus metus et mi facilisis tincidunt. Nam vel magna dolor, ut
+        vulputate ipsum. Suspendisse eu erat felis. Ut varius, velit eget scelerisque
+        accumsan, metus ante ornare ipsum, in mattis massa ligula quis turpis. Vivamus
+        at magna tellus, quis dapibus velit. Praesent quis justo nec augue fermentum
+        laoreet id et risus. Praesent lacinia neque ac dui euismod malesuada. Donec
+        eget nisl tortor, nec malesuada augue. Donec lacinia mi sed nunc vehicula
+        facilisis. Pellentesque habitant morbi tristique senectus et netus et malesuada
+        fames ac turpis egestas. Aenean a sapien eu erat aliquet dictum eu et nulla.
+        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac
+        turpis egestas. Mauris pulvinar, tellus porttitor mattis pretium, dui nisi
+        dapibus velit, ac pellentesque est lectus sit amet felis. Maecenas ut leo elit,
+        at auctor dolor.
+        </p>
+    </div>
+    <div class="section heading2 editable" contenteditable="true">
+        <div class="drag-handle"></div>
+        Another Subheading
+    </div>
+    <div class="section heading1 editable" contenteditable="true">
+        <div class="drag-handle"></div>
         Heading the Second
     </div>
-    <div class="paragraph editable" contenteditable="true">
-        This is another paragraph of text.
+    <div class="section heading2 editable" contenteditable="true">
+        <div class="drag-handle"></div>
+        This is a Third Subheading
+    </div>
+    <div class="section text editable" contenteditable="true">
+        <div class="drag-handle"></div>
+        <p>
+        Ths is another paragraph of text.
+        </p>
+    </div>
+    
+    <div class="resources">
+        <div class="heading">Resources Used in This Document</div>
+        <table class="table table-striped">
+            <thead>
+                <tr><th>Tag</th><th>Resource</th><th>Actions</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Feynman 1995</td><td><a href="#">Six Easy Pieces by Richard P. Feynman</a></td><td></td></tr>
+                <tr><td>Sagan 1980</td><td><a href="#">Cosmos by Carl Sagan</a></td><td></td></tr>
+                <tr><td>Carroll 2005</td><td><a href="#">Endless Forms Most Beautiful by Sean B. Carroll</a></td><td></td></tr>
+                <tr><td>Bohr 1965</td><td><a href="#">Einstein's Theory of Relativity by Niels Bohr</a></td><td></td></tr>
+                <tr><td>Penrose 2004</td><td><a href="#">The Road to Reality by Roger Penrose</a></td><td></td></tr>
+            </tbody>
+        </table>
     </div>
 </div>

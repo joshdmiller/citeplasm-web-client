@@ -1,0 +1,138 @@
+/*
+ * Styles for the Editor widget
+ */
+
+.CiteplasmEditor {
+
+    color: #666;
+
+    counter-reset: headingone 0;
+
+    .editable:focus {
+        outline: 0;
+    }
+
+    .section {
+        padding: 12px 12px 12px 36px;
+        margin: 5px 0;
+
+        .drag-handle {
+            visibility: hidden;
+            background-position: left center;
+            background-repeat: no-repeat;
+            background-image: url("@{citeplasmPath}/img/move_16x16.png");
+            float: left;
+            width: 16px;
+            height: 24px;
+            margin-left: -24px;
+        }
+    }
+
+    .section:hover, .section:focus {
+        padding: 10px 10px 10px 34px;
+        border: 2px solid #ddd;
+        border-radius: 4px;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+
+        .drag-handle {
+            visibility: visible;
+        }
+    }
+
+    .title {
+        font-weight: bold;
+        font-size: 40px;
+        line-height: 44px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .author {
+        font-size: 20px;
+        line-height: 24px;
+        text-align: center;
+        margin-bottom: 30px;
+
+        a {
+            color: #555;
+        }
+    }
+
+    .abstract {
+        color: #aaa;
+        font-style: italic;
+        font-size: 18px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .heading1, .resources .heading {
+        font-size: 20px;
+        line-height: 24px;
+        font-weight: bold;
+    }
+
+    .heading1 {
+        counter-reset: headingtwo 0;
+    }
+
+    .heading2 {
+        font-size: 18px;
+        line-height: 22px;
+        font-weight: bold;
+    }
+
+    .heading1:before {
+        counter-increment: headingone;
+        content: counter(headingone) " ";
+    }
+    
+    .heading2:before {
+        counter-increment: headingtwo;
+        content: counter(headingone) "." counter(headingtwo) " ";
+    }
+    
+    .heading1:before, .heading2:before {
+        font-weight: bold;
+        margin-right: 20px;
+    }
+
+    .text {
+
+        p {
+            margin: 10px 0;
+            font-size: 16px;
+            line-height: 20px;
+        }
+
+        p:first-child {
+            text-indent: 30px;
+        }
+    }
+
+    .CiteplasmEditor-Menu {
+        text-align: right;
+        margin: -10px 20px 20px 0;
+    }
+
+    .citation {
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+
+        background-color: #EAEEF3;
+        border: 1px solid #C6C9CE;
+
+        font-size: 11px;
+        padding: 3px 4px;
+        margin: 0 2px;
+    }
+
+    .citation::before {
+        content: "[";
+    }
+    .citation::after {
+        content: "]";
+    }
+}

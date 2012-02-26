@@ -6,6 +6,8 @@
  * It is highly, highly recommended that you develop your CSS using LESS: http://lesscss.org.
  */
 
+@citeplasmPath: "../../citeplasm";
+
 // CSS Reset
 @import 'bootstrap/less/reset.less';
 
@@ -18,165 +20,143 @@
 @import "bootstrap/less/grid.less";
 @import "bootstrap/less/layouts.less";
 
-// Base CSS
+/* Bootstrap imports */
 @import "bootstrap/less/type.less";
-@import "bootstrap/less/code.less";
 @import "bootstrap/less/forms.less";
-@import "bootstrap/less/tables.less";
-
-// Nav
 @import "bootstrap/less/navs.less";
-
-// Misc
-@import "bootstrap/less/thumbnails.less";
-@import "bootstrap/less/buttons.less";
-@import "bootstrap/less/button-groups.less";
-@import "bootstrap/less/sprites.less";
+@import "bootstrap/less/tables.less";
 
 /* import Dijit style */
 @import '../../dijit/themes/claro/claro.css';
 @import "../../dojox/html/resources/ellipsis.css";
 
-@iconSpritePath: "bootstrap/img/glyphicons-halflings.png";
-@iconWhiteSpritePath: "bootstrap/img/glyphicons-halflings-white.png";
+/* import Citeplasm syles */
+@import "../../citeplasm/resources/editor.less";
+@import "../../citeplasm/resources/icons.less";
 
 .bounded-box {
     color: #444;
-
-    background: #fff;
-    
-    -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
-    -moz-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 6px rgba(255, 255, 255, 0.15);
-    
-    border: 1px solid #666;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
+    background: rgba(234, 238, 243, 0.4);
+    border: 1px solid #ccc;
+    box-shadow: 4px 4px 4px rgba(234, 238, 243, .97);
 
     padding: 10px;
-    margin-bottom: 20px;
+    margin: 30px 30px 20px 0;
 
-    .nav {
+    .nav-list {
+        [class*=" icon-"], [class^="icon-"] {
+            margin-right: 10px;
+            height: 18px;
+            line-height: 18px;
+        }
+
         .nav-header {
-            border-bottom: 1px solid #ccc;
-            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+
+        .nav-header:first-child {
+            margin-top: 0px;
         }
 
         a, .nav-header {
             padding: 3px 5px;
         }
-        
-        a {
-            border-radius: 4px;
-            -webkit-border-radius: 4px;
-            -moz-border-radius: 4px;
-        }
     }
 }
 
-body {
-    background-color: #38A;
-    //background-image: url("img/bg.jpg");
-    //background-repeat: repeat;
-    //background-position: top left;
-}
+.page {
+    padding: 0;
+    margin: 0;
 
-.main_body {
-    padding: 50px;
+    .sidebar {
+        background: -webkit-linear-gradient(rgba(234, 238, 243, 0.2), #eaeef3), -webkit-linear-gradient(left, #eaeef3, #eaeef3 97%, #d3d7db);
+        background-image: -moz-linear-gradient(rgba(234, 238, 243, 0.2), #eaeef3), -moz-linear-gradient(left, #eaeef3, #eaeef3 97%, #d3d7db);
+        background-image: linear-gradient(rgba(234, 238, 243, 0.2), #eaeef3), linear-gradient(left, #eaeef3, #eaeef3 97%, #d3d7db);
+        border-right: 1px solid #c6c9ce;
 
-    .brand {
-        margin-bottom: 40px;
-        font-size: 30px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        width: 250px;
+        z-index: 2;
 
-        a, a:visited {
-            color: #FFF;
-        }
+        .brand {
+            letter-spacing: 3px;
+            text-align: right;
+            padding: 20px;
+            font-size: 30px;
+            line-height: 30px;
 
-        a:hover, a:active {
-            color: #CCC;
-            text-decoration: none;
-        }
-    }
-
-    .main-menu {
-        margin-bottom: 20px;
-
-        .nav-header {
-            color: #222;
-            text-shadow: 0 1px 1px rgba(255, 255, 255, .2);
-        }
-
-        a, a:visited {
-            color: #FFF;
-            text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-            font-weight: bold;
-        }
-
-        a:hover, a:active {
-            text-decoration: underline;
-            background-color: transparent;
-        }
-    }
-
-    .docs-list {
-        .thumbnail {
-            width: 140px;
-            max-height: 166px;
-            min-height: 166px;
-            padding: 10px;
-            overflow: hidden;
-            
-            img, h5 {
-                margin-bottom: 5px;
-            }
-
-            h6 a {
-                color: #aaa;
+            a:hover, a:active {
+                color: #F60;
                 text-decoration: none;
             }
-            h6 {
-                margin-bottom: 10px;
+        }
+
+        .form-search {
+            margin-bottom: 30px;
+        }
+
+        .main-menu {
+            margin-bottom: 20px;
+            text-align: right;
+            font-size: 14px;
+
+            .nav-header {
+                color: #114;
+                text-transform: none;
+                font-size: 16px;
+                margin: 20px 0 10px 0;
+                border-top: 1px solid #ccc;
+                padding: 20px 0 0 0;
+                font-weight: normal;
+            }
+        
+            [class*=" icon-"], [class^="icon-"] {
+                margin-left: 10px;
             }
 
-            h5, h6 {
-                overflow: hidden;
-                text-overflow: ellipsis;
+            li.active a {
+                text-shadow: none;
             }
 
-            h5, h6 {
-                white-space: nowrap;
+            li.active a:hover, li.active a:active {
+                background-color: #0088CC;
+                text-shadow: none;
             }
 
-            h6 a:hover, h6 a:active {
-                color: #aaa;
-                text-decoration: underline;
+            a:hover, a:active {
+                background-color: #AAAAFF;
+                text-shadow: none;
             }
         }
 
-        .thumbnail:hover {
-            border-color: #999;
-
-            -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.75), inset 0px 6px 6px rgba(255, 255, 255, 0.15);
-            -moz-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.75), inset 0px 6px 6px rgba(255, 255, 255, 0.15);
-            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.75), inset 0px 6px 6px rgba(255, 255, 255, 0.15);
-        }
     }
 
-    .menu {
-        margin: -20px -10px 20px 0;
-        text-align: right;
+    .main {
+        padding-left: 250px;
+        margin: 0;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 1;
 
-        a, a:visited {
-            margin-left: 10px;
-            color: #888;
+        .content {
+            padding: 30px 280px 30px 30px;
         }
 
-        a:hover, a:active {
-            color: #F60;
-            text-decoration: none;
+        .content-sidebar {
+            position: fixed;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 1;
+            width: 250px;
         }
     }
 }
 
-@import "documents.less";
