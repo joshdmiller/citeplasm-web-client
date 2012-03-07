@@ -1,0 +1,49 @@
+/* Bootstrap variables, mixins, and typography */
+@import 'less/bootstrap-reset.less';
+@import "less/bootstrap-variables.less";
+@import "less/bootstrap-mixins.less";
+@import "less/bootstrap-type.less";
+
+// STRUCTURAL LAYOUT
+// -----------------
+
+body {
+  margin: 0;
+  font-family: @baseFontFamily;
+  font-size: @baseFontSize;
+  line-height: @baseLineHeight;
+  color: @textColor;
+}
+
+// LINKS
+// -----
+
+a {
+  color: @linkColor;
+  text-decoration: none;
+}
+a:hover {
+  color: @linkColorHover;
+  text-decoration: underline;
+}
+
+// GRID SYSTEM & LAYOUT
+// --------------------
+
+// Fluid (940px)
+#fluidGridSystem > .generate(@gridColumns, @fluidGridColumnWidth, @fluidGridGutterWidth);
+
+// Fluid layouts (left aligned, with sidebar, min- & max-width content)
+.container-fluid {
+  padding-left: @gridGutterWidth;
+  padding-right: @gridGutterWidth;
+  .clearfix();
+}
+
+/* import Dijit style */
+@import '../../dijit/themes/claro/claro.css';
+
+/* import app styles */
+@import "less/navigation.less";
+@import "less/topbar.less";
+
