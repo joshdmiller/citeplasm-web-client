@@ -39,16 +39,34 @@
 
         .nav {
             .nav-horiz-right;
+
             margin-bottom: 0;
+
             li {
+                line-height: @topbarHeight;
+                
                 a {
-                    line-height: @topbarHeight;
                     font-weight: bold;
                 }
 
                 a:hover {
                     background: none;
                 }
+
+                a.btn {
+                    margin-top: 5px;
+                }
+            }
+
+            // Dividers (basically a vertical hr)
+            .divider-vertical {
+                height: @navbarHeight;
+                width: 1px;
+                margin: 0 9px;
+                overflow: hidden;
+                background-color: @grayDark;
+                border-right: 1px solid @gray;
+                padding: 0;
             }
         }
     }
