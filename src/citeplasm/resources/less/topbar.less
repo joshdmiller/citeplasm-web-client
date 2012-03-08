@@ -2,29 +2,72 @@
 // A horizontal bar across the top of the screen
 // ---------------------------------------------
 
-.citeplasm  {
-    .topbar {
+.citeplasm{
+    .topbar, .topsubbar {
+        .container-fluid;
         position: fixed;
-        height: 35px;
-        top: 0px;
         left: 0px;
         right: 0px;
         z-index: 1000;
+    }
+    
+    .topbar {
+        top: 0px;
+        height: @topbarHeight;
 
-        background-position: left top;
-        background-repeat: repeat-x;
-        background-image: -moz-linear-gradient(top, #7ab7d3, #7997d1);
-        background-image: -webkit-linear-gradient(top, #7ab7d3, #7997d1);
-        background-image: linear-gradient(top, #7ab7d3, #7997d1);
+        #gradient > .vertical(@gray, @grayDark);
+
+        a {
+            color: @white;
+        }
+
+        a:hover, a:hover {
+            text-decoration: none;
+            color: @orange;
+            background-color: none;
+        }
+
+        .brand {
+            float: left;
+            line-height: @topbarHeight;
+
+            a {
+                font-size: 20px;
+                letter-spacing: 3px;
+            }
+        }
 
         .nav {
-            .nav-horiz-left;
+            .nav-horiz-right;
             margin-bottom: 0;
             li {
                 a {
-                    line-height: 35px;
-                    color: #000;
+                    line-height: @topbarHeight;
+                    font-weight: bold;
                 }
+
+                a:hover {
+                    background: none;
+                }
+            }
+        }
+    }
+
+    .topsubbar {
+        top: @topbarHeight;
+        height: @topsubbarHeight;
+
+        .box-shadow(0 1px 3px rgba(0,0,0,.35));
+
+        border-top: none;
+        border-left: none;
+        border-right: none;
+
+        ul {
+            margin: 0;
+            
+            li {
+                line-height: @topsubbarHeight;
             }
         }
     }
