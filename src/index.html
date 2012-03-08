@@ -6,41 +6,8 @@
     <link rel="stylesheet/less" href="app/resources/app.less">
     <script src="less.js" type="text/javascript"></script>    
 </head>
-<body class="claro citeplasm">
-    <div class="topbar">
-        <div class="brand">
-            <a href="#">[c&icirc;t&euml;plasm]</a>
-        </div>
-        <ul class="nav">
-            <li><a href="#">Your Account</a></li>
-            <li class="divider-vertical"></li>
-            <li><a href="#" class="btn btn-inverse">Documents</a></li>
-            <li><a href="#" class="btn btn-inverse">Notes</a></li>
-            <li><a href="#" class="btn btn-inverse">Resources</a></li>
-            <li><a href="#" class="btn btn-inverse">Dashboard</a></li>
-        </ul>
-    </div>
-
-    <!-- the breadcrumb will be updated by publish/subscribe with a data object
-         that describes the breadcrumb data, e.g. 
-         { crumbs: [ 
-            { name: "Docs", url: "#/documents" },
-            { name: "This is the Document Title", url: "#/documents/this-is-the-document-title" },
-            "Editing"
-         ] } -->
-    <div class="topsubbar breadcrumb">
-        <ul>
-            <li><a href="#">Your Documents</a> <span class="divider">&raquo;</span></li>
-            <li><a href="#">This is The Document Title</a> <span class="divider">&raquo;</span></li>
-            <li class="active">Editing</li>
-        </ul>
-    </div>
-
-    <!-- main is the container into which view-specific widgets are dropped -->
-    <div id="main">
-        <section>Main body</section>
-    </div>
-
+<body>
+    <div data-dojo-type="citeplasm/Interface"></div>
     <script data-dojo-config="async: 1, tlmSiblingOfDojo: 0, isDebug: 1"
             src="dojo/dojo.js" defer></script>
     <script src="app/run.js" defer></script>

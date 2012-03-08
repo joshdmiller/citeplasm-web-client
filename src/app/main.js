@@ -5,26 +5,18 @@
  * Because this file has the special filename “main.js”, and because we’ve registered the “app” package in run.js,
  * whatever object this module returns can be loaded by other files simply by requiring “app” (instead of “app/main”).
  *
- * Our first dependency is to the “dojo/has” module, which allows us to conditionally execute code based on
- * configuration settings or environmental information. Unlike a normal conditional, these branches can be compiled
- * away by the build system; see “staticHasFeatures” in app.profile.js for more information.
+ * ---
  *
- * Our second dependency is to the special module “require”; this allows us to make additional require calls using
- * relative module IDs within the body of our define function.
+ * Citeplasm is a model-view-controller application with one scene that has
+ * multiple child views. The #main element in the HTML page is a container for
+ * views to be instantiated by a controller.
  *
- * In all cases, whatever function is passed to define() is only invoked once, and the return value is cached.
+ * citeplasm/view/_View is the base widget for all views. It inherits dijit/layout/ContentPane.
+ * citeplasm/controller/_Controller is the base class for all controllers.
+ * citeplasm/model contains all classes for communicating with the Citeplasm REST API.
  *
- * More information about everything described about the loader throughout this file can be found at
- * http://livedocs.dojotoolkit.org/loader/amd.
+ * citeplasm/Router is a routing engine based in part on dbp/Router.
  */
-define([ 'dojo/has', 'require' ], function (has, require) {
-    var app = {};
-
-    if (has('host-browser')) {
-        require([ 'dojo/domReady!' ], function () {
-        });
-    }
-    else {
-        console.log('Hello from the server!');
-    }
+define([ 'dojo/parser', 'citeplasm/Interface', 'dojo/domReady!' ], function (parser) {
+    parser.parse();
 });
