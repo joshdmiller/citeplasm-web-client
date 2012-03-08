@@ -17,6 +17,6 @@
  *
  * citeplasm/Router is a routing engine based in part on dbp/Router.
  */
-define([ 'dojo/parser', 'citeplasm/Interface', 'dojo/domReady!' ], function (parser) {
-    parser.parse();
+define([ 'citeplasm/Application', 'dojo/domReady!' ], function (Application) {
+    var app = new Application();
 });
