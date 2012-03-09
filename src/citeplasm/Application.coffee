@@ -24,23 +24,48 @@
 
 define [
     "dojo/_base/declare",
+    "dojo/_base/window",
+    "dojo/_base/lang",
     "citeplasm/Interface",
-    "dojo/_base/window"
-], (declare, Interface, win) ->
+    "citeplasm/Router"
+], (declare, win, lang, Interface, Router) ->
 
     # ## citeplasm/Application
     declare "citeplasm/Application", null,
         # ### Member Variables
 
-        # _interface is a reference to the citeplasm/Interface widget
+        # _interface is a reference to the citeplasm/Interface widget.
         _interface: null
+
+        # _router is the application's routing engine, an instance of citeplasm/Router.
+        _router: null
 
         # ### constructor
         #
         # The constructor instantiates Application, but also adds
         # citeplasm/Interface to the document body.
         constructor: () ->
-            @_initUi( win.body() )
+            @_initRouting()
+            @_initUi win.body()
+
+            @_startup()
+
+        # ### _initRouting
+        #
+        # _initRouting is an internal method for configuring the routing engine.
+        _initRouting: () ->
+            @_router = new Router [
+                    path: "/dashboard"
+                    defaultPath: true
+                    handler: lang.hitch(@, (params, route) ->
+                        @changeTitle "Dashboard"
+                    )
+                ,
+                    path: "/resources"
+                    handler: lang.hitch(@, (params, route) ->
+                        @changeTitle "Resources"
+                    )
+            ]
 
         # ### _initUi
         #
@@ -50,4 +75,17 @@ define [
             @_interface = new Interface()
             @_interface.placeAt(container)
             @_interface.startup()
+
+        # ### changeTitle
+        #
+        # changeTitle quite simply changes the title of the current page to the
+        # specified title with the suffix " | my.citeplasm.com".
+        changeTitle: (title) ->
+            win.doc.title = title + " | my.citeplasm.com"
+
+        # ### _startup
+        #
+        # This function readies the application for user interaction.
+        _startup: () ->
+            @_router.init()
 
