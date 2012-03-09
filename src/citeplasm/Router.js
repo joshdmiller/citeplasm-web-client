@@ -76,7 +76,7 @@ define(["dojo/_base/declare", "dojo/hash", "dojo/_base/array", "dojo/_base/conne
     },
     _convertPathToMatcher: function(route) {
       if (lang.isString(route)) {
-        return new RegExp("^" + route.replace(PATH_NAME_MATCHER, PATH_REPLACER) + "$");
+        return new RegExp("^" + route.replace(PATH_NAME_MATCHER, PATH_REPLACER) + "(/){0,1}$");
       } else {
         return route;
       }

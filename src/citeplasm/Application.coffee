@@ -26,9 +26,11 @@ define [
     "dojo/_base/declare",
     "dojo/_base/window",
     "dojo/_base/lang",
+    "dojo/_base/connect",
     "citeplasm/Interface",
-    "citeplasm/Router"
-], (declare, win, lang, Interface, Router) ->
+    "citeplasm/Router",
+    "citeplasm/controller/DocumentController"
+], (declare, win, lang, connect, Interface, Router, DocumentController) ->
 
     # ## citeplasm/Application
     declare "citeplasm/Application", null,
@@ -40,11 +42,18 @@ define [
         # _router is the application's routing engine, an instance of citeplasm/Router.
         _router: null
 
+        # _currentController is the application's currently active controller.
+
         # ### constructor
         #
         # The constructor instantiates Application, but also adds
         # citeplasm/Interface to the document body.
         constructor: () ->
+
+            # Listen for events published to /citeplasm/scenetitle and run the
+            # changeTitle method.
+            connect.subscribe "/citeplasm/scenetitle", @changeTitle
+            
             @_initRouting()
             @_initUi win.body()
 
@@ -65,6 +74,12 @@ define [
                     handler: lang.hitch(@, (params, route) ->
                         @changeTitle "Resources"
                     )
+                ,
+                    path: "/documents/:id"
+                    handler: @_connectController(DocumentController, "view")
+                ,
+                    path: "/documents/:id/edit"
+                    handler: @_connectController(DocumentController, "edit")
             ]
 
         # ### _initUi
@@ -88,4 +103,21 @@ define [
         # This function readies the application for user interaction.
         _startup: () ->
             @_router.init()
+
+        # ### _connectController
+        #
+        # This internal method returns a function for use as a route handler in
+        # the Router. The function destroys the existing active controller, if
+        # any, instantiates the provided controller, and executes the view
+        # specified.
+        _connectController: (controller, action) ->
+            (params, route) ->
+                # First we must destroy the existing controller, should it exist.
+                @_currentController.destroy() if @_currentController && !@_currentController.isInstanceOf controller
+
+                # Next, we instantiate the provided controller.
+                @_currentController = new controller()
+
+                # Finally, we execute the action of the instantiated controller.
+                @_currentController.doAction action, params
 

@@ -1,9 +1,10 @@
 
-define(["dojo/_base/declare", "dojo/_base/window", "dojo/_base/lang", "citeplasm/Interface", "citeplasm/Router"], function(declare, win, lang, Interface, Router) {
+define(["dojo/_base/declare", "dojo/_base/window", "dojo/_base/lang", "dojo/_base/connect", "citeplasm/Interface", "citeplasm/Router", "citeplasm/controller/DocumentController"], function(declare, win, lang, connect, Interface, Router, DocumentController) {
   return declare("citeplasm/Application", null, {
     _interface: null,
     _router: null,
     constructor: function() {
+      connect.subscribe("/citeplasm/scenetitle", this.changeTitle);
       this._initRouting();
       this._initUi(win.body());
       return this._startup();
@@ -21,6 +22,12 @@ define(["dojo/_base/declare", "dojo/_base/window", "dojo/_base/lang", "citeplasm
           handler: lang.hitch(this, function(params, route) {
             return this.changeTitle("Resources");
           })
+        }, {
+          path: "/documents/:id",
+          handler: this._connectController(DocumentController, "view")
+        }, {
+          path: "/documents/:id/edit",
+          handler: this._connectController(DocumentController, "edit")
         }
       ]);
     },
@@ -34,6 +41,15 @@ define(["dojo/_base/declare", "dojo/_base/window", "dojo/_base/lang", "citeplasm
     },
     _startup: function() {
       return this._router.init();
+    },
+    _connectController: function(controller, action) {
+      return function(params, route) {
+        if (this._currentController && !this._currentController.isInstanceOf(controller)) {
+          this._currentController.destroy();
+        }
+        this._currentController = new controller();
+        return this._currentController.doAction(action, params);
+      };
     }
   });
 });

@@ -204,7 +204,7 @@ define [
         # _convertPathToMatcher returns a Regex matcher.
         _convertPathToMatcher: (route) ->
             if lang.isString route
-                new RegExp "^" + route.replace(PATH_NAME_MATCHER, PATH_REPLACER) + "$"
+                new RegExp "^" + route.replace(PATH_NAME_MATCHER, PATH_REPLACER) + "(/){0,1}$"
             else
                 route
 
