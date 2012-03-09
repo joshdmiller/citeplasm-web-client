@@ -27,14 +27,14 @@ define [
     "dojo/_base/declare",
     "dijit/_WidgetBase",
     "dijit/_TemplatedMixin",
-    "dojo/text!./templates/Interface.html"
+    "dojo/text!./templates/Scene.html"
 ], (declare, _WidgetBase, _TemplatedMixin, template) ->
 
     # ## citeplasm/Interface
     #
     # citeplasm/Interface is defined using Dojo's declare, based on dijit's
     # _WidgetBase and _TemplatedMixin.
-    declare "citeplasm/Interface", [_WidgetBase, _TemplatedMixin],
+    declare "citeplasm/Scene", [_WidgetBase, _TemplatedMixin],
 
         # The templateString is used by _TemplatedMixin to create a widget
         # based on an HTML template. In this case, we are passing the raw

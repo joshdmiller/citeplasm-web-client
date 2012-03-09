@@ -27,17 +27,17 @@ define [
     "dojo/_base/window",
     "dojo/_base/lang",
     "dojo/_base/connect",
-    "citeplasm/Interface",
+    "citeplasm/Scene",
     "citeplasm/Router",
     "citeplasm/controller/DocumentController"
-], (declare, win, lang, connect, Interface, Router, DocumentController) ->
+], (declare, win, lang, connect, Scene, Router, DocumentController) ->
 
     # ## citeplasm/Application
     declare "citeplasm/Application", null,
         # ### Member Variables
 
-        # _interface is a reference to the citeplasm/Interface widget.
-        _interface: null
+        # _scene is a reference to the citeplasm/Scene widget.
+        _scene: null
 
         # _router is the application's routing engine, an instance of citeplasm/Router.
         _router: null
@@ -47,15 +47,15 @@ define [
         # ### constructor
         #
         # The constructor instantiates Application, but also adds
-        # citeplasm/Interface to the document body.
+        # citeplasm/Scene to the document body.
         constructor: () ->
 
             # Listen for events published to /citeplasm/scenetitle and run the
             # changeTitle method.
             connect.subscribe "/citeplasm/scenetitle", @changeTitle
             
-            @_initRouting()
             @_initUi win.body()
+            @_initRouting()
 
             @_startup()
 
@@ -84,12 +84,12 @@ define [
 
         # ### _initUi
         #
-        # _initUi instantiates the citeplasm/Interface into the provided dom
+        # _initUi instantiates the citeplasm/Scene into the provided dom
         # object and initializes its state.
         _initUi: (container) ->
-            @_interface = new Interface()
-            @_interface.placeAt(container)
-            @_interface.startup()
+            @_scene = new Scene()
+            @_scene.placeAt(container)
+            @_scene.startup()
 
         # ### changeTitle
         #

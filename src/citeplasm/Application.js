@@ -1,7 +1,7 @@
 
-define(["dojo/_base/declare", "dojo/_base/window", "dojo/_base/lang", "dojo/_base/connect", "citeplasm/Interface", "citeplasm/Router", "citeplasm/controller/DocumentController"], function(declare, win, lang, connect, Interface, Router, DocumentController) {
+define(["dojo/_base/declare", "dojo/_base/window", "dojo/_base/lang", "dojo/_base/connect", "citeplasm/Scene", "citeplasm/Router", "citeplasm/controller/DocumentController"], function(declare, win, lang, connect, Scene, Router, DocumentController) {
   return declare("citeplasm/Application", null, {
-    _interface: null,
+    _scene: null,
     _router: null,
     constructor: function() {
       connect.subscribe("/citeplasm/scenetitle", this.changeTitle);
@@ -32,9 +32,9 @@ define(["dojo/_base/declare", "dojo/_base/window", "dojo/_base/lang", "dojo/_bas
       ]);
     },
     _initUi: function(container) {
-      this._interface = new Interface();
-      this._interface.placeAt(container);
-      return this._interface.startup();
+      this._scene = new Scene();
+      this._scene.placeAt(container);
+      return this._scene.startup();
     },
     changeTitle: function(title) {
       return win.doc.title = title + " | my.citeplasm.com";
