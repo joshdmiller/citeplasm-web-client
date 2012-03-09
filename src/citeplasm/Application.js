@@ -12,7 +12,7 @@ define(["dojo/_base/declare", "dojo/_base/window", "dojo/_base/lang", "citeplasm
       return this._router = new Router([
         {
           path: "/dashboard",
-          defaultPath: true,
+          defaultRoute: true,
           handler: lang.hitch(this, function(params, route) {
             return this.changeTitle("Dashboard");
           })

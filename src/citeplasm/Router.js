@@ -8,8 +8,8 @@ define(["dojo/_base/declare", "dojo/hash", "dojo/_base/array", "dojo/_base/conne
   PATH_REPLACER = "([^\/]+)";
   PATH_NAME_MATCHER = /:([\w\d]+)/g;
   return declare("citeplasm.Router", null, {
+    defaultRoute: null,
     constructor: function(userRoutes) {
-      console.log(userRoutes);
       if (!userRoutes || !userRoutes.length) {
         throw "No routes provided to citeplasm/Router.";
       }
@@ -23,10 +23,8 @@ define(["dojo/_base/declare", "dojo/hash", "dojo/_base/array", "dojo/_base/conne
       if (!this.defaultRoute) this.defaultRoute = userRoutes[0];
     },
     init: function() {
-      console.log("citeplasm/Router::init with current hash as " + hash());
       this.go(hash() || this.defaultRoute.path);
       return subscriptions.push(connect.subscribe("/dojo/hashchange", this, function() {
-        console.log("citeplasm/Router received /dojo/hashchange");
         this._handle(hash());
       }));
     },
@@ -40,9 +38,11 @@ define(["dojo/_base/declare", "dojo/hash", "dojo/_base/array", "dojo/_base/conne
     },
     _handle: function(hashValue) {
       var params, path, route;
+      console.log("citeplasm/Router::_handle Changing current path to '" + hashValue + "'");
       if (hashValue === currentPath) return;
       path = hashValue.replace("#", "");
       route = this._chooseRoute(this._getRouteablePath(path) || this.defaultRoute);
+      if (!route) return this.go(this.defaultRoute.path);
       params = this._parseParams(path, route);
       route = lang.mixin(route, {
         hash: hashValue,
@@ -69,7 +69,10 @@ define(["dojo/_base/declare", "dojo/hash", "dojo/_base/array", "dojo/_base/conne
         paramNames: this._getParamNames(path)
       };
       routes.push(r);
-      if (defaultRoute) return this.defaultRoute = r;
+      if (defaultRoute) this.defaultRoute = r;
+      if (defaultRoute) {
+        return console.log("citeplasm/Router::_registerRoute Setting default route to " + path);
+      }
     },
     _convertPathToMatcher: function(route) {
       if (lang.isString(route)) {
@@ -99,7 +102,8 @@ define(["dojo/_base/declare", "dojo/hash", "dojo/_base/array", "dojo/_base/conne
       return params;
     },
     _getRouteablePath: function(path) {
-      return path.split("?")[0];
+      var rp;
+      return rp = path.split("?")[0];
     },
     _getParamNames: function(path) {
       var paramNames, pathMatch;

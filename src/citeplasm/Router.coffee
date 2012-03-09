@@ -78,13 +78,17 @@ define [
     #
     # citeplasm/Router is defined using Dojo's declare with no superclass.
     declare("citeplasm.Router", null,
+        # ### Member Variables
+
+        # The default route to use when no route is provided.
+        defaultRoute: null
+
         # ### constructor
         #
         # The constructor creates an instance of citeplasm/Router and loads it
         # with the routes provided; if no default was provided, the first route
         # provided becomes the default.
         constructor: (userRoutes) ->
-            console.log userRoutes
             if !userRoutes or !userRoutes.length
                 throw "No routes provided to citeplasm/Router."
 
@@ -110,11 +114,9 @@ define [
         # which is called, appropriately enough, when the URL hash changes,
         # triggering the '_handle' method when published.
         init: () ->
-            console.log "citeplasm/Router::init with current hash as " + hash()
             @go hash() or @defaultRoute.path
 
             subscriptions.push connect.subscribe("/dojo/hashchange", @, () ->
-                console.log "citeplasm/Router received /dojo/hashchange with " + hash()
                 @_handle hash()
                 return
             )
@@ -138,11 +140,17 @@ define [
         #
         # The _handle method is the internal handler for for all hash changes.
         _handle: (hashValue) ->
+            console.log "citeplasm/Router::_handle Changing current path to '#{hashValue}'"
             if hashValue is currentPath
                 return
 
             path = hashValue.replace("#", "")
             route = @_chooseRoute @_getRouteablePath(path) or @defaultRoute
+
+            # If the path does not represent a known route, go to the default route.
+            if !route
+                return @go @defaultRoute.path
+
             params = @_parseParams path, route
 
             route = lang.mixin route,
@@ -183,6 +191,7 @@ define [
             routes.push r
 
             @defaultRoute = r if defaultRoute
+            console.log "citeplasm/Router::_registerRoute Setting default route to #{path}" if defaultRoute
 
         # ### _convertPathToMatcher
         #
@@ -253,7 +262,7 @@ define [
         # This method removes the query string from the provided path string so
         # it can be used in matching methods.
         _getRouteablePath: (path) ->
-            path.split("?")[0]
+            rp = path.split("?")[0]
 
         # ### _getParamNames
         #

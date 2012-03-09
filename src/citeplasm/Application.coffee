@@ -56,7 +56,7 @@ define [
         _initRouting: () ->
             @_router = new Router [
                     path: "/dashboard"
-                    defaultPath: true
+                    defaultRoute: true
                     handler: lang.hitch(@, (params, route) ->
                         @changeTitle "Dashboard"
                     )
