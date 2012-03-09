@@ -3,6 +3,7 @@ define(["dojo/_base/declare", "dojo/_base/window", "dojo/_base/lang", "dojo/_bas
   return declare("citeplasm/Application", null, {
     _scene: null,
     _router: null,
+    _currentController: null,
     constructor: function() {
       connect.subscribe("/citeplasm/scenetitle", this.changeTitle);
       this._initUi(win.body());
@@ -27,7 +28,7 @@ define(["dojo/_base/declare", "dojo/_base/window", "dojo/_base/lang", "dojo/_bas
           handler: lang.hitch(this, this._connectController(DocumentController, "view"))
         }, {
           path: "/documents/:id/edit",
-          handler: this._connectController(DocumentController, "edit")
+          handler: lang.hitch(this, this._connectController(DocumentController, "edit"))
         }
       ]);
     },
@@ -45,8 +46,18 @@ define(["dojo/_base/declare", "dojo/_base/window", "dojo/_base/lang", "dojo/_bas
     _connectController: function(controller, action) {
       return function(params, route) {
         var viewNode;
-        if (this._currentController && !this._currentController.isInstanceOf(controller)) {
-          this._currentController.destroy();
+        console.log(this);
+        if (this._currentController) {
+          console.log("there is a current controller");
+          if (this._currentController.isInstanceOf(controller)) {
+            console.log("and its one of us");
+            this._currentController.destroyView();
+          } else {
+            console.log("and its different");
+            this._currentController.destroy();
+          }
+        } else {
+          console.log("there isn't a controller");
         }
         viewNode = this._scene.viewNode;
         this._currentController = new controller({

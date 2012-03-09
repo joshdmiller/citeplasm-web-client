@@ -40,6 +40,9 @@ define [
         # view.
         viewNode: null
 
+        # currentView is a reference to the currently-visible view widget.
+        _currentView: null
+
         # ### Internal Methods
 
         # ### Constructor
@@ -48,6 +51,17 @@ define [
         # keyword arguments passed.
         constructor: (kwArgs) ->
             lang.mixin(@, kwArgs)
+
+        # ### Methods for Children to Override
+
+        # #### _tearDown
+        #
+        # _tearDown is a method for handling controller-specific clean up like
+        # widget removal. The view, if it exsts, will be destroyed by @destory,
+        # which calls this method, so this need not be done twice. In
+        # _ControllerBase, this is only a placeholder.
+        _tearDown: () ->
+            return
 
         # ### Methods for Use in Children
 
@@ -67,6 +81,37 @@ define [
 
             connect.publish "/citeplasm/scenetitle", title
 
+        # ### setView
+        #
+        # setView is an abstraction method for child controllers to add a view
+        # element to the page in the appropriate place for the current scene.
+        # setView expects a view widget instance to be passed.
+        setView: (view) ->
+            if !@viewNode then throw "citeplasm/_ControllerBase::setView| No node was provided in which to place views."
+
+            @_currentView = view
+
+            # TODO add error checking here
+            @_currentView.placeAt @viewNode
+
+        # ## Methods for Use by Application
+
+        # ### destroy
+        #
+        # destroy tears down the controller. Child classes should override
+        # @tearDown to do their custom clean up. @destroy calls
+        # destroyRecursive on the view widget if it has been defined.
+        destroy: () ->
+            @destroyView()
+            @_tearDown()
+
+        # ### destroyView
+        #
+        # destroyView is apropos. The method simply destroys the current view
+        # widget if it exists.
+        destroyView: () ->
+            @_currentView.destroyRecursive() if @_currentView
+
         # ### doAction
         #
         # doAction is called by citeplasm/Application when executing a
@@ -83,15 +128,4 @@ define [
                 throw "The action #{actionName} does not exist"
 
             @[actionName](params)
-
-        # ### setView
-        #
-        # setView is an abstraction method for child controllers to add a view
-        # element to the page in the appropriate place for the current scene.
-        # setView expects a view widget instance to be passed.
-        setView: (view) ->
-            if !@viewNode then throw "citeplasm/_ControllerBase::setView| No node was provided in which to place views."
-
-            # TODO add error checking here
-            view.placeAt @viewNode
 

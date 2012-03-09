@@ -80,6 +80,7 @@ define [
         _router: null
 
         # _currentController is the application's currently active controller.
+        _currentController: null
 
         # ### constructor
         #
@@ -116,7 +117,7 @@ define [
                     handler: lang.hitch(@, @_connectController(DocumentController, "view"))
                 ,
                     path: "/documents/:id/edit"
-                    handler: @_connectController(DocumentController, "edit")
+                    handler: lang.hitch(@, @_connectController(DocumentController, "edit"))
             ]
 
         # ### _initUi
@@ -152,8 +153,19 @@ define [
         # specified.
         _connectController: (controller, action) ->
             (params, route) ->
-                # First we must destroy the existing controller, should it exist.
-                @_currentController.destroy() if @_currentController && !@_currentController.isInstanceOf controller
+                # If a controller has already been instantiated, we need to do
+                # some cleanup before overwriting it. If the controller is an
+                # instance of the controller we are going to create anyway, we
+                # only need to destroy the view through
+                # _ControllerBase.destroyView. Otherwise, we call destroy on
+                # the whole controller, which should clean up any
+                # subscriptions, data stores, and other resources it owns in
+                # addition to destroying the view.
+                if @_currentController
+                    if @_currentController.isInstanceOf controller
+                        @_currentController.destroyView()
+                    else
+                        @_currentController.destroy()
 
                 # Next, we instantiate the provided controller.
                 viewNode = @_scene.viewNode
