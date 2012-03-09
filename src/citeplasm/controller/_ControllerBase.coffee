@@ -25,8 +25,9 @@
 
 define [
     "dojo/_base/declare",
+    "dojo/_base/lang",
     "dojo/_base/connect"
-], (declare, connect) ->
+], (declare, lang, connect) ->
 
     # ## citeplasm/controller/_ControllerBase
     declare "citeplasm/controller/_ControllerBase", null,
@@ -35,7 +36,18 @@ define [
         # baseTitle is the suffix for all titles set in the controller.
         baseTitle: null
 
+        # viewNode is the DOM node into which child controllers can place their
+        # view.
+        viewNode: null
+
         # ### Internal Methods
+
+        # ### Constructor
+        #
+        # Creates a new insance of the class or its children, incorporating any
+        # keyword arguments passed.
+        constructor: (kwArgs) ->
+            lang.mixin(@, kwArgs)
 
         # ### Methods for Use in Children
 
@@ -55,10 +67,31 @@ define [
 
             connect.publish "/citeplasm/scenetitle", title
 
+        # ### doAction
+        #
+        # doAction is called by citeplasm/Application when executing a
+        # particular route. When a child class's doAction is passed the name of
+        # an action, it looks for a method with that name suffixed with
+        # "Action". For example, if passed "view", it looks for the method
+        # @viewAction.
+        #
+        # If the method exists, it is called with the passed parsed
+        # query and url parameters.
         doAction: (actionName, params) ->
             actionName = actionName + "Action"
             if !@[actionName] or typeof(@[actionName]) isnt "function"
                 throw "The action #{actionName} does not exist"
 
             @[actionName](params)
+
+        # ### setView
+        #
+        # setView is an abstraction method for child controllers to add a view
+        # element to the page in the appropriate place for the current scene.
+        # setView expects a view widget instance to be passed.
+        setView: (view) ->
+            if !@viewNode then throw "citeplasm/_ControllerBase::setView| No node was provided in which to place views."
+
+            # TODO add error checking here
+            view.placeAt @viewNode
 

@@ -21,13 +21,13 @@
             "Editing"
          ] } -->
     <div class="topsubbar breadcrumb">
-        <ul>
+        <ul data-dojo-attach-point="breadcrumbListNode">
             <li><a href="#">Your Documents</a> <span class="divider">&raquo;</span></li>
             <li><a href="#">This is The Document Title</a> <span class="divider">&raquo;</span></li>
             <li class="active">Editing</li>
         </ul>
     </div>
 
-    <!-- view-specific widgets are contained here -->
-    <section>Main body</section>
+    <div data-dojo-attach-point="viewNode"></div>
+
 </div>

@@ -5,8 +5,8 @@ define(["dojo/_base/declare", "dojo/_base/window", "dojo/_base/lang", "dojo/_bas
     _router: null,
     constructor: function() {
       connect.subscribe("/citeplasm/scenetitle", this.changeTitle);
-      this._initRouting();
       this._initUi(win.body());
+      this._initRouting();
       return this._startup();
     },
     _initRouting: function() {
@@ -24,7 +24,7 @@ define(["dojo/_base/declare", "dojo/_base/window", "dojo/_base/lang", "dojo/_bas
           })
         }, {
           path: "/documents/:id",
-          handler: this._connectController(DocumentController, "view")
+          handler: lang.hitch(this, this._connectController(DocumentController, "view"))
         }, {
           path: "/documents/:id/edit",
           handler: this._connectController(DocumentController, "edit")
@@ -44,10 +44,14 @@ define(["dojo/_base/declare", "dojo/_base/window", "dojo/_base/lang", "dojo/_bas
     },
     _connectController: function(controller, action) {
       return function(params, route) {
+        var viewNode;
         if (this._currentController && !this._currentController.isInstanceOf(controller)) {
           this._currentController.destroy();
         }
-        this._currentController = new controller();
+        viewNode = this._scene.viewNode;
+        this._currentController = new controller({
+          viewNode: this._scene.viewNode
+        });
         return this._currentController.doAction(action, params);
       };
     }

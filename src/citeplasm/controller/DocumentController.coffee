@@ -25,8 +25,9 @@
 
 define [
     "dojo/_base/declare",
-    "citeplasm/controller/_ControllerBase"
-], (declare, _ControllerBase) ->
+    "citeplasm/controller/_ControllerBase",
+    "citeplasm/view/DocumentShowView"
+], (declare, _ControllerBase, DocumentShowView) ->
 
     # ## citeplasm/controller/DocumentController
     declare "citeplasm/controller/DocumentController", _ControllerBase,
@@ -35,6 +36,8 @@ define [
 
         viewAction: (params) ->
             @setTitle()
+            view = new DocumentShowView()
+            @setView(view)
 
         editAction: (params) ->
             @setTitle("Editing")

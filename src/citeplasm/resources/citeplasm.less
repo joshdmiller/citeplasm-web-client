@@ -22,20 +22,6 @@ body {
   margin: 0;
 }
 
-.citeplasm {
-    font-family: @baseFontFamily;
-    font-size: @baseFontSize;
-    line-height: @baseLineHeight;
-    color: @textColor;
-    min-height: 100%;
-    #gradient > .vertical(@grayLighter, darken(@grayLighter, 15%));
-    
-    section {
-        .container-fluid;
-        padding-top: @topbarHeight + @topsubbarHeight + 20px;
-    }
-}
-
 // LINKS
 // -----
 
@@ -59,6 +45,25 @@ a:hover {
   padding-left: @gridGutterWidth;
   padding-right: @gridGutterWidth;
   .clearfix();
+}
+
+.citeplasm {
+    font-family: @baseFontFamily;
+    font-size: @baseFontSize;
+    line-height: @baseLineHeight;
+    color: @textColor;
+    min-height: 100%;
+    #gradient > .vertical(@grayLighter, darken(@grayLighter, 15%));
+    
+    .citeplasmFixedView {
+        .container-fixed;
+        padding-top: @topbarHeight + @topsubbarHeight + 20px;
+    }
+
+    .citeplasmFluidView {
+        .container-fluid;
+        padding-top: @topbarHeight + @topsubbarHeight + 20px;
+    }
 }
 
 /* import Dijit style */
