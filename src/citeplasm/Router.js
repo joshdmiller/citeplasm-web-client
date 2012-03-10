@@ -4,18 +4,16 @@ define(["dojo/_base/declare", "dojo/hash", "dojo/_base/array", "dojo/_base/conne
   PATH_REPLACER = "([^\/]+)";
   PATH_NAME_MATCHER = /:([\w\d]+)/g;
   return declare("citeplasm.Router", null, {
-    _routes: [],
-    _routeCache: {},
-    _currentPath: null,
-    _subscriptions: [],
-    _defaultRoute: null,
     constructor: function(userRoutes) {
+      this._routes = [];
+      this._routeCache = {};
+      this._currentPath = null;
+      this._subscriptions = [];
+      this._defaultRoute = null;
       if (!(userRoutes != null) || !userRoutes.length) {
         throw new Error("No routes provided to citeplasm/Router.");
       }
-      if (this._routes.length) {
-        console.warn("An instance of citeplasm/Router already exists. Continuing anyway.");
-      }
+      console.log(this._routes);
       array.forEach(userRoutes, function(r) {
         return this._registerRoute(r.path, r.handler, r.defaultRoute);
       }, this);
@@ -108,7 +106,7 @@ define(["dojo/_base/declare", "dojo/hash", "dojo/_base/array", "dojo/_base/conne
       var paramNames, pathMatch;
       paramNames = [];
       PATH_NAME_MATCHER.lastIndex = 0;
-      while (pathMatch = PATH_NAME_MATCHER.exec(path) !== null) {
+      while ((pathMatch = PATH_NAME_MATCHER.exec(path)) !== null) {
         paramNames.push(pathMatch[1]);
       }
       return paramNames;

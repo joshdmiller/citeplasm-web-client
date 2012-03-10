@@ -1,6 +1,6 @@
 
 define(["../Router"], function(Router) {
-  var createRouter, routes, routesWithoutDefault;
+  var routes, routesWithoutDefault;
   routes = [
     {
       path: "/test/sub",
@@ -9,6 +9,9 @@ define(["../Router"], function(Router) {
       path: "/test",
       handler: function() {},
       defaultRoute: true
+    }, {
+      path: "/param/:id",
+      handler: function() {}
     }
   ];
   routesWithoutDefault = [
@@ -20,9 +23,6 @@ define(["../Router"], function(Router) {
       handler: function() {}
     }
   ];
-  createRouter = function() {
-    return this.router = new Router(routes);
-  };
   return doh.register("citeplasm/Router", [
     {
       name: "It should throw an Error if initialized without routes.",
@@ -50,23 +50,31 @@ define(["../Router"], function(Router) {
       }
     }, {
       name: "It should initialize correctly with a set of proper routes.",
-      setUp: createRouter,
       runTest: function(t) {
-        return t.t(this.router instanceof Router);
+        var router;
+        router = new Router(routes);
+        return t.t(router instanceof Router);
       }
     }, {
       name: "It should set the default route when provided explicitly.",
-      setUp: createRouter,
       runTest: function(t) {
-        return t.is(this.router._defaultRoute.path, routes[1].path);
+        var router;
+        router = new Router(routes);
+        return t.is(router._defaultRoute.path, routes[1].path);
       }
     }, {
       name: "It should set the default route to the first route when not provided excplicitly.",
-      setUp: function() {
-        return this.router = new Router(routesWithoutDefault);
-      },
       runTest: function(t) {
-        return t.is(this.router._defaultRoute.path, routesWithoutDefault[1].path);
+        var router;
+        router = new Router(routesWithoutDefault);
+        return t.is(router._defaultRoute.path, routesWithoutDefault[0].path);
+      }
+    }, {
+      name: "Parameter names should be properly pulled from the route path.",
+      runTest: function(t) {
+        var router;
+        router = new Router(routes);
+        return t.is(router._routes[2].paramNames, ["id"]);
       }
     }
   ]);

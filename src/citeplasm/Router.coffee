@@ -74,24 +74,6 @@ define [
     #
     # citeplasm/Router is defined using Dojo's declare with no superclass.
     declare("citeplasm.Router", null,
-        # ### Member Variables
-
-        # _routes is an array of all routes registered to the router.
-        _routes: []
-
-        # _routeCache is a cache of the parsed routes. The routes are loaded
-        # initially, but are parsed to regex, etc., only when necessary.
-        _routeCache: {}
-        
-        # _currentPath is the current hash value.
-        _currentPath: null
-
-        # _subscriptions contains the dojo/subscribe return objects used by the
-        # class. These are stored for cleanup.
-        _subscriptions: []
-
-        # The default route to use when no route is provided.
-        _defaultRoute: null
 
         # ### constructor
         #
@@ -99,12 +81,27 @@ define [
         # with the routes provided; if no default was provided, the first route
         # provided becomes the default.
         constructor: (userRoutes) ->
+            # _routes is an array of all routes registered to the router.
+            @_routes = []
+
+            # _routeCache is a cache of the parsed routes. The routes are loaded
+            # initially, but are parsed to regex, etc., only when necessary.
+            @_routeCache = {}
+            
+            # _currentPath is the current hash value.
+            @_currentPath = null
+
+            # _subscriptions contains the dojo/subscribe return objects used by the
+            # class. These are stored for cleanup.
+            @_subscriptions = []
+
+            # The default route to use when no route is provided.
+            @_defaultRoute = null
+
             if !userRoutes? or !userRoutes.length
                 throw new Error "No routes provided to citeplasm/Router."
 
-            if @_routes.length
-                console.warn "An instance of citeplasm/Router already exists. Continuing anyway."
-
+            console.log @_routes
             array.forEach userRoutes, (r) ->
                 @_registerRoute r.path, r.handler, r.defaultRoute
             , this
@@ -282,7 +279,7 @@ define [
 
             PATH_NAME_MATCHER.lastIndex = 0
 
-            while pathMatch = PATH_NAME_MATCHER.exec(path) isnt null
+            while (pathMatch = PATH_NAME_MATCHER.exec(path)) isnt null
                 paramNames.push pathMatch[1]
 
             return paramNames

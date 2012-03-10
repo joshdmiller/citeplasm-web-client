@@ -26,6 +26,9 @@ define [
             path: "/test"
             handler: () -> return
             defaultRoute: true
+        ,
+            path: "/param/:id"
+            handler: () -> return
     ]
     
     routesWithoutDefault = [
@@ -36,9 +39,6 @@ define [
             handler: () -> return
     ]
 
-    createRouter = () ->
-        @router = new Router routes
-    
     doh.register "citeplasm/Router", [
         {
             name: "It should throw an Error if initialized without routes."
@@ -62,18 +62,23 @@ define [
                 throw "Did not catch an error!"
         },{
             name: "It should initialize correctly with a set of proper routes."
-            setUp: createRouter
             runTest: (t) ->
-                t.t @router instanceof Router
+                router = new Router routes
+                t.t router instanceof Router
         },{
             name: "It should set the default route when provided explicitly."
-            setUp: createRouter
             runTest: (t) ->
-                t.is @router._defaultRoute.path, routes[1].path
+                router = new Router routes
+                t.is router._defaultRoute.path, routes[1].path
         },{
             name: "It should set the default route to the first route when not provided excplicitly."
-            setUp: () -> @router = new Router routesWithoutDefault
             runTest: (t) ->
-                t.is @router._defaultRoute.path, routesWithoutDefault[1].path
+                router = new Router routesWithoutDefault
+                t.is router._defaultRoute.path, routesWithoutDefault[0].path
+        },{
+            name: "Parameter names should be properly pulled from the route path."
+            runTest: (t) ->
+                router = new Router routes
+                t.is router._routes[2].paramNames, ["id"]
         }
     ]
