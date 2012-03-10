@@ -14,20 +14,14 @@
     </div>
 
     <!-- the breadcrumb will be updated by publish/subscribe with a data object
-         that describes the breadcrumb data, e.g. 
-         { crumbs: [ 
-            { name: "Docs", url: "#/documents" },
-            { name: "This is the Document Title", url: "#/documents/this-is-the-document-title" },
-            "Editing"
-         ] } -->
+         that describes the breadcrumb data -->
     <div class="topsubbar breadcrumb">
         <ul data-dojo-attach-point="breadcrumbListNode">
-            <li><a href="#">Your Documents</a> <span class="divider">&raquo;</span></li>
-            <li><a href="#">This is The Document Title</a> <span class="divider">&raquo;</span></li>
-            <li class="active">Editing</li>
+            <li class="active">Citeplasm</li>
         </ul>
     </div>
 
+    <!-- this is the dom node into which view widgets are attached. -->
     <div data-dojo-attach-point="viewNode"></div>
 
 </div>

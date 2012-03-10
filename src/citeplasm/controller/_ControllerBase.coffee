@@ -94,6 +94,13 @@ define [
             # TODO add error checking here
             @_currentView.placeAt @viewNode
 
+        # ### setBreadcrumb
+        #
+        # setBreadcrumb takes a breadcrumb object and publishes it to the
+        # appropriate channel.
+        setBreadcrumb: (obj) ->
+            connect.publish "/citeplasm/scene/updateBreadcrumb", obj
+
         # ## Methods for Use by Application
 
         # ### destroy
@@ -103,6 +110,7 @@ define [
         # destroyRecursive on the view widget if it has been defined.
         destroy: () ->
             @destroyView()
+            @setBreadcrumb()
             @_tearDown()
 
         # ### destroyView

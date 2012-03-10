@@ -46,18 +46,12 @@ define(["dojo/_base/declare", "dojo/_base/window", "dojo/_base/lang", "dojo/_bas
     _connectController: function(controller, action) {
       return function(params, route) {
         var viewNode;
-        console.log(this);
         if (this._currentController) {
-          console.log("there is a current controller");
           if (this._currentController.isInstanceOf(controller)) {
-            console.log("and its one of us");
             this._currentController.destroyView();
           } else {
-            console.log("and its different");
             this._currentController.destroy();
           }
-        } else {
-          console.log("there isn't a controller");
         }
         viewNode = this._scene.viewNode;
         this._currentController = new controller({

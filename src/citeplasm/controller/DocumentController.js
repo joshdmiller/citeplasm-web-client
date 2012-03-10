@@ -6,10 +6,33 @@ define(["dojo/_base/declare", "citeplasm/controller/_ControllerBase", "citeplasm
       var view;
       this.setTitle();
       view = new DocumentShowView();
-      return this.setView(view);
+      this.setView(view);
+      return this.setBreadcrumb({
+        crumbs: [
+          {
+            name: "Your Documents",
+            url: "#/documents"
+          }, {
+            name: this.baseTitle
+          }
+        ]
+      });
     },
     editAction: function(params) {
-      return this.setTitle("Editing");
+      this.setTitle("Editing");
+      return this.setBreadcrumb({
+        crumbs: [
+          {
+            name: "Your Documents",
+            url: "#/documents"
+          }, {
+            name: this.baseTitle,
+            url: "#/documents/1234"
+          }, {
+            name: "Editing"
+          }
+        ]
+      });
     }
   });
 });

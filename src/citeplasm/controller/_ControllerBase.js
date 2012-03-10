@@ -27,8 +27,12 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dojo/_base/connect"], function
       this._currentView = view;
       return this._currentView.placeAt(this.viewNode);
     },
+    setBreadcrumb: function(obj) {
+      return connect.publish("/citeplasm/scene/updateBreadcrumb", obj);
+    },
     destroy: function() {
       this.destroyView();
+      this.setBreadcrumb();
       return this._tearDown();
     },
     destroyView: function() {

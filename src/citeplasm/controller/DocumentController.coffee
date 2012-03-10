@@ -38,7 +38,18 @@ define [
             @setTitle()
             view = new DocumentShowView()
             @setView(view)
+            @setBreadcrumb
+                crumbs: [
+                    { name: "Your Documents", url: "#/documents" },
+                    { name: @baseTitle }
+                ]
 
         editAction: (params) ->
             @setTitle("Editing")
+            @setBreadcrumb
+                crumbs: [
+                    { name: "Your Documents", url: "#/documents" },
+                    { name: @baseTitle, url: "#/documents/1234" },
+                    { name: "Editing" }
+                ]
  
