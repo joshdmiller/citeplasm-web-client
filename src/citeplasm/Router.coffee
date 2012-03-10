@@ -66,10 +66,6 @@ define [
 ], (declare, hash, array, connect, lang, ioquery) ->
 
     # ## Global Variables
-    routes = []
-    routeCache = {}
-    currentPath = null
-    subscriptions = []
 
     PATH_REPLACER = "([^\/]+)"
     PATH_NAME_MATCHER = /:([\w\d]+)/g
@@ -80,8 +76,22 @@ define [
     declare("citeplasm.Router", null,
         # ### Member Variables
 
+        # _routes is an array of all routes registered to the router.
+        _routes: []
+
+        # _routeCache is a cache of the parsed routes. The routes are loaded
+        # initially, but are parsed to regex, etc., only when necessary.
+        _routeCache: {}
+        
+        # _currentPath is the current hash value.
+        _currentPath: null
+
+        # _subscriptions contains the dojo/subscribe return objects used by the
+        # class. These are stored for cleanup.
+        _subscriptions: []
+
         # The default route to use when no route is provided.
-        defaultRoute: null
+        _defaultRoute: null
 
         # ### constructor
         #
@@ -89,21 +99,19 @@ define [
         # with the routes provided; if no default was provided, the first route
         # provided becomes the default.
         constructor: (userRoutes) ->
-            if !userRoutes or !userRoutes.length
-                throw "No routes provided to citeplasm/Router."
+            if !userRoutes? or !userRoutes.length
+                throw new Error "No routes provided to citeplasm/Router."
 
-            if routes.length
+            if @_routes.length
                 console.warn "An instance of citeplasm/Router already exists. Continuing anyway."
 
             array.forEach userRoutes, (r) ->
-                console.log "citeplasm/Router::constructor is registering route '#{r.path}'"
                 @_registerRoute r.path, r.handler, r.defaultRoute
             , this
 
             # if there is no default, use the first as the default
-            if !@defaultRoute
-                @defaultRoute = userRoutes[0]
-
+            if !@_defaultRoute?
+                @_defaultRoute = @_routes[0]
 
             return
 
@@ -114,9 +122,9 @@ define [
         # which is called, appropriately enough, when the URL hash changes,
         # triggering the '_handle' method when published.
         init: () ->
-            @go hash() or @defaultRoute.path
+            @go hash() or @_defaultRoute.path
 
-            subscriptions.push connect.subscribe("/dojo/hashchange", @, () ->
+            @_subscriptions.push connect.subscribe("/dojo/hashchange", @, () ->
                 @_handle hash()
                 return
             )
@@ -141,15 +149,15 @@ define [
         # The _handle method is the internal handler for for all hash changes.
         _handle: (hashValue) ->
             console.log "citeplasm/Router::_handle Changing current path to '#{hashValue}'"
-            if hashValue is currentPath
+            if hashValue is @_currentPath
                 return
 
             path = hashValue.replace("#", "")
-            route = @_chooseRoute @_getRouteablePath(path) or @defaultRoute
+            route = @_chooseRoute @_getRouteablePath(path) or @_defaultRoute
 
             # If the path does not represent a known route, go to the default route.
             if !route
-                return @go @defaultRoute.path
+                return @go @_defaultRoute.path
 
             params = @_parseParams path, route
 
@@ -164,12 +172,13 @@ define [
         # The _chooseRoute method is the internal means of relating a hash to a
         # route.
         _chooseRoute: (path) ->
-            if !routeCache[path]
+            if !@_routeCache[path]
                 routeablePath = @_getRouteablePath path
-                array.forEach routes, (r) ->
-                    routeCache[path] = r if routeablePath.match r.matcher
+                array.forEach @_routes, (r) ->
+                    @_routeCache[path] = r if routeablePath.match r.matcher
+                , @
 
-            routeCache[path]
+            @_routeCache[path]
 
         # ### _registerRoute
         #
@@ -182,15 +191,15 @@ define [
         # route is run.  The last parameter (defaultRoute) is a Boolean value
         # indicating whether this route shouldbe considered the default.
         _registerRoute: (path, fx, defaultRoute) ->
-            r = 
+            r =
                 path: path
                 handler: fx
                 matcher: @_convertPathToMatcher path
                 paramNames: @_getParamNames path
 
-            routes.push r
+            @_routes.push r
 
-            @defaultRoute = r if defaultRoute
+            @_defaultRoute = r if defaultRoute
             console.log "citeplasm/Router::_registerRoute Setting default route to #{path}" if defaultRoute
 
         # ### _convertPathToMatcher
@@ -282,6 +291,6 @@ define [
         #
         # When necessary to clean up, destroy all subscriptions.
         destroy: () ->
-            array.forEach subscriptions, connect.unsubscribe
+            array.forEach @_subscriptions, connect.unsubscribe
     )
 
