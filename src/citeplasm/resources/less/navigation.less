@@ -1,0 +1,62 @@
+// NAVIGATIONS
+// -----------
+
+.nav {
+  margin-left: 0;
+  margin-bottom: @baseLineHeight;
+  list-style: none;
+}
+
+// Make links block level
+.nav > li > a {
+  display: block;
+}
+.nav > li > a:hover {
+  text-decoration: none;
+  background-color: @grayLighter;
+}
+
+// Horizontal Menus
+[class^="nav-horiz-"], [class*=" nav-horiz-"] {
+    > li:hover > a {
+        text-decoration: underline;
+        background: none;
+    }
+}
+
+.nav-horiz-left {
+    float: left;
+
+    li {
+        float: left;
+        padding: 0 10px;
+    }
+
+    li:first-child {
+        padding-left: 0px;
+    }
+}
+
+.nav-horiz-right {
+    float: right;
+
+    li {
+        float: right;
+        padding: 0 10px;
+    }
+
+    li:first-child {
+        padding-right: 0px;
+    }
+}
+
+[class^="nav-"], [class*=" nav-"] {
+    li {
+        [class^="icon-"],
+        [class*=" icon-"] {
+            margin-right: 10px;
+        }
+    }
+}
+
+

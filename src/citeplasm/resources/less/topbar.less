@@ -1,0 +1,92 @@
+// TOPBAR
+// A horizontal bar across the top of the screen
+// ---------------------------------------------
+
+.citeplasm{
+    .topbar, .topsubbar {
+        .container-fluid;
+        position: fixed;
+        left: 0px;
+        right: 0px;
+        z-index: 1000;
+    }
+    
+    .topbar {
+        top: 0px;
+        height: @topbarHeight;
+
+        #gradient > .vertical(@gray, @grayDark);
+
+        a {
+            color: @white;
+        }
+
+        a:hover, a:hover {
+            text-decoration: none;
+            color: @orange;
+            background-color: none;
+        }
+
+        .brand {
+            float: left;
+            line-height: @topbarHeight;
+
+            a {
+                font-size: 20px;
+                letter-spacing: 3px;
+            }
+        }
+
+        .nav {
+            .nav-horiz-right;
+
+            margin-bottom: 0;
+
+            li {
+                line-height: @topbarHeight;
+                
+                a {
+                    font-weight: bold;
+                }
+
+                a:hover {
+                    background: none;
+                }
+
+                a.btn {
+                    margin-top: 5px;
+                }
+            }
+
+            // Dividers (basically a vertical hr)
+            .divider-vertical {
+                height: @navbarHeight;
+                width: 1px;
+                margin: 0 9px;
+                overflow: hidden;
+                background-color: @grayDark;
+                border-right: 1px solid @gray;
+                padding: 0;
+            }
+        }
+    }
+
+    .topsubbar {
+        top: @topbarHeight;
+        height: @topsubbarHeight;
+
+        .box-shadow(0 1px 3px rgba(0,0,0,.35));
+
+        border-top: none;
+        border-left: none;
+        border-right: none;
+
+        ul {
+            margin: 0;
+            
+            li {
+                line-height: @topsubbarHeight;
+            }
+        }
+    }
+}

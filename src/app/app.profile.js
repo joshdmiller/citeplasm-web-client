@@ -75,7 +75,7 @@ var profile = {
 
         // In the demo application, we conditionally require app/Dialog on the client-side, so we’re building a
         // separate layer containing just that client-side code.
-        'citeplasm/Dialog': { include: [ 'citeplasm/Dialog' ] }
+        //'citeplasm/Dialog': { include: [ 'citeplasm/Dialog' ] }
     },
 
     // Providing hints to the build system allows code to be conditionally removed on a more granular level than

@@ -1,0 +1,77 @@
+/* Bootstrap variables, mixins, and typography */
+@import 'less/bootstrap-reset.less';
+@import "less/bootstrap-variables.less";
+@import "less/bootstrap-mixins.less";
+@import "less/bootstrap-type.less";
+
+// VARIABLE OVERRIDES
+// ------------------
+
+@topbarHeight: @navbarHeight;
+@topsubbarHeight: @topbarHeight * .75;
+
+// STRUCTURAL LAYOUT
+// -----------------
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+// LINKS
+// -----
+
+a {
+  color: @linkColor;
+  text-decoration: none;
+}
+a:hover {
+  color: @linkColorHover;
+  text-decoration: none;
+}
+
+// GRID SYSTEM & LAYOUT
+// --------------------
+
+// Fluid (940px)
+#fluidGridSystem > .generate(@gridColumns, @fluidGridColumnWidth, @fluidGridGutterWidth);
+
+// Fluid layouts (left aligned, with sidebar, min- & max-width content)
+.container-fluid {
+  padding-left: @gridGutterWidth;
+  padding-right: @gridGutterWidth;
+  .clearfix();
+}
+
+.citeplasm {
+    font-family: @baseFontFamily;
+    font-size: @baseFontSize;
+    line-height: @baseLineHeight;
+    color: @textColor;
+    min-height: 100%;
+    #gradient > .vertical(@grayLighter, darken(@grayLighter, 15%));
+    
+    .citeplasmFixedView {
+        .container-fixed;
+        padding-top: @topbarHeight + @topsubbarHeight + 20px;
+    }
+
+    .citeplasmFluidView {
+        .container-fluid;
+        padding-top: @topbarHeight + @topsubbarHeight + 20px;
+    }
+}
+
+/* import Dijit style */
+//@import '../../dijit/themes/claro/claro.css';
+
+/* import app styles */
+@import "less/bootstrap-buttons.less";
+@import "less/navigation.less";
+@import "less/topbar.less";
+@import "less/breadcrumbs.less";
+

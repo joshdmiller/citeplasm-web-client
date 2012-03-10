@@ -1,0 +1,27 @@
+<div class="claro">
+    <div class="topbar">
+        <div class="brand">
+            <a href="#">[c&icirc;t&euml;plasm]</a>
+        </div>
+        <ul class="nav">
+            <li><a href="#">Your Account</a></li>
+            <li class="divider-vertical"></li>
+            <li><a href="#/documents" class="btn btn-inverse">Documents</a></li>
+            <li><a href="#/notes" class="btn btn-inverse">Notes</a></li>
+            <li><a href="#/resources" class="btn btn-inverse">Resources</a></li>
+            <li><a href="#/dashboard" class="btn btn-inverse">Dashboard</a></li>
+        </ul>
+    </div>
+
+    <!-- the breadcrumb will be updated by publish/subscribe with a data object
+         that describes the breadcrumb data -->
+    <div class="topsubbar breadcrumb">
+        <ul data-dojo-attach-point="breadcrumbListNode">
+            <li class="active">Citeplasm</li>
+        </ul>
+    </div>
+
+    <!-- this is the dom node into which view widgets are attached. -->
+    <div data-dojo-attach-point="viewNode"></div>
+
+</div>
