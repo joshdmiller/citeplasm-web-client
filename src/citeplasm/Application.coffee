@@ -153,6 +153,8 @@ define [
         # specified.
         _connectController: (controller, action) ->
             (params, route) ->
+                console.log "params:", params
+                console.log "route:", route
                 # If a controller has already been instantiated, we need to do
                 # some cleanup before overwriting it. If the controller is an
                 # instance of the controller we are going to create anyway, we

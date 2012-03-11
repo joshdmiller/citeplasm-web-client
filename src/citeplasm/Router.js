@@ -13,7 +13,6 @@ define(["dojo/_base/declare", "dojo/hash", "dojo/_base/array", "dojo/_base/conne
       if (!(userRoutes != null) || !userRoutes.length) {
         throw new Error("No routes provided to citeplasm/Router.");
       }
-      console.log(this._routes);
       array.forEach(userRoutes, function(r) {
         return this._registerRoute(r.path, r.handler, r.defaultRoute);
       }, this);
@@ -31,7 +30,7 @@ define(["dojo/_base/declare", "dojo/hash", "dojo/_base/array", "dojo/_base/conne
       if (!path) return;
       this._handle(path);
       if (path.indexOf("#") !== 0) path = "#" + path;
-      return hash(path);
+      if (path !== this._currentPath) return hash(path);
     },
     _handle: function(hashValue) {
       var params, path, route;
@@ -84,23 +83,23 @@ define(["dojo/_base/declare", "dojo/hash", "dojo/_base/array", "dojo/_base/conne
       path = parts[0];
       query = parts[1];
       _decode = decodeURIComponent;
-      params = query ? lang.mixin({}, ioquery.queryToObject(query)) : {};
-      if (pathParams = route.matcher.exec(this._getRouteablePath(path) !== null)) {
-        parseParams.shift();
+      params = {};
+      params.query = query ? lang.mixin({}, ioquery.queryToObject(query)) : {};
+      if ((pathParams = route.matcher.exec(this._getRouteablePath(path))) !== null) {
+        pathParams.shift();
         array.forEach(pathParams, function(param, i) {
+          if (!(param != null)) return;
           if (route.paramNames[i]) {
             return params[route.paramNames[i]] = _decode(param);
           } else {
-            if (!params.splat) params.splat = [];
-            return params.splat.push(_decode(param));
+            return params.query[param] = _decode(param);
           }
         });
       }
       return params;
     },
     _getRouteablePath: function(path) {
-      var rp;
-      return rp = path.split("?")[0];
+      return path.split("?")[0];
     },
     _getParamNames: function(path) {
       var paramNames, pathMatch;

@@ -101,7 +101,6 @@ define [
             if !userRoutes? or !userRoutes.length
                 throw new Error "No routes provided to citeplasm/Router."
 
-            console.log @_routes
             array.forEach userRoutes, (r) ->
                 @_registerRoute r.path, r.handler, r.defaultRoute
             , this
@@ -139,7 +138,7 @@ define [
             if path.indexOf("#") isnt 0
                 path = "#" + path
 
-            hash(path)
+            hash(path) if path isnt @_currentPath
 
         # ### _handle
         #
@@ -218,48 +217,51 @@ define [
         #
         # The _parseParams method generates an object containing the parameter
         # names and values of the provided hash and route object. The object
-        # contains all query object parameters as members and an additional
-        # 'splat' member that is an array of route parameters.
+        # contains all query object parameters in an associative array called
+        # 'query' and all route parameters as members.
         #
         # Given the example route '/doc/:id' and the path
         # '/doc/1234?param1=hello&param2=goodbye', the return object is of the
         # form:
         #     
-        #     {
-        #         param1: "hello",
-        #         param2: "goodbye",
-        #         splat: ["1234"]
-        #     }
+        #   {
+        #       id: "1234",
+        #       queryParams: {
+        #           param1: "hello",
+        #           param2: "goodbye"
+        #       }
+        #   }
         _parseParams: (hashValue, route) ->
             parts = hashValue.split "?"
             path = parts[0]
             query = parts[1]
             _decode = decodeURIComponent
+            params = {}
 
             # If there indeed are query parameters, we use dojo/io-query's
             # queryToObject to create an object from the query parameters. See
             # http://livedocs.dojotoolkit.org/dojo/queryToObject for more
             # information.
-            params = if query then lang.mixin {}, ioquery.queryToObject(query) else {}
+            params.query = if query then lang.mixin {}, ioquery.queryToObject(query) else {}
 
             # Now that we have the query parameters, we need to match the
             # route's parameters too. For example, the route matcher '/doc/:id'
             # and the path '/doc/1234' should yield a parameter with a value of
             # '1234'.
-            if pathParams = route.matcher.exec @_getRouteablePath(path) isnt null
+            if (pathParams = route.matcher.exec @_getRouteablePath(path)) isnt null
                 # Of course, the first match is the full path so we'll ignore it.
-                parseParams.shift()
+                pathParams.shift()
 
                 # Now we loop through each of the matches in the route. If
                 # there is a matching parameter name, we simply add the
                 # parameter and its value to the object. Otherwise, we add it
                 # to the splat.
                 array.forEach pathParams, (param, i) ->
+                    return if !param?
                     if route.paramNames[i]
                         params[route.paramNames[i]] = _decode param
                     else
-                        params.splat = [] if !params.splat
-                        params.splat.push _decode(param)
+                        params.query[param] = _decode(param)
 
             return params
 
@@ -268,7 +270,7 @@ define [
         # This method removes the query string from the provided path string so
         # it can be used in matching methods.
         _getRouteablePath: (path) ->
-            rp = path.split("?")[0]
+            path.split("?")[0]
 
         # ### _getParamNames
         #
