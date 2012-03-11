@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Testing citeplasm/Router</title>
+	<script type="text/javascript" src="../../dojo/dojo.js" data-dojo-config="isDebug:true"></script>
+        <script type="text/javascript">
+            require(["doh", "citeplasm/Router", "dojo/hash", "dojo/domReady!"], function(doh, Router, hash) {
+
+                var testValue = "";
+
+                var routes = [
+                    {
+                        path: "/test/sub",
+                        handler: function() { testValue = "/test/sub"; }
+                    },{
+                        path: "/test",
+                        handler: function() { testValue = "/test"; },
+                        defaultRoute: true
+                    },{
+                        path: "/param/:id",
+                        handler: function() { testValue = "/param/:id"; }
+                    },
+                    {
+                        path: "/query/:term",
+                        handler: function(params) { testValue = params; }
+                    }
+                ];
+
+                var router = new Router(routes);
+
+                doh.register("citeplasm/Router", [
+                    function appliesDefaultRouteWhenNoneApplied (t) {
+                        console.log("hash: ", hash());
+                        t.f(hash());
+                        router.init();
+                        //console.log("Hash:", hash());
+                        //t.is(hash(), "/test");
+                    },
+                    function goChangesHash(t) {
+                        router.go("/test/sub");
+                        t.is(hash(), "/test/sub");
+                    },
+                    function runsHandlerOnGo(t) {
+                        router.go("/test");
+                        t.is(testValue, "/test");
+                    },
+                    function goWithNoPathDoesNothing(t) {
+                        router.go();
+                        t.is(testValue, "/test");
+                        router.go("");
+                        t.is(testValue, "/test");
+                    },
+                    function routeHandlerisPassedParams(t) {
+                        router.go("/query/bogus?value=test");
+                        t.is(testValue.query.value, "test");
+                        t.is(testValue.term, "bogus");
+                    },
+                ]);
+
+                doh.runOnLoad();
+            });
+        </script>        
+    </head>
+    <body>
+        <h1>Testing citeplasm/Router</h1>
+    </body>
+</html>

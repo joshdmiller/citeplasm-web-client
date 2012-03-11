@@ -46,8 +46,6 @@ define(["dojo/_base/declare", "dojo/_base/window", "dojo/_base/lang", "dojo/_bas
     _connectController: function(controller, action) {
       return function(params, route) {
         var viewNode;
-        console.log("params:", params);
-        console.log("route:", route);
         if (this._currentController) {
           if (this._currentController.isInstanceOf(controller)) {
             this._currentController.destroyView();

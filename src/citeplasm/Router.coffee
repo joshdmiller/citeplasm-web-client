@@ -118,7 +118,13 @@ define [
         # which is called, appropriately enough, when the URL hash changes,
         # triggering the '_handle' method when published.
         init: () ->
-            @go hash() or @_defaultRoute.path
+            # if the Router was initialized with the document having a route,
+            # handle it. Otherwise, redirect to the default route.
+            currentHash = hash()
+            if currentHash? and currentHash isnt ""
+                @_handle(currentHash)
+            else
+                @go @_defaultRoute.path
 
             @_subscriptions.push connect.subscribe("/dojo/hashchange", @, () ->
                 @_handle hash()
@@ -129,32 +135,45 @@ define [
         #
         # The go method redirects to the specified path.
         go: (path) ->
+            if !path? or (path = lang.trim path) is ""
+                console.warn "citeplasm/Router::go() invoked with no path."
+                return
+            
             console.log "citeplasm/Router::go(#{path})"
-            path = lang.trim path
-            return if !path
 
-            @_handle path
-
+            # If the path provided is missing the hash mark, we must add it in
+            # prior to changing the hash.
             if path.indexOf("#") isnt 0
                 path = "#" + path
 
-            hash(path) if path isnt @_currentPath
+            # FIXME: Using both _handle as well as changing the hash causes the
+            # handle function to be called twice: once manually and once
+            # through the subscription to /dojo/hashchange. The second call
+            # returns because the path doesn't match. Using both is needed for
+            # the tests to work appropriately without manually inserting a
+            # delay.  We should find a better way to do this.
+            if path isnt @_currentPath
+                @_handle path
+                hash path
 
         # ### _handle
         #
         # The _handle method is the internal handler for for all hash changes.
         _handle: (hashValue) ->
-            console.log "citeplasm/Router::_handle Changing current path to '#{hashValue}'"
-            if hashValue is @_currentPath
-                return
-
             path = hashValue.replace("#", "")
+            
+            if path == @_currentPath
+                return
+            
+            console.log "citeplasm/Router::_handle Changing current path to '#{path}'"
+
             route = @_chooseRoute @_getRouteablePath(path) or @_defaultRoute
 
             # If the path does not represent a known route, go to the default route.
             if !route
                 return @go @_defaultRoute.path
 
+            @_currentPath = path
             params = @_parseParams path, route
 
             route = lang.mixin route,

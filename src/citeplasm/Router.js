@@ -19,26 +19,37 @@ define(["dojo/_base/declare", "dojo/hash", "dojo/_base/array", "dojo/_base/conne
       if (!(this._defaultRoute != null)) this._defaultRoute = this._routes[0];
     },
     init: function() {
-      this.go(hash() || this._defaultRoute.path);
+      var currentHash;
+      currentHash = hash();
+      if ((currentHash != null) && currentHash !== "") {
+        this._handle(currentHash);
+      } else {
+        this.go(this._defaultRoute.path);
+      }
       return this._subscriptions.push(connect.subscribe("/dojo/hashchange", this, function() {
         this._handle(hash());
       }));
     },
     go: function(path) {
+      if (!(path != null) || (path = lang.trim(path)) === "") {
+        console.warn("citeplasm/Router::go() invoked with no path.");
+        return;
+      }
       console.log("citeplasm/Router::go(" + path + ")");
-      path = lang.trim(path);
-      if (!path) return;
-      this._handle(path);
       if (path.indexOf("#") !== 0) path = "#" + path;
-      if (path !== this._currentPath) return hash(path);
+      if (path !== this._currentPath) {
+        this._handle(path);
+        return hash(path);
+      }
     },
     _handle: function(hashValue) {
       var params, path, route;
-      console.log("citeplasm/Router::_handle Changing current path to '" + hashValue + "'");
-      if (hashValue === this._currentPath) return;
       path = hashValue.replace("#", "");
+      if (path === this._currentPath) return;
+      console.log("citeplasm/Router::_handle Changing current path to '" + path + "'");
       route = this._chooseRoute(this._getRouteablePath(path) || this._defaultRoute);
       if (!route) return this.go(this._defaultRoute.path);
+      this._currentPath = path;
       params = this._parseParams(path, route);
       route = lang.mixin(route, {
         hash: hashValue,
