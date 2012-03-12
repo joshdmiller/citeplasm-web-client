@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Testing citeplasm/Scene</title>
+        <link rel="stylesheet/less" href="../../app/resources/app.less">
+        <script src="../../less.js" type="text/javascript"></script>    
+	<script type="text/javascript" src="../../dojo/dojo.js" data-dojo-config="isDebug:true"></script>
+        <script type="text/javascript">
+            require(["doh", "citeplasm/Scene", "dojo/_base/window", "dojo/query", "dojo/_base/connect", "dojo/domReady!"], function(doh, Scene, win, $, connect) {
+
+                var scene = null,
+                    goodList = { crumbs: [
+                        { name: "first", url: "/first" },
+                        { name: "second", url: "/second" },
+                        { name: "third" },
+                    ]},
+                    badList = { crumbs: [
+                        { name: "first", url: "/first" },
+                        { noname: "second", url: "/second" },
+                        { name: "third" },
+                    ]},
+                    getCrumbs = function() { return $(".citeplasm > .breadcrumb > ul > li"); }, 
+                    topic = "/citeplasm/scene/updateBreadcrumb";
+
+                doh.register("citeplasm/Scene", [
+                    function sceneGetsAddedToPage(t) {
+                        scene = new Scene();
+                        scene.placeAt( win.body() );
+                        scene.startup();
+                        t.is(1, $("body > .citeplasm").length);
+                    },
+                    function sceneSubscribesToUpdateBreadCrumb(t) {
+                        t.is(1, getCrumbs().length);
+                        connect.publish(topic, goodList);
+                        t.is(3, getCrumbs().length);
+                    },
+                    function passingNoObjToBreadcrumbUsesDefault(t) {
+                        connect.publish(topic);
+                        t.is(1, getCrumbs().length);
+                        t.is("Citeplasm", getCrumbs()[0].innerHTML);
+                    },
+                    function passingNoCrumbsToBreadcrumbUsesDefault(t) {
+                        connect.publish(topic, goodList);
+                        connect.publish(topic, { hello: "val" });
+                        t.is(1, getCrumbs().length);
+                        t.is("Citeplasm", getCrumbs()[0].innerHTML);
+                    },
+                    function badCrumbGetsIgnored(t) {
+                        connect.publish(topic, badList);
+                        t.is(2, getCrumbs().length);
+                    },
+                    function crumbsWithoutUrlsAreActive(t) {
+                        var anchor = $("> a", getCrumbs()[0])[0];
+                        t.is("http://" + win.doc.domain + "/first", anchor.href);
+                    },
+                ]);
+
+                doh.runOnLoad();
+            });
+        </script>        
+    </head>
+    <body>
+        <h1>Testing citeplasm/Citeplasm</h1>
+    </body>
+</html>
