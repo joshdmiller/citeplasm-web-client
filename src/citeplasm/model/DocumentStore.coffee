@@ -33,6 +33,22 @@ define [
         name: "Joshua D Miller"
         uid: "joshdmiller"
 
+    abstract = """
+        Suspendisse sagittis felis sed diam molestie facilisis. Lorem ipsum dolor
+        sit amet, consectetur adipiscing elit. In condimentum placerat mattis.
+        Nullam ullamcorper blandit massa sed feugiat. Nulla volutpat facilisis
+        lectus vehicula venenatis. Phasellus convallis tortor vel nisi
+        porttitor fermentum. Class aptent taciti sociosqu ad litora torquent
+        per conubia nostra, per inceptos himenaeos. Nam lacus nisi, tristique
+        rhoncus vulputate eu, volutpat vitae metus. Aenean accumsan
+        pellentesque metus vitae dictum. Vivamus lobortis tincidunt tristique.
+        Donec faucibus nunc non ipsum fringilla in dignissim nibh
+        malesuada. In hac habitasse platea dictumst. Pellentesque faucibus
+        tellus sit amet magna molestie sed sagittis nulla dapibus. Vivamus
+        lobortis commodo massa quis gravida. Proin sagittis vestibulum
+        dolor, sed porta dui lobortis in.
+    """
+
     return new Memory(
         idProperty: "id"
         data: [
@@ -40,14 +56,14 @@ define [
                 slug: "american-hegemony-in-a-globally-interdependent-age"
                 title: "American Hegemony in a Globally-Interdependent Age"
                 author: author_josh
-                abstract: "This is the abstract for the this document."
+                abstract: abstract
                 body: sample001
             ,
                 id: 2
                 slug: "linux-is-not-windows"
                 title: "Linux is Not Windows"
                 author: author_josh
-                abstract: "This is an incomplete blog post about why Linux distributions should not emulate Windows."
+                abstract: abstract
                 body: sample002
         ]
     )
