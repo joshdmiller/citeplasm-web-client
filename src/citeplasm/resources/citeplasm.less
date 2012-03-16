@@ -54,15 +54,25 @@ a:hover {
     color: @textColor;
     min-height: 100%;
     #gradient > .vertical(@grayLighter, darken(@grayLighter, 15%));
-    
-    .citeplasmFixedView {
-        .container-fixed;
-        padding-top: @topbarHeight + @topsubbarHeight + 20px;
-    }
+}
 
-    .citeplasmFluidView {
-        .container-fluid;
-        padding-top: @topbarHeight + @topsubbarHeight + 20px;
+.citeplasmFixedView {
+    .container-fixed;
+}
+
+.citeplasmFluidView {
+    .container-fluid;
+}
+
+.citeplasmFixedView, .citeplasmFluidView {
+    padding-top: @topbarHeight + @topsubbarHeight;
+     > div {
+        margin: 20px auto;
+        padding: 20px;
+        background-color: @white;
+        -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 3px rgba(255, 255, 255, 0.15);
+        -moz-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 3px rgba(255, 255, 255, 0.15);
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 3px rgba(255, 255, 255, 0.15);
     }
 }
 
@@ -74,4 +84,5 @@ a:hover {
 @import "less/navigation.less";
 @import "less/topbar.less";
 @import "less/breadcrumbs.less";
+@import "less/documents.less";
 

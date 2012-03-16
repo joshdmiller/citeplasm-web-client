@@ -18,26 +18,23 @@
 # ## Summary
 
 #
-# citeplasm/view/DocumentShowView is a view representing the viewing of a
-# particular document.
+# citeplasm/widget/DocumentViewer is a widget that displays a provided document
+# in HTML format with some miscellaneous controls.
 
 # ## RequireJS-style AMD Definition
 
 define [
     "dojo/_base/declare",
     "dijit/_WidgetBase",
-    "dijit/_WidgetsInTemplateMixin",
     "dijit/_TemplatedMixin",
-    "dojo/text!./templates/DocumentShowView.html",
-    "dijit/registry",
-    "citeplasm/widget/DocumentViewer"
-], (declare, _WidgetBase, _WidgetsInTemplateMixin, _TemplatedMixin, template, registry) ->
+    "dojo/text!./templates/DocumentViewer.html"
+], (declare, _WidgetBase, _TemplatedMixin, template) ->
 
-    # ## citeplasm/view/DocumentShowView
+    # ## citeplasm/widget/DocumentViewer
     #
-    # citeplasm/view/DocumentShowView is defined using Dojo's declare, based on dijit's
-    # _WidgetBase and _Templated.
-    declare "citeplasm/view/DocumentShowView", [_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin],
+    # citeplasm/widget/DocumentViewer is defined using Dojo's declare, based on dijit's
+    # _WidgetBase and _TemplatedMixin.
+    declare "citeplasm/widget/DocumentViewer", [_WidgetBase, _TemplatedMixin],
 
         # The templateString is used by _TemplatedMixin to create a widget
         # based on an HTML template. In this case, we are passing the raw
@@ -46,21 +43,5 @@ define [
 
         # The baseClass is a CSS class applied to the root element of the
         # template.
-        baseClass: "citeplasmDocumentShowView"
-
-
-        _documentViewer: () ->
-            if @dv? then @dv else @dv = registry.byId(this.id + "-documentViewer")
-
-        setBody: (body) ->
-            @_documentViewer().containerNode.innerHTML = body
-
-        setTitle: (title) ->
-            @_documentViewer().titleNode.innerHTML = title
-
-        setAuthor: (id, name) ->
-            @_documentViewer().authorNode.innerHTML = "<a href='#/author/#{id}'>#{name}</a>"
-
-        setAbstract: (abstract) ->
-            @_documentViewer().abstractNode.innerHTML = "<p>#{abstract}</p>"
+        baseClass: "citeplasmDocumentViewer"
 

@@ -26,15 +26,20 @@
 define [
     "dojo/_base/declare",
     "citeplasm/controller/_ControllerBase",
-    "citeplasm/view/DocumentShowView"
-], (declare, _ControllerBase, DocumentShowView) ->
+    "citeplasm/view/DocumentShowView",
+    "citeplasm/model/DocumentStore",
+], (declare, _ControllerBase, DocumentShowView, DocumentStore) ->
 
     # ## citeplasm/controller/DocumentController
     declare "citeplasm/controller/DocumentController", _ControllerBase,
 
-        baseTitle: "This is My Document Title"
+        pre: () ->
+            @doc = DocumentStore.get @params.id
+            # TODO handle non-existent doc
+            if @doc?
+                @baseTitle = @doc.title
 
-        viewAction: (params) ->
+        viewAction: () ->
             @setTitle()
             view = new DocumentShowView()
             @setView(view)
@@ -43,13 +48,17 @@ define [
                     { name: "Your Documents", url: "#/documents" },
                     { name: @baseTitle }
                 ]
+            view.setBody @doc.body
+            view.setTitle @doc.title
+            view.setAuthor @doc.author.uid, @doc.author.name
+            view.setAbstract @doc.abstract
 
-        editAction: (params) ->
+        editAction: () ->
             @setTitle("Editing")
             @setBreadcrumb
                 crumbs: [
                     { name: "Your Documents", url: "#/documents" },
-                    { name: @baseTitle, url: "#/documents/1234" },
+                    { name: @baseTitle, url: "#/documents/#{@doc.id}" },
                     { name: "Editing" }
                 ]
  

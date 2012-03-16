@@ -1,13 +1,16 @@
 
-define(["dojo/_base/declare", "citeplasm/controller/_ControllerBase", "citeplasm/view/DocumentShowView"], function(declare, _ControllerBase, DocumentShowView) {
+define(["dojo/_base/declare", "citeplasm/controller/_ControllerBase", "citeplasm/view/DocumentShowView", "citeplasm/model/DocumentStore"], function(declare, _ControllerBase, DocumentShowView, DocumentStore) {
   return declare("citeplasm/controller/DocumentController", _ControllerBase, {
-    baseTitle: "This is My Document Title",
-    viewAction: function(params) {
+    pre: function() {
+      this.doc = DocumentStore.get(this.params.id);
+      if (this.doc != null) return this.baseTitle = this.doc.title;
+    },
+    viewAction: function() {
       var view;
       this.setTitle();
       view = new DocumentShowView();
       this.setView(view);
-      return this.setBreadcrumb({
+      this.setBreadcrumb({
         crumbs: [
           {
             name: "Your Documents",
@@ -17,8 +20,12 @@ define(["dojo/_base/declare", "citeplasm/controller/_ControllerBase", "citeplasm
           }
         ]
       });
+      view.setBody(this.doc.body);
+      view.setTitle(this.doc.title);
+      view.setAuthor(this.doc.author.uid, this.doc.author.name);
+      return view.setAbstract(this.doc.abstract);
     },
-    editAction: function(params) {
+    editAction: function() {
       this.setTitle("Editing");
       return this.setBreadcrumb({
         crumbs: [
@@ -27,7 +34,7 @@ define(["dojo/_base/declare", "citeplasm/controller/_ControllerBase", "citeplasm
             url: "#/documents"
           }, {
             name: this.baseTitle,
-            url: "#/documents/1234"
+            url: "#/documents/" + this.doc.id
           }, {
             name: "Editing"
           }

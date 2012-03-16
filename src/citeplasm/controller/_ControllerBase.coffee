@@ -135,5 +135,14 @@ define [
             if !@[actionName] or typeof(@[actionName]) isnt "function"
                 throw "The action #{actionName} does not exist"
 
-            @[actionName](params)
+            @params = params
+
+            # Controllers can optionally define a @pre method to be invoked
+            # before all controller actions are executed. If one has been
+            # defined, execute it now.
+            if @pre and typeof(@pre) is "function"
+                @pre()
+            
+            # Finally, call the action specified.
+            @[actionName]()
 

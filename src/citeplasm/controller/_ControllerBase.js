@@ -43,7 +43,9 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dojo/_base/connect"], function
       if (!this[actionName] || typeof this[actionName] !== "function") {
         throw "The action " + actionName + " does not exist";
       }
-      return this[actionName](params);
+      this.params = params;
+      if (this.pre && typeof this.pre === "function") this.pre();
+      return this[actionName]();
     }
   });
 });
