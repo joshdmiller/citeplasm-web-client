@@ -2,6 +2,8 @@
 // A horizontal bar across the top of the screen
 // ---------------------------------------------
 
+@import "http://fonts.googleapis.com/css?family=Short+Stack:400normal&subset=all";
+
 .citeplasm{
     .topbar, .topsubbar {
         .container-fluid;
@@ -15,7 +17,10 @@
         top: 0px;
         height: @topbarHeight;
 
-        #gradient > .vertical(@gray, @grayDark);
+        @topbarLight: #2973C6;
+        @topbarDark: #155298;
+
+        #gradient > .vertical(@topbarLight, @topbarDark);
 
         a {
             color: @white;
@@ -23,7 +28,7 @@
 
         a:hover, a:hover {
             text-decoration: none;
-            color: @orange;
+            color: @yellow;
             background-color: none;
         }
 
@@ -32,6 +37,7 @@
             line-height: @topbarHeight;
 
             a {
+                font-family: "Short Stack", serif;
                 font-size: 20px;
                 letter-spacing: 3px;
             }
@@ -47,6 +53,11 @@
                 
                 a {
                     font-weight: bold;
+
+                    img {
+                        vertical-align: middle;
+                        margin-right: 10px;
+                    }
                 }
 
                 a:hover {
@@ -64,8 +75,8 @@
                 width: 1px;
                 margin: 0 9px;
                 overflow: hidden;
-                background-color: @grayDark;
-                border-right: 1px solid @gray;
+                background-color: @topbarDark;
+                border-right: 1px solid @topbarLight;
                 padding: 0;
             }
         }
