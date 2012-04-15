@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="760"
+   height="200"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="logo_main.svg"
+   inkscape:export-filename="/home/joshua/Development/repos/citeplasm-dojo.git/src/citeplasm/resources/images/logo_main.png"
+   inkscape:export-xdpi="22.5"
+   inkscape:export-ydpi="22.5">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="381.47602"
+     inkscape:cy="82.465471"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     width="1900px"
+     inkscape:window-width="1366"
+     inkscape:window-height="736"
+     inkscape:window-x="0"
+     inkscape:window-y="16"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-852.3622)">
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="252.10326"
+       y="953.52966"
+       id="text2985"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2987"
+         x="252.10326"
+         y="953.52966"
+         style="font-size:80px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Short Stack;-inkscape-font-specification:Short Stack">[cîtëplasm]</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:32px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="496.41885"
+       y="1012.1185"
+       id="text2993"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2995"
+         x="496.41885"
+         y="1012.1185">by emergenesis</tspan></text>
+    <path
+       style="fill:#f89406;fill-opacity:1;stroke:none"
+       d="m 19.335034,958.39771 c -14.640342,-8.63538 -21.742409,-18.34766 1.010153,-32.32488 15.151329,7.40203 34.162371,17.75929 44.446712,-4.04061 8.314336,-15.15229 -1.793199,-16.16244 -3.030458,-31.31473 2.903373,-29.27886 41.515569,-18.4826 45.456859,4.04061 -9.66225,12.74035 -17.5878,25.26362 -6.06091,35.35534 33.32668,22.38102 50.10154,-5.77842 62.62946,-10.10153 54.51247,6.11892 28.06801,48.81947 11.11168,44.44672 -24.97961,-8.97686 -42.01708,-6.83473 -53.53809,3.03045 -17.6275,23.36042 38.30451,17.88047 34.34519,38.38582 -6.84104,12.653 -14.49466,24.2226 -29.29443,26.2639 C 97.48852,1042.4124 98.60827,993.84564 83.984797,980.62107 70.516096,963.868 72.799855,1017.1254 43.578695,1022.0373 21.234213,1021.659 11.412644,1013.9757 21.355339,994.7632 35.157486,985.19977 57.901516,977.42472 59.741136,965.46878 58.784957,953.72736 41.71108,954.07422 19.335034,958.39771 z"
+       id="path3463"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccccccccccc" />
+  </g>
+</svg>

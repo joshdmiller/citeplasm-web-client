@@ -7,8 +7,14 @@
 // VARIABLE OVERRIDES
 // ------------------
 
-@topbarHeight: @navbarHeight;
+@topbarHeight: @navbarHeight * 1.75;
 @topsubbarHeight: @topbarHeight * .75;
+
+@primaryColor: @white;
+@accentColor: #f0f0f0;
+@darkAccentColor: #dfdfdf;
+
+@accentLinkColor: #777777;
 
 // STRUCTURAL LAYOUT
 // -----------------
@@ -20,6 +26,7 @@ html, body {
 
 body {
   margin: 0;
+  background-color: @primaryColor;
 }
 
 // LINKS
@@ -37,8 +44,11 @@ a:hover {
 // GRID SYSTEM & LAYOUT
 // --------------------
 
+// Fixed (940px)
+#grid > .core(@gridColumnWidth, @gridGutterWidth);
+
 // Fluid (940px)
-#fluidGridSystem > .generate(@gridColumns, @fluidGridColumnWidth, @fluidGridGutterWidth);
+#grid > .fluid(@fluidGridColumnWidth, @fluidGridGutterWidth);
 
 // Fluid layouts (left aligned, with sidebar, min- & max-width content)
 .container-fluid {
@@ -47,40 +57,26 @@ a:hover {
   .clearfix();
 }
 
+.pull-right {
+    float:right;
+}
+
 .citeplasm {
     font-family: @baseFontFamily;
     font-size: @baseFontSize;
     line-height: @baseLineHeight;
     color: @textColor;
     min-height: 100%;
-    #gradient > .vertical(@grayLighter, darken(@grayLighter, 15%));
-}
-
-.citeplasmFixedView {
-    .container-fixed;
-}
-
-.citeplasmFluidView {
-    .container-fluid;
-}
-
-.citeplasmFixedView, .citeplasmFluidView {
-    padding-top: @topbarHeight + @topsubbarHeight;
-     > div {
-        margin: 20px auto;
-        padding: 20px;
-        background-color: @white;
-        -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 3px rgba(255, 255, 255, 0.15);
-        -moz-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 3px rgba(255, 255, 255, 0.15);
-        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.35), inset 0px 0px 3px rgba(255, 255, 255, 0.15);
-    }
+    background-color: @white;
 }
 
 /* import Dijit style */
-//@import '../../dijit/themes/claro/claro.css';
+@import '../../dijit/themes/claro/claro.css';
 
 /* import app styles */
 @import "less/bootstrap-buttons.less";
+@import "less/bootstrap-forms.less";
+@import "less/icons.less";
 @import "less/navigation.less";
 @import "less/topbar.less";
 @import "less/breadcrumbs.less";

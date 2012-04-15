@@ -1,6 +1,26 @@
-<div class="citeplasmFixedView">
-    <!-- view-specific widgets are contained here -->
-    <div data-dojo-type="citeplasm/widget/DocumentViewer" data-dojo-props="id: '${id}-documentViewer'">
-        Document Body
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <ul class="nav nav-list">
+                <li class="header">About This Document</li>
+                <li><a class="doc-link-toc" href="#/documents/${docId}/toc"><i class="icon-toc"></i>Table of Contents</a></li>
+                <li><a class="doc-link-resources" href="#/documents/${docId}/resources"><i class="icon-resources"></i>Resources</a></li>
+                <li><a class="doc-link-history" href="#/documents/${docId}/history"><i class="icon-history"></i>History</a></li>
+                
+                <li class="header">Actions</li>
+                <li><a class="doc-link-export" href="#/documents/${docId}/export"><i class="icon-export"></i>Export</a></li>
+                <li><a class="doc-link-edit" href="#/documents/${docId}/edit"><i class="icon-edit"></i>Edit</a></li>
+            </ul>
+        </div>
+        <div class="span10">
+            <!-- metatada holds all info about the document like author and title -->
+            <div class="metadata">
+                <div class="title" data-dojo-attach-point="titleNode"></div>
+                <div class="author" data-dojo-attach-point="authorNode"></div>
+                <div class="abstract" data-dojo-attach-point="abstractNode"></div>
+            </div>
+            <!-- this is the dom node into which the provided content is rendered. -->
+            <div class="body" data-dojo-attach-point="containerNode"></div>
+        </div>
     </div>
 </div>

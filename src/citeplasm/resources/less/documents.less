@@ -1,12 +1,12 @@
 // DOCUMENT VIEWING & EDITING
 // --------------------------
 
-.citeplasmDocumentViewer {
+.citeplasmDocument {
     .shared-font {
         font-family: 'Arial, Helvetica, sans-serif' !important;
     }
 
-    padding: 40px !important;
+    //padding: 40px !important;
 
     // METADATA
     // --------
@@ -14,27 +14,23 @@
         margin-bottom: 30px;
     
         .title, .author, .abstract {
-            margin: 0 auto 30px auto;
+            margin: 0 auto 20px auto;
             .shared-font;
         }
 
-        .title, .author {
-            text-align: center;
-        }
-
         .title {
-            text-align: center;
-            font-size: 36px;
-            line-height: 41px;
+            font-size: 28px;
+            line-height: 35px;
+            border-bottom: 1px solid @darkAccentColor;
         }
 
         .author {
+            font-size: 16px;
+            line-height: 21px;
+            padding-bottom: 5px;
+            color: @gray;
+            
             a {
-                color: @gray;
-                font-size: 20px;
-                line-height: 25px;
-                border-bottom: 1px solid @gray;
-                padding-bottom: 5px;
             }
 
             a:hover, a:active {
@@ -49,7 +45,6 @@
                 color: @gray;
                 font-size: 16px;
                 line-height: 20px;
-                text-align: justify;
             }
         }
     }
@@ -63,8 +58,8 @@
         counter-reset: h1 0;
 
         h1, h2, h3, h4, h5 {
-            margin-top: 20px;
-            margin-bottom: 10px;
+            margin-top: 40px;
+            margin-bottom: 20px;
             .shared-font;
         }
 
@@ -79,11 +74,11 @@
         
         h1 {
             counter-reset: h2 0;
-            text-transform: uppercase;
-            border-bottom: 1px solid @gray;
+            border-bottom: 1px solid @darkAccentColor;
             color: @gray;
             font-size: 20px;
             line-height: 25px;
+            font-weight: normal;
         }
 
         h2:before {
@@ -92,10 +87,10 @@
         }
 
         h2 {
-            text-transform: uppercase;
             color: @gray;
             font-size: 16px;
             line-height: 21px;
+            font-weight: bold;
         }
 
         // DOCUMENT BODY ELEMENTS
@@ -104,7 +99,6 @@
             font-family: 'Karla' !important;
             font-size: 15px;
             line-height: 20px;
-            text-align: justify;
             .shared-font;
         }
     }

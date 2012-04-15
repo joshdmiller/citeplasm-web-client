@@ -27,8 +27,9 @@ define [
     "dojo/_base/declare",
     "citeplasm/controller/_ControllerBase",
     "citeplasm/view/DocumentShowView",
+    "citeplasm/view/DocumentEditView",
     "citeplasm/model/DocumentStore",
-], (declare, _ControllerBase, DocumentShowView, DocumentStore) ->
+], (declare, _ControllerBase, DocumentShowView, DocumentEditView, DocumentStore) ->
 
     # ## citeplasm/controller/DocumentController
     declare "citeplasm/controller/DocumentController", _ControllerBase,
@@ -41,24 +42,30 @@ define [
 
         viewAction: () ->
             @setTitle()
-            view = new DocumentShowView()
+            view = new DocumentShowView
+                docId: @doc.id
+                docBody: @doc.body
+                docTitle: @doc.title
+                docAuthorId: @doc.author.uid
+                docAuthorName: @doc.author.name
+                docAbstract: @doc.abstract
+
             @setView(view)
             @setBreadcrumb
                 crumbs: [
                     { name: "Your Documents", url: "#/documents" },
                     { name: @baseTitle }
                 ]
-            view.setBody @doc.body
-            view.setTitle @doc.title
-            view.setAuthor @doc.author.uid, @doc.author.name
-            view.setAbstract @doc.abstract
 
         editAction: () ->
             @setTitle("Editing")
+            view = new DocumentEditView()
+            @setView(view)
             @setBreadcrumb
                 crumbs: [
                     { name: "Your Documents", url: "#/documents" },
                     { name: @baseTitle, url: "#/documents/#{@doc.id}" },
                     { name: "Editing" }
                 ]
+            view.setBody @doc.body
  

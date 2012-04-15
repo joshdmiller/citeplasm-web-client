@@ -1,0 +1,62 @@
+// ICONS
+// Glyphs and icons for buttons, nav, and more
+// -------------------------------------------
+
+@iconPath: "/citeplasm/resources/images/famfamfam";
+
+// ICONS
+// -----
+
+// All icons receive the styles of the <i> tag with a base class 
+// of .i and are then given a unique class to add width, height, 
+// and background-position. Your resulting HTML will look like
+// <i class="icon-inbox"></i>.
+
+[class^="icon-"],
+[class*=" icon-"] {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  vertical-align: text-top;
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+
+  .ie7-restore-right-whitespace();
+}
+
+.icon-history {
+    background-image: url("@{iconPath}/time.png");
+}
+
+.icon-edit {
+    background-image: url("@{iconPath}/page_edit.png");
+}
+
+.icon-export {
+    background-image: url("@{iconPath}/page_go.png");
+}
+
+.icon-resources {
+    background-image: url("@{iconPath}/page_white_stack.png");
+}
+
+.icon-toc {
+    background-image: url("@{iconPath}/report.png");
+}
+
+.icon-search {
+    background-image: url("@{iconPath}/magnifier.png");
+}
+
+.icon-home {
+    background-image: url("@{iconPath}/house.png");
+}
+
+// STYLES FOR VARIOUS PLACEMENTS
+// -----------------------------
+
+.btn [class^="icon-"], .btn [class*=" icon-"] {
+    margin-right: 6px;
+}
+

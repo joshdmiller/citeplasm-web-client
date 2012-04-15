@@ -29,8 +29,6 @@ define [
     "dijit/_WidgetsInTemplateMixin",
     "dijit/_TemplatedMixin",
     "dojo/text!./templates/DocumentShowView.html",
-    "dijit/registry",
-    "citeplasm/widget/DocumentViewer"
 ], (declare, _WidgetBase, _WidgetsInTemplateMixin, _TemplatedMixin, template, registry) ->
 
     # ## citeplasm/view/DocumentShowView
@@ -46,21 +44,11 @@ define [
 
         # The baseClass is a CSS class applied to the root element of the
         # template.
-        baseClass: "citeplasmDocumentShowView"
+        baseClass: "citeplasmDocument"
 
-
-        _documentViewer: () ->
-            if @dv? then @dv else @dv = registry.byId(this.id + "-documentViewer")
-
-        setBody: (body) ->
-            @_documentViewer().containerNode.innerHTML = body
-
-        setTitle: (title) ->
-            @_documentViewer().titleNode.innerHTML = title
-
-        setAuthor: (id, name) ->
-            @_documentViewer().authorNode.innerHTML = "<a href='#/author/#{id}'>#{name}</a>"
-
-        setAbstract: (abstract) ->
-            @_documentViewer().abstractNode.innerHTML = "<p>#{abstract}</p>"
+        postCreate: () ->
+            @containerNode.innerHTML = @docBody
+            @titleNode.innerHTML = @docTitle
+            @authorNode.innerHTML = "by <a href='#/authors/#{@docAutorId}'>#{@docAuthorName}</a>"
+            @abstractNode.innerHTML = "<p>#{@docAbstract}</p>"
 

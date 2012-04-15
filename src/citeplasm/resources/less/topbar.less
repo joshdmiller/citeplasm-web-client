@@ -6,41 +6,60 @@
 
 .citeplasm{
     .topbar, .topsubbar {
-        .container-fluid;
-        position: fixed;
-        left: 0px;
-        right: 0px;
-        z-index: 1000;
+        .container-fluid();
     }
     
     .topbar {
-        top: 0px;
         height: @topbarHeight;
 
-        @topbarLight: #2973C6;
-        @topbarDark: #155298;
-
-        #gradient > .vertical(@topbarLight, @topbarDark);
+        background-color: @accentColor;
+        border-bottom: 1px solid @darkAccentColor;
 
         a {
-            color: @white;
-                text-shadow: @gray 2px 2px 1px;
+            color: @accentLinkColor;
         }
 
         a:hover, a:hover {
-            text-decoration: none;
-            color: @yellow;
+            text-decoration: underline;
             background-color: none;
         }
 
-        .brand {
+        .brand, .brand:visited {
             float: left;
             line-height: @topbarHeight;
+            font-family: "Short Stack", serif;
+            font-size: 24px;
+            letter-spacing: 3px;
+            text-shadow: none;
+        }
 
-            a {
-                font-family: "Short Stack", serif;
-                font-size: 20px;
-                letter-spacing: 3px;
+        .brand:hover, .brand:active {
+            text-decoration: none;
+        }
+
+        .search {
+            line-height: @topbarHeight;
+            margin-left: 60px;
+
+            input {
+                margin: 0 10px 0 0;
+                border: 1px solid @darkAccentColor;
+                line-height: 20px;
+                height: 20px;
+                min-width: 450px;
+                background-color: @white;
+            }
+
+            input:active, input:focus {
+                border-color: @linkColor;
+            }
+
+            .btn {
+                color: @white;
+            }
+
+            .btn:hover, .btn:active {
+                text-decoration: none;
             }
         }
 
@@ -57,6 +76,11 @@
 
                     img {
                         vertical-align: middle;
+                        margin-left: 10px;
+                    }
+
+                    i[class^="icon-"],
+                    i[class*=" icon-"] {
                         margin-right: 10px;
                     }
                 }
@@ -72,26 +96,24 @@
 
             // Dividers (basically a vertical hr)
             .divider-vertical {
-                height: @navbarHeight;
+                height: @topbarHeight;
                 width: 1px;
                 margin: 0 9px;
                 overflow: hidden;
-                background-color: @topbarDark;
-                border-right: 1px solid @topbarLight;
+                background-color: @darkAccentColor;
+                border-right: 1px solid @accentColor;
                 padding: 0;
             }
         }
     }
 
     .topsubbar {
-        top: @topbarHeight;
         height: @topsubbarHeight;
+        margin-bottom: 20px;
 
-        .box-shadow(0 1px 3px rgba(0,0,0,.35));
-
-        border-top: none;
-        border-left: none;
-        border-right: none;
+        background: transparent;
+        border-bottom: 1px solid @darkAccentColor;
+        color: @black;
 
         ul {
             margin: 0;
