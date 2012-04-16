@@ -1,6 +1,6 @@
 (function() {
 
-  define(["dojo/_base/declare", "citeplasm/controller/_ControllerBase", "citeplasm/view/DocumentShowView", "citeplasm/view/DocumentEditView", "citeplasm/model/DocumentStore"], function(declare, _ControllerBase, DocumentShowView, DocumentEditView, DocumentStore) {
+  define(["dojo/_base/declare", "citeplasm/controller/_ControllerBase", "citeplasm/view/DocumentShowView", "citeplasm/view/DocumentEditView", "citeplasm/model/DocumentStore", "dojo/query", "dojo/window", "dojo/on", "dojo/dom-style"], function(declare, _ControllerBase, DocumentShowView, DocumentEditView, DocumentStore, $, win, connectOn, domStyle) {
     return declare("citeplasm/controller/DocumentController", _ControllerBase, {
       pre: function() {
         this.doc = DocumentStore.get(this.params.id);
@@ -30,9 +30,12 @@
         });
       },
       editAction: function() {
-        var view;
+        var resizeEditor, view;
         this.setTitle("Editing");
-        view = new DocumentEditView();
+        view = new DocumentEditView({
+          docBody: this.doc.body,
+          docId: this.doc.id
+        });
         this.setView(view);
         this.setBreadcrumb({
           crumbs: [
@@ -47,7 +50,16 @@
             }
           ]
         });
-        return view.setBody(this.doc.body);
+        resizeEditor = function() {
+          return $(".dijitEditorIFrameContainer, iframe", dojo.byId(view.id + "-documentEditor")).forEach(function(el) {
+            var height, winHeight;
+            winHeight = win.getBox().h;
+            height = winHeight - 159;
+            return domStyle.set(el, "height", height + "px");
+          });
+        };
+        connectOn(window, "resize", resizeEditor);
+        return resizeEditor();
       }
     });
   });

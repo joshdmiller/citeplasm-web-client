@@ -94,6 +94,8 @@ define [
             # TODO add error checking here
             @_currentView.placeAt @viewNode
 
+            view.startup()
+
         # ### setBreadcrumb
         #
         # setBreadcrumb takes a breadcrumb object and publishes it to the

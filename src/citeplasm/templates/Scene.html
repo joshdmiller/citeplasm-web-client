@@ -1,26 +1,34 @@
 <div class="claro">
     <div class="topbar">
-        <div class="brand">
-            <a href="#">[c&icirc;t&euml;plasm]</a>
+        <div class="row-fluid">
+            <a class="brand" href="#"><img src="/citeplasm/resources/images/logo_main.png" /></a>
+            <!--<span class="pull-left search">
+                <input type="text" placeholder="Search..." name="search" />
+                <a href="#" class="btn btn-primary"><i class="icon-search"></i>Search</a>
+            </span>-->
+            <ul class="nav">
+                <li><a href="#">Josh Miller<img src="https://secure.gravatar.com/avatar/5dfdb19c3d8ba8050ce64c4f2a7b7e12?s=32" /></a></li>
+                <li class="divider-vertical"></li>
+                <!--<li><a href="#">Documents</a></li>
+                <li><a href="#">Notes</a></li>
+                <li><a href="#">Resources</a></li>
+                <li><a href="#">Search</a></li>-->
+                <li><a href="#"><i class="icon-home"></i>Navigation</a></li>
+                <li><a href="#"><i class="icon-search"></i>Search</a></li>
+            </ul>
         </div>
-        <ul class="nav">
-            <li><a href="#"><img src="https://secure.gravatar.com/avatar/5dfdb19c3d8ba8050ce64c4f2a7b7e12?s=32" />Your Account</a></li>
-            <li class="divider-vertical"></li>
-            <li><a href="#/documents" class="">Documents</a></li>
-            <li><a href="#/notes" class="">Notes</a></li>
-            <li><a href="#/resources" class="">Resources</a></li>
-            <li><a href="#/dashboard" class="">Dashboard</a></li>
-        </ul>
     </div>
-
+    
     <!-- the breadcrumb will be updated by publish/subscribe with a data object
          that describes the breadcrumb data -->
-    <div class="topsubbar breadcrumb">
-        <ul data-dojo-attach-point="breadcrumbListNode">
-            <li class="active">Citeplasm</li>
-        </ul>
+    <div class="topsubbar">
+        <div class="row-fluid">
+            <ul data-dojo-attach-point="breadcrumbListNode" class="breadcrumb">
+                <li class="active">Citeplasm</li>
+            </ul>
+        </div>
     </div>
-
+    
     <!-- this is the dom node into which view widgets are attached. -->
     <div data-dojo-attach-point="viewNode"></div>
 

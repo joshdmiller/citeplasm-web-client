@@ -46,11 +46,13 @@ define [
 
         # The baseClass is a CSS class applied to the root element of the
         # template.
-        baseClass: "citeplasmDocumentEditView"
+        baseClass: "citeplasmDocumentEdit"
 
         _documentEditor: () ->
-            if @de? then @de else @de = registry.byId(this.id + "-documentEditor")
+            if @de? then @de else @de = registry.byId(@id + "-documentEditor")
 
-        setBody: (body) ->
-            @_documentEditor().set("value", body)
+        postCreate: () ->
+            ed = @_documentEditor()
+            ed.set("value", @docBody)
+            ed.addStyleSheet "/app/resources/app.css"
 

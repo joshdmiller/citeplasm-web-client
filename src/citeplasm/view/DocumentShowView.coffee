@@ -49,6 +49,6 @@ define [
         postCreate: () ->
             @containerNode.innerHTML = @docBody
             @titleNode.innerHTML = @docTitle
-            @authorNode.innerHTML = "by <a href='#/authors/#{@docAutorId}'>#{@docAuthorName}</a>"
+            @authorNode.innerHTML = "by <a href='#/authors/#{@docAuthorId}'>#{@docAuthorName}</a>"
             @abstractNode.innerHTML = "<p>#{@docAbstract}</p>"
 

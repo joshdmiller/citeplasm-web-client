@@ -25,8 +25,8 @@
 # ## RequireJS-style AMD Definition
 
 define [
-    "dojo/declare",
-    "dijit/Editor"
+    "dojo/_base/declare",
+    "dijit/Editor",
 ], (declare, Editor) ->
 
     # ## citeplasm/widget/Editor

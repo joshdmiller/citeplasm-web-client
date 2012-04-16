@@ -48,58 +48,87 @@
             }
         }
     }
+}
 
-    // THE DOCUMENT BODY
-    // -----------------
-    .body {
+// THE DOCUMENT BODY
+// -----------------
 
-        // DOCUMENT BODY HEADINGS
-        // ----------------------
-        counter-reset: h1 0;
+.citeplasmDocument .body, #dijitEditorBody {
 
-        h1, h2, h3, h4, h5 {
-            margin-top: 40px;
-            margin-bottom: 20px;
-            .shared-font;
-        }
+    // DOCUMENT BODY HEADINGS
+    // ----------------------
+    counter-reset: h1 0;
 
-        h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child {
-            margin-top: 0px;
-        }
+    h1, h2, h3, h4, h5 {
+        margin-top: 40px;
+        margin-bottom: 20px;
+        .citeplasmDocument > .shared-font;
+    }
 
-        h1:before {
-            counter-increment: h1 1;
-            content: counter(h1, decimal) ". ";
-        }
-        
-        h1 {
-            counter-reset: h2 0;
-            border-bottom: 1px solid @darkAccentColor;
-            color: @gray;
-            font-size: 20px;
-            line-height: 25px;
-            font-weight: normal;
-        }
+    h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child {
+        margin-top: 0px;
+    }
 
-        h2:before {
-            counter-increment: h2 1;
-            content: counter(h1, decimal) "." counter(h2, decimal) " ";
-        }
+    h1:before {
+        counter-increment: h1 1;
+        content: counter(h1, decimal) ". ";
+    }
+    
+    h1 {
+        counter-reset: h2 0;
+        border-bottom: 1px solid @darkAccentColor;
+        color: @gray;
+        font-size: 20px;
+        line-height: 25px;
+        font-weight: normal;
+    }
 
-        h2 {
-            color: @gray;
-            font-size: 16px;
-            line-height: 21px;
-            font-weight: bold;
-        }
+    h2:before {
+        counter-increment: h2 1;
+        content: counter(h1, decimal) "." counter(h2, decimal) " ";
+    }
 
-        // DOCUMENT BODY ELEMENTS
-        // ----------------------
-        p {
-            font-family: 'Karla' !important;
-            font-size: 15px;
-            line-height: 20px;
-            .shared-font;
-        }
+    h2 {
+        color: @gray;
+        font-size: 16px;
+        line-height: 21px;
+        font-weight: bold;
+    }
+
+    // DOCUMENT BODY ELEMENTS
+    // ----------------------
+    p {
+        font-family: 'Karla' !important;
+        font-size: 15px;
+        line-height: 20px;
+        .citeplasmDocument > .shared-font;
     }
 }
+
+// DOCUMENT EDITOR
+// ---------------
+
+.citeplasmDocumentEdit {
+    margin-top: -20px;
+
+    .dijitEditorIFrameContainer {
+        padding: 0;
+    }
+}
+
+// EDITOR IFRAME
+// -------------
+
+#dijitEditorBody > * {
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}
+
+#dijitEditorBody > *:first-child {
+    margin-top: 10px !important;
+}
+
+#dijitEditorBody > *:last-child {
+    margin-bottom: 10px !important;
+}
+

@@ -1720,30 +1720,43 @@ legend + .control-group {
   font-size: 16px;
   line-height: 20px;
 }
-.citeplasmDocument .body {
+.citeplasmDocument .body,
+#dijitEditorBody {
   counter-reset: h1 0;
 }
 .citeplasmDocument .body h1,
+#dijitEditorBody h1,
 .citeplasmDocument .body h2,
+#dijitEditorBody h2,
 .citeplasmDocument .body h3,
+#dijitEditorBody h3,
 .citeplasmDocument .body h4,
-.citeplasmDocument .body h5 {
+#dijitEditorBody h4,
+.citeplasmDocument .body h5,
+#dijitEditorBody h5 {
   margin-top: 40px;
   margin-bottom: 20px;
   font-family: 'Arial, Helvetica, sans-serif' !important;
 }
 .citeplasmDocument .body h1:first-child,
+#dijitEditorBody h1:first-child,
 .citeplasmDocument .body h2:first-child,
+#dijitEditorBody h2:first-child,
 .citeplasmDocument .body h3:first-child,
+#dijitEditorBody h3:first-child,
 .citeplasmDocument .body h4:first-child,
-.citeplasmDocument .body h5:first-child {
+#dijitEditorBody h4:first-child,
+.citeplasmDocument .body h5:first-child,
+#dijitEditorBody h5:first-child {
   margin-top: 0px;
 }
-.citeplasmDocument .body h1:before {
+.citeplasmDocument .body h1:before,
+#dijitEditorBody h1:before {
   counter-increment: h1 1;
   content: counter(h1, decimal) ". ";
 }
-.citeplasmDocument .body h1 {
+.citeplasmDocument .body h1,
+#dijitEditorBody h1 {
   counter-reset: h2 0;
   border-bottom: 1px solid #dfdfdf;
   color: #555555;
@@ -1751,19 +1764,38 @@ legend + .control-group {
   line-height: 25px;
   font-weight: normal;
 }
-.citeplasmDocument .body h2:before {
+.citeplasmDocument .body h2:before,
+#dijitEditorBody h2:before {
   counter-increment: h2 1;
   content: counter(h1, decimal) "." counter(h2, decimal) " ";
 }
-.citeplasmDocument .body h2 {
+.citeplasmDocument .body h2,
+#dijitEditorBody h2 {
   color: #555555;
   font-size: 16px;
   line-height: 21px;
   font-weight: bold;
 }
-.citeplasmDocument .body p {
+.citeplasmDocument .body p,
+#dijitEditorBody p {
   font-family: 'Karla' !important;
   font-size: 15px;
   line-height: 20px;
   font-family: 'Arial, Helvetica, sans-serif' !important;
+}
+.citeplasmDocumentEdit {
+  margin-top: -20px;
+}
+.citeplasmDocumentEdit .dijitEditorIFrameContainer {
+  padding: 0;
+}
+#dijitEditorBody > * {
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+}
+#dijitEditorBody > *:first-child {
+  margin-top: 10px !important;
+}
+#dijitEditorBody > *:last-child {
+  margin-bottom: 10px !important;
 }

@@ -29,7 +29,11 @@ define [
     "citeplasm/view/DocumentShowView",
     "citeplasm/view/DocumentEditView",
     "citeplasm/model/DocumentStore",
-], (declare, _ControllerBase, DocumentShowView, DocumentEditView, DocumentStore) ->
+    "dojo/query",
+    "dojo/window",
+    "dojo/on",
+    "dojo/dom-style",
+], (declare, _ControllerBase, DocumentShowView, DocumentEditView, DocumentStore, $, win, connectOn, domStyle) ->
 
     # ## citeplasm/controller/DocumentController
     declare "citeplasm/controller/DocumentController", _ControllerBase,
@@ -59,7 +63,10 @@ define [
 
         editAction: () ->
             @setTitle("Editing")
-            view = new DocumentEditView()
+            view = new DocumentEditView
+                docBody: @doc.body
+                docId: @doc.id
+
             @setView(view)
             @setBreadcrumb
                 crumbs: [
@@ -67,5 +74,14 @@ define [
                     { name: @baseTitle, url: "#/documents/#{@doc.id}" },
                     { name: "Editing" }
                 ]
-            view.setBody @doc.body
- 
+            
+            resizeEditor = () ->
+                $(".dijitEditorIFrameContainer, iframe", dojo.byId(view.id + "-documentEditor")).forEach (el) ->
+                    winHeight = win.getBox().h
+                    height = winHeight - 159
+                    domStyle.set el, "height", height + "px"
+
+            connectOn window, "resize", resizeEditor
+
+            resizeEditor()
+

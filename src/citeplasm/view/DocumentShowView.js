@@ -7,7 +7,7 @@
       postCreate: function() {
         this.containerNode.innerHTML = this.docBody;
         this.titleNode.innerHTML = this.docTitle;
-        this.authorNode.innerHTML = "by <a href='#/authors/" + this.docAutorId + "'>" + this.docAuthorName + "</a>";
+        this.authorNode.innerHTML = "by <a href='#/authors/" + this.docAuthorId + "'>" + this.docAuthorName + "</a>";
         return this.abstractNode.innerHTML = "<p>" + this.docAbstract + "</p>";
       }
     });
