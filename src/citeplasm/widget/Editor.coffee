@@ -39,3 +39,7 @@ define [
         # template.
         baseClass: "citeplasmEditor"
 
+        constructor: () ->
+            this.inherited(arguments)
+            @addStyleSheet "/app/resources/app.css"
+

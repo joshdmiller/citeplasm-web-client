@@ -1799,3 +1799,7 @@ legend + .control-group {
 #dijitEditorBody > *:last-child {
   margin-bottom: 10px !important;
 }
+.dijitToolbar {
+  background: none !important;
+  border-bottom: 1px solid #dfdfdf !important;
+}

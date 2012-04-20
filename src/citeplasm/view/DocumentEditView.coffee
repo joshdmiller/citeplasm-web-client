@@ -54,5 +54,4 @@ define [
         postCreate: () ->
             ed = @_documentEditor()
             ed.set("value", @docBody)
-            ed.addStyleSheet "/app/resources/app.css"
 

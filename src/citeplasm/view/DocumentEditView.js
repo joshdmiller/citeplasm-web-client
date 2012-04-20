@@ -14,8 +14,7 @@
       postCreate: function() {
         var ed;
         ed = this._documentEditor();
-        ed.set("value", this.docBody);
-        return ed.addStyleSheet("/app/resources/app.css");
+        return ed.set("value", this.docBody);
       }
     });
   });
