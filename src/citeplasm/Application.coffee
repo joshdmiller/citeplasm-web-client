@@ -1,4 +1,4 @@
-# ## License
+# ## License 
 
 # This file is part of the Citeplasm Web Client.
 # 
@@ -66,8 +66,9 @@ define [
     "dojo/_base/connect",
     "citeplasm/Scene",
     "citeplasm/Router",
-    "citeplasm/controller/DocumentController"
-], (declare, win, lang, connect, Scene, Router, DocumentController) ->
+    "citeplasm/controller/DocumentController",
+    "citeplasm/controller/BrowserController"
+], (declare, win, lang, connect, Scene, Router, DocumentController, BrowserController) ->
 
     # ## citeplasm/Application
     declare "citeplasm/Application", null,
@@ -112,6 +113,9 @@ define [
                     handler: lang.hitch(@, (params, route) ->
                         @changeTitle "Resources"
                     )
+                ,
+                    path: "/browser"
+                    handler: lang.hitch @, @_connectController(BrowserController, "list")
                 ,
                     path: "/documents/:id"
                     handler: lang.hitch(@, @_connectController(DocumentController, "view"))

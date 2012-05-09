@@ -39,10 +39,11 @@ define [
     declare "citeplasm/controller/DocumentController", _ControllerBase,
 
         pre: () ->
-            @doc = DocumentStore.get @params.id
-            # TODO handle non-existent doc
-            if @doc?
-                @baseTitle = @doc.title
+            if @params.id?
+                @doc = DocumentStore.get @params.id
+                # TODO handle non-existent doc
+                if @doc?
+                    @baseTitle = @doc.title
 
         viewAction: () ->
             @setTitle()
@@ -57,7 +58,7 @@ define [
             @setView(view)
             @setBreadcrumb
                 crumbs: [
-                    { name: "Your Documents", url: "#/documents" },
+                    { name: "Your Documents", url: "#/browser" },
                     { name: @baseTitle }
                 ]
 
@@ -70,7 +71,7 @@ define [
             @setView(view)
             @setBreadcrumb
                 crumbs: [
-                    { name: "Your Documents", url: "#/documents" },
+                    { name: "Your Documents", url: "#/browser" },
                     { name: @baseTitle, url: "#/documents/#{@doc.id}" },
                     { name: "Editing" }
                 ]

@@ -1,5 +1,5 @@
 
-define(["dojo/_base/declare", "dojo/_base/window", "dojo/_base/lang", "dojo/_base/connect", "citeplasm/Scene", "citeplasm/Router", "citeplasm/controller/DocumentController"], function(declare, win, lang, connect, Scene, Router, DocumentController) {
+define(["dojo/_base/declare", "dojo/_base/window", "dojo/_base/lang", "dojo/_base/connect", "citeplasm/Scene", "citeplasm/Router", "citeplasm/controller/DocumentController", "citeplasm/controller/BrowserController"], function(declare, win, lang, connect, Scene, Router, DocumentController, BrowserController) {
   return declare("citeplasm/Application", null, {
     _scene: null,
     _router: null,
@@ -23,6 +23,9 @@ define(["dojo/_base/declare", "dojo/_base/window", "dojo/_base/lang", "dojo/_bas
           handler: lang.hitch(this, function(params, route) {
             return this.changeTitle("Resources");
           })
+        }, {
+          path: "/browser",
+          handler: lang.hitch(this, this._connectController(BrowserController, "list"))
         }, {
           path: "/documents/:id",
           handler: lang.hitch(this, this._connectController(DocumentController, "view"))
