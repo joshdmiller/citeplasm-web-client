@@ -59,6 +59,16 @@ define [
                 # Convert the date from an ISO date string to a Date object.
                 dt = stamp.fromISOString doc.modified_at
 
+                if doc.type is "d"
+                    doc.class = "doc"
+                    doc.url = "documents"
+                else if doc.type is "r"
+                    doc.class = "resource"
+                    doc.url = "resources"
+                else if doc.type is "n"
+                    doc.class = "note"
+                    doc.url = "notes"
+
                 # To do some date math, here's today's and yesterday's dates.
                 today = new Date()
                 yesterday = date.add today, "day", -1
@@ -75,6 +85,7 @@ define [
                     fmt = locale.format dt,
                         selector: 'date'
                         formatLength: 'medium'
+                        datePattern: 'dd MMM'
                 else
                     fmt = locale.format dt,
                         selector: 'date'
@@ -82,6 +93,6 @@ define [
 
                 # Create the table row.
                 tr = domConstruct.create "tr", {}, tbody
-                td_title = domConstruct.create "td", { innerHTML: "<a href='#/documents/#{doc.id}'><i class='icon-#{doc.type}'></i>#{doc.title}</a>" }, tr
+                td_title = domConstruct.create "td", { innerHTML: "<a href='#/#{doc.url}/#{doc.id}'><i class='icon-#{doc.class}'></i>#{doc.title}</a>" }, tr
                 td_mod = domConstruct.create "td", { innerHTML: fmt }, tr
 

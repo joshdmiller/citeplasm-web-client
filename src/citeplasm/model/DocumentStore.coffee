@@ -59,7 +59,7 @@ define [
                 abstract: abstract
                 body: sample001
                 modified_at: "2012-05-04T12:32:00-7"
-                type: "doc"
+                type: "d"
             ,
                 id: 2
                 slug: "linux-is-not-windows"
@@ -68,7 +68,7 @@ define [
                 abstract: abstract
                 body: sample002
                 modified_at: "2012-05-08T15:28:00-7"
-                type: "doc"
+                type: "d"
              ,
                 id: 3
                 slug: "citeplasm-is-cool"
@@ -77,13 +77,13 @@ define [
                 abstract: abstract
                 body: sample002
                 modified_at: "2011-12-29T21:27:00-7"
-                type: "note"
+                type: "n"
             ,
                 id: 4
                 slug: "cosmos-by-carl-sagan"
                 title: "Cosmos by Carl Sagan"
                 modified_at: "2012-02-29T21:27:00-7"
-                type: "resource"
+                type: "r"
 
         ]
     )

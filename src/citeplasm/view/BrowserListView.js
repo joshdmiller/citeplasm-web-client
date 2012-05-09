@@ -10,6 +10,16 @@ define(["dojo/_base/declare", "dijit/_WidgetBase", "dijit/_WidgetsInTemplateMixi
       return array.forEach(docs, function(doc) {
         var dt, fmt, td_mod, td_title, today, tr, yesterday;
         dt = stamp.fromISOString(doc.modified_at);
+        if (doc.type === "d") {
+          doc["class"] = "doc";
+          doc.url = "documents";
+        } else if (doc.type === "r") {
+          doc["class"] = "resource";
+          doc.url = "resources";
+        } else if (doc.type === "n") {
+          doc["class"] = "note";
+          doc.url = "notes";
+        }
         today = new Date();
         yesterday = date.add(today, "day", -1);
         fmt = "";
@@ -23,7 +33,8 @@ define(["dojo/_base/declare", "dijit/_WidgetBase", "dijit/_WidgetsInTemplateMixi
         } else if (dt.getFullYear() === today.getFullYear()) {
           fmt = locale.format(dt, {
             selector: 'date',
-            formatLength: 'medium'
+            formatLength: 'medium',
+            datePattern: 'dd MMM'
           });
         } else {
           fmt = locale.format(dt, {
@@ -33,7 +44,7 @@ define(["dojo/_base/declare", "dijit/_WidgetBase", "dijit/_WidgetsInTemplateMixi
         }
         tr = domConstruct.create("tr", {}, tbody);
         td_title = domConstruct.create("td", {
-          innerHTML: "<a href='#/documents/" + doc.id + "'><i class='icon-" + doc.type + "'></i>" + doc.title + "</a>"
+          innerHTML: "<a href='#/" + doc.url + "/" + doc.id + "'><i class='icon-" + doc["class"] + "'></i>" + doc.title + "</a>"
         }, tr);
         return td_mod = domConstruct.create("td", {
           innerHTML: fmt
