@@ -35,9 +35,10 @@ define [
     "dojo/date/locale",
     "dojo/date/stamp",
     "citeplasm/model/FolderStore",
+    "citeplasm/model/TagStore",
     "dijit/tree/ObjectStoreModel",
     "dijit/Tree"
-], (declare, _WidgetBase, _WidgetsInTemplateMixin, _TemplatedMixin, template, dom, array, domConstruct, date, locale, stamp, FolderStore, ObjectStoreModel, Tree) ->
+], (declare, _WidgetBase, _WidgetsInTemplateMixin, _TemplatedMixin, template, dom, array, domConstruct, date, locale, stamp, FolderStore, TagStore, ObjectStoreModel, Tree) ->
 
     # ## citeplasm/view/BrowserListView
     #
@@ -54,6 +55,8 @@ define [
         # template.
         baseClass: "citeplasmBrowserList"
 
+        # When the widget is ready, create the tree from the data in the
+        # FolderStore and a tag cloud from the TagStore.
         postCreate: () ->
             treeModel = new ObjectStoreModel
                 store: FolderStore
@@ -67,6 +70,12 @@ define [
 
             tree.placeAt @folderTree
             tree.startup()
+
+            tags = TagStore.query {}, { sort: [ { attribute: "count", descending: false } ] }
+
+            array.forEach tags, (tag) ->
+                domConstruct.place "<li><a class='tag' href='#'>#{tag.name} (#{tag.count})</a></li>", @tagsHeader, "after"
+            , @
 
         addDocs: (docs) ->
             tableBody = "#{@id}-table-body"

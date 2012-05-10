@@ -1,10 +1,10 @@
 
-define(["dojo/_base/declare", "dijit/_WidgetBase", "dijit/_WidgetsInTemplateMixin", "dijit/_TemplatedMixin", "dojo/text!./templates/BrowserListView.html", "dojo/dom", "dojo/_base/array", "dojo/dom-construct", "dojo/date", "dojo/date/locale", "dojo/date/stamp", "citeplasm/model/FolderStore", "dijit/tree/ObjectStoreModel", "dijit/Tree"], function(declare, _WidgetBase, _WidgetsInTemplateMixin, _TemplatedMixin, template, dom, array, domConstruct, date, locale, stamp, FolderStore, ObjectStoreModel, Tree) {
+define(["dojo/_base/declare", "dijit/_WidgetBase", "dijit/_WidgetsInTemplateMixin", "dijit/_TemplatedMixin", "dojo/text!./templates/BrowserListView.html", "dojo/dom", "dojo/_base/array", "dojo/dom-construct", "dojo/date", "dojo/date/locale", "dojo/date/stamp", "citeplasm/model/FolderStore", "citeplasm/model/TagStore", "dijit/tree/ObjectStoreModel", "dijit/Tree"], function(declare, _WidgetBase, _WidgetsInTemplateMixin, _TemplatedMixin, template, dom, array, domConstruct, date, locale, stamp, FolderStore, TagStore, ObjectStoreModel, Tree) {
   return declare("citeplasm/view/BrowserListView", [_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
     templateString: template,
     baseClass: "citeplasmBrowserList",
     postCreate: function() {
-      var tree, treeModel;
+      var tags, tree, treeModel;
       treeModel = new ObjectStoreModel({
         store: FolderStore,
         query: {
@@ -19,7 +19,18 @@ define(["dojo/_base/declare", "dijit/_WidgetBase", "dijit/_WidgetsInTemplateMixi
         }
       });
       tree.placeAt(this.folderTree);
-      return tree.startup();
+      tree.startup();
+      tags = TagStore.query({}, {
+        sort: [
+          {
+            attribute: "count",
+            descending: false
+          }
+        ]
+      });
+      return array.forEach(tags, function(tag) {
+        return domConstruct.place("<li><a class='tag' href='#'>" + tag.name + " (" + tag.count + ")</a></li>", this.tagsHeader, "after");
+      }, this);
     },
     addDocs: function(docs) {
       var tableBody, tbody;
