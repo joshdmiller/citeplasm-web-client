@@ -62,14 +62,121 @@ define [
         # the non-active crumbs in the trail.
         _breadcrumbTemplate: "<li><a href='{url}'>{name}</a> <span class='divider'>&raquo;</span></li>"
 
+        # _toolbarButtonTemplate is a string template to use for the generation
+        # of toolbar buttons.
+        _toolbarButtonTemplate: "<li><a class='btn'>{name}</a></li>"
+
+        _toolbarMenuTemplate: '<li><div class="btn-group">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                {name}
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                {buttons}
+            </ul>
+            </div></li>'
+
+        _toolbarIconMenuTemplate: '<li>
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="{iconClass}"></i>{name} <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                {buttons}
+            </ul>
+            </li>'
+
+        # _toolbarIconButtonTemplate is a string template to use for the generation
+        # of toolbar buttons with icons.
+        _toolbarIconButtonTemplate: "<li><a class='btn'><i class='{iconClass}'></i>{name}</a></li>"
+
         # ### postCreate does last-minute setup now that the widget has been
         # created. It has not yet been added to the page.
         postCreate: () ->
             connect.subscribe "/citeplasm/scene/updateBreadcrumb", @, @_updateBreadcrumb
+            connect.subscribe "/citeplasm/scene/updateToolbar", @, @_updateToolbar
+
+        _generateButton: (tool) ->
+            if !tool.iconClass
+                return lang.replace @_toolbarButtonTemplate, tool
+            else
+                return lang.replace @_toolbarIconButtonTemplate, tool
+
+        # ### _updateToolbar
+        #
+        # _updateToolbar replaces the current toolbar with the provided one. A
+        # Toolbar object should look like this:
+        #
+        #   {
+        #       tools: [
+        #           item1, item2, item3, ...
+        #       ]
+        #   }
+        #
+        # Each item should take this form:
+        #
+        #   {
+        #       type: "button",
+        #       name: "My Button",
+        #       iconClass: "icon-button"
+        #   }
+        #
+        # Acceptable item types are "button" and "menu". The "menu" type
+        # accepts an additional array of button objects called "children".
+        _updateToolbar: (obj) ->
+            console.log "adding toolbar"
+            # We must empty the current toolbar list before adding a new one.
+            domConstruct.empty @toolbarListNode
+            
+            # Now we must ensure both that an object was provided and that it
+            # conforms to the expected format. If it was not provided or if it
+            # was invalid we log an error return.
+            if not obj?
+                console.warn "citeplasm/Scene::_updateToolbar | No toolbar was provided, setting to default."
+                return
+            if not obj.tools? or obj.tools not instanceof Array
+                console.error "citeplasm/Scene::_updateToolbar | The toolbar object provided was invalid."
+                return
+
+            dojo.forEach obj.tools, (tool) ->
+                console.log "Adding tool", tool
+
+                if !tool.type or tool.type not in ["button", "menu"]
+                    console.log "citeplasm/Scene::_updateToolbar | Invalid toolbar object type: #{tool.type}."
+                    return
+
+                if !tool.name
+                    console.log "citeplasm/Scene::_updateToolbar | Button text is required."
+                    return
+
+                if tool.type is "button"
+                    domConstruct.place @_generateButton(tool), @toolbarListNode
+                else
+                    if not tool.children? or tool.children not instanceof Array
+                        console.error "citeplasm/Scene::_updateToolbar | The menu must have an array of children."
+                        return
+
+                    renderedChildren = ""
+                    dojo.forEach tool.children, (item) ->
+                        if !item.type or item.type not in ["button"]
+                            console.log "citeplasm/Scene::_updateToolbar | Invalid toolbar object type in menu: #{item.type}."
+                            return
+                        if !item.name
+                            console.log "citeplasm/Scene::_updateToolbar | Button text is required."
+                            return
+
+                        renderedChildren += @_generateButton item
+                    , @
+
+                    tool.buttons = renderedChildren
+                    if !tool.iconClass
+                        domConstruct.place lang.replace(@_toolbarMenuTemplate, tool), @toolbarListNode
+                    else
+                        domConstruct.place lang.replace(@_toolbarIconMenuTemplate, tool), @toolbarListNode
+            , @
 
         # ### _updateBreadcrumb
         #
-        # _updateBreadrumb replaces the current breadcrumb trail with the
+        # _updateBreadcrumb replaces the current breadcrumb trail with the
         # provided one. Breadcrumb objects look like the following:
         #
         #   {

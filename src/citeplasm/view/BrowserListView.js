@@ -5,7 +5,6 @@ define(["dojo/_base/declare", "dijit/_WidgetBase", "dijit/_WidgetsInTemplateMixi
     baseClass: "citeplasmBrowserList",
     postCreate: function() {
       var tree, treeModel;
-      console.log(FolderStore);
       treeModel = new ObjectStoreModel({
         store: FolderStore,
         query: {
@@ -42,7 +41,6 @@ define(["dojo/_base/declare", "dijit/_WidgetBase", "dijit/_WidgetsInTemplateMixi
         today = new Date();
         yesterday = date.add(today, "day", -1);
         fmt = "";
-        console.log("Dt=" + (locale.format(dt)) + "; difference is " + (date.difference(today, dt)));
         if (date.difference(today, dt) === 0) {
           fmt = locale.format(dt, {
             selector: 'time'

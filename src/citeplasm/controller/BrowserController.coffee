@@ -18,8 +18,8 @@
 # ## Summary
 
 #
-# citeplasm/controller/BrowserController is the base class from which all
-# application controllers should inherit. It is not meant to be instantiated.
+# citeplasm/controller/BrowserController is the controller class for the
+# document browser functionality.
 
 # ## RequireJS-style AMD Definition
 
@@ -43,6 +43,15 @@ define [
             @setBreadcrumb
                 crumbs: [
                     { name: "Your Documents" }
+                ]
+
+            @setToolbar
+                tools: [
+                    { type: "menu", name: "Create", iconClass: "icon-new", children: [
+                        { type: "button", name: "Resource", iconClass: "icon-new-resource" },
+                        { type: "button", name: "Note", iconClass: "icon-new-note" },
+                        { type: "button", name: "Document", iconClass: "icon-new-doc" }
+                    ] }
                 ]
             @setView view
             view.addDocs DocumentStore.query {}, { sort: [{ attribute: 'modified_at', descending: true }] }

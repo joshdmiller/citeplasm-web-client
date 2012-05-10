@@ -103,6 +103,13 @@ define [
         setBreadcrumb: (obj) ->
             connect.publish "/citeplasm/scene/updateBreadcrumb", obj
 
+        # ### setToolbar
+        #
+        # setToolbar takes a toolbar object and publishes it to the appropriate
+        # channel, which should be added to the scene's toolbar.
+        setToolbar: (obj) ->
+            connect.publish "/citeplasm/scene/updateToolbar", obj
+
         # ## Methods for Use by Application
 
         # ### destroy
@@ -113,6 +120,7 @@ define [
         destroy: () ->
             @destroyView()
             @setBreadcrumb()
+            @setToolbar()
             @_tearDown()
 
         # ### destroyView

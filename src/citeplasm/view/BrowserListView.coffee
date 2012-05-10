@@ -55,7 +55,6 @@ define [
         baseClass: "citeplasmBrowserList"
 
         postCreate: () ->
-            console.log FolderStore
             treeModel = new ObjectStoreModel
                 store: FolderStore
                 query: { id: 0 }
@@ -92,7 +91,6 @@ define [
 
                 # We select the format based on how long ago it was
                 fmt = ""
-                console.log "Dt=#{locale.format(dt)}; difference is #{date.difference(today, dt)}"
                 if date.difference(today, dt) is 0
                     fmt = locale.format dt,
                         selector: 'time'

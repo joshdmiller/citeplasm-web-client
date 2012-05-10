@@ -12,6 +12,30 @@ define(["dojo/_base/declare", "citeplasm/controller/_ControllerBase", "citeplasm
           }
         ]
       });
+      this.setToolbar({
+        tools: [
+          {
+            type: "menu",
+            name: "Create",
+            iconClass: "icon-new",
+            children: [
+              {
+                type: "button",
+                name: "Resource",
+                iconClass: "icon-new-resource"
+              }, {
+                type: "button",
+                name: "Note",
+                iconClass: "icon-new-note"
+              }, {
+                type: "button",
+                name: "Document",
+                iconClass: "icon-new-doc"
+              }
+            ]
+          }
+        ]
+      });
       this.setView(view);
       return view.addDocs(DocumentStore.query({}, {
         sort: [
