@@ -14,7 +14,10 @@ define(["dojo/_base/declare", "dijit/_WidgetBase", "dijit/_WidgetsInTemplateMixi
       });
       tree = new Tree({
         model: treeModel,
-        showRoot: false
+        showRoot: false,
+        onClick: function(item) {
+          return location.href = "#/browser/folders/" + item.id;
+        }
       });
       tree.placeAt(this.folderTree);
       return tree.startup();

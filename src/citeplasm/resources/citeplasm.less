@@ -3,6 +3,10 @@
 @import "less/bootstrap-variables.less";
 @import "less/bootstrap-mixins.less";
 @import "less/bootstrap-type.less";
+@import "less/bootstrap-tables.less";
+
+/* import Dijit style */
+@import '../../dijit/themes/nihilo/nihilo.css';
 
 // VARIABLE OVERRIDES
 // ------------------
@@ -70,28 +74,47 @@ a:hover {
     background-color: @white;
 }
 
-/* import Dijit style */
-@import '../../dijit/themes/nihilo/nihilo.css';
+.nihilo {
+    .dijitTreeRowHover {
+        background-image: none !important;
+        background-color: @grayLighter !important;
+        cursor: pointer;
+        
+        .dijitTreeLabel {
+            color: @linkColorHover;
+            cursor: pointer;
+        }
+    }
 
-.nihilo .dijitTreeRowHover {
-    background-image: none !important;
-    background-color: @grayLighter !important;
+    .dijitTreeRow {
+        padding: 3px 0;
+        margin: 3px 0;
+    }
+
+    .dijitTreeNode,
+    .dijitTreeIsLast,
+    .dijitTreeExpandoLeaf {
+         background-image: none !important;
+    }
+
+    .dijitTreeLabel {
+        color: @linkColor;
+    }
 }
 
-.dijitTreeRow {
-    padding: 6px 0;
-}
+.table th, .table td {
+    padding: 0px 8px;
+    line-height: 34px;
 
-.dijitTreeNode,
-.dijitTreeIsLast,
-.dijitTreeExpandoLeaf {
-     background-image: none !important;
+    a {
+        line-height: 18px;
+        padding: 8px 0;
+    }
 }
 
 /* import app styles */
 @import "less/bootstrap-buttons.less";
 @import "less/bootstrap-forms.less";
-@import "less/bootstrap-tables.less";
 @import "less/icons.less";
 @import "less/navigation.less";
 @import "less/topbar.less";

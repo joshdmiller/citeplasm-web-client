@@ -63,6 +63,8 @@ define [
             tree = new Tree
                 model: treeModel
                 showRoot: false
+                onClick: (item) ->
+                    location.href = "#/browser/folders/#{item.id}"
 
             tree.placeAt @folderTree
             tree.startup()
