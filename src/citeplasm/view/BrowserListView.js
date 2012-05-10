@@ -1,8 +1,24 @@
 
-define(["dojo/_base/declare", "dijit/_WidgetBase", "dijit/_WidgetsInTemplateMixin", "dijit/_TemplatedMixin", "dojo/text!./templates/BrowserListView.html", "dojo/dom", "dojo/_base/array", "dojo/dom-construct", "dojo/date", "dojo/date/locale", "dojo/date/stamp", "citeplasm/widget/Editor"], function(declare, _WidgetBase, _WidgetsInTemplateMixin, _TemplatedMixin, template, dom, array, domConstruct, date, locale, stamp) {
+define(["dojo/_base/declare", "dijit/_WidgetBase", "dijit/_WidgetsInTemplateMixin", "dijit/_TemplatedMixin", "dojo/text!./templates/BrowserListView.html", "dojo/dom", "dojo/_base/array", "dojo/dom-construct", "dojo/date", "dojo/date/locale", "dojo/date/stamp", "citeplasm/model/FolderStore", "dijit/tree/ObjectStoreModel", "dijit/Tree"], function(declare, _WidgetBase, _WidgetsInTemplateMixin, _TemplatedMixin, template, dom, array, domConstruct, date, locale, stamp, FolderStore, ObjectStoreModel, Tree) {
   return declare("citeplasm/view/BrowserListView", [_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
     templateString: template,
     baseClass: "citeplasmBrowserList",
+    postCreate: function() {
+      var tree, treeModel;
+      console.log(FolderStore);
+      treeModel = new ObjectStoreModel({
+        store: FolderStore,
+        query: {
+          id: 0
+        }
+      });
+      tree = new Tree({
+        model: treeModel,
+        showRoot: false
+      });
+      tree.placeAt(this.folderTree);
+      return tree.startup();
+    },
     addDocs: function(docs) {
       var tableBody, tbody;
       tableBody = "" + this.id + "-table-body";

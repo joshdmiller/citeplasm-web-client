@@ -71,7 +71,22 @@ a:hover {
 }
 
 /* import Dijit style */
-@import '../../dijit/themes/claro/claro.css';
+@import '../../dijit/themes/nihilo/nihilo.css';
+
+.nihilo .dijitTreeRowHover {
+    background-image: none !important;
+    background-color: @grayLighter !important;
+}
+
+.dijitTreeRow {
+    padding: 6px 0;
+}
+
+.dijitTreeNode,
+.dijitTreeIsLast,
+.dijitTreeExpandoLeaf {
+     background-image: none !important;
+}
 
 /* import app styles */
 @import "less/bootstrap-buttons.less";

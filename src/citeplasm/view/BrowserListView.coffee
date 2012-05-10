@@ -34,8 +34,10 @@ define [
     "dojo/date",
     "dojo/date/locale",
     "dojo/date/stamp",
-    "citeplasm/widget/Editor"
-], (declare, _WidgetBase, _WidgetsInTemplateMixin, _TemplatedMixin, template, dom, array, domConstruct, date, locale, stamp) ->
+    "citeplasm/model/FolderStore",
+    "dijit/tree/ObjectStoreModel",
+    "dijit/Tree"
+], (declare, _WidgetBase, _WidgetsInTemplateMixin, _TemplatedMixin, template, dom, array, domConstruct, date, locale, stamp, FolderStore, ObjectStoreModel, Tree) ->
 
     # ## citeplasm/view/BrowserListView
     #
@@ -51,6 +53,19 @@ define [
         # The baseClass is a CSS class applied to the root element of the
         # template.
         baseClass: "citeplasmBrowserList"
+
+        postCreate: () ->
+            console.log FolderStore
+            treeModel = new ObjectStoreModel
+                store: FolderStore
+                query: { id: 0 }
+
+            tree = new Tree
+                model: treeModel
+                showRoot: false
+
+            tree.placeAt @folderTree
+            tree.startup()
 
         addDocs: (docs) ->
             tableBody = "#{@id}-table-body"
