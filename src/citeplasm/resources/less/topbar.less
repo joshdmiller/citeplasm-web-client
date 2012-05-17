@@ -40,31 +40,20 @@
 
         .search {
             line-height: @topbarHeight;
-            //margin-left: 60px;
             margin-bottom: 0px !important;
+            padding-right: 0px !important;
 
             input {
-                //margin: 0 10px 0 0;
                 //border: 1px solid @darkAccentColor;
                 //line-height: 20px;
                 //height: 20px;
-                min-width: 200px;
+                width: 200px;
                 background-color: @white;
-                position: relative;
                 margin-bottom: 0px;
-                vertical-align: middle;
             }
 
             input:active, input:focus {
                 border-color: @linkColor;
-            }
-
-            .btn {
-                //color: @white;
-            }
-
-            .btn:hover, .btn:active {
-                text-decoration: none;
             }
         }
 
@@ -86,6 +75,13 @@
                     i[class^="icon-"],
                     i[class*=" icon-"] {
                         margin-right: 10px;
+                    }
+                }
+
+                a.only-icon {
+                    i[class^="icon-"],
+                    i[class*=" icon-"] {
+                        margin-right: 0px !important;
                     }
                 }
 

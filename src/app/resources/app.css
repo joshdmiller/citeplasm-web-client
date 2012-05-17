@@ -338,6 +338,7 @@ a:hover{color:#005580;text-decoration:none;}
 .btn [class^="icon-"],.btn [class*=" icon-"]{margin-right:6px;}
 .btn-icon [class^="icon-"],.btn-icon [class*=" icon-"]{margin-right:0px !important;}
 a [class^="icon-"],a [class*=" icon-"]{margin-right:6px;}
+a.only-icon [class^="icon-"],a.only-icon [class*=" icon-"]{margin-right:0px;}
 .nav{margin-left:0;margin-bottom:18px;list-style:none;}
 .nav>li>a{display:block;}
 .nav>li>a:hover{text-decoration:none;background-color:#eeeeee;}
@@ -357,11 +358,11 @@ a [class^="icon-"],a [class*=" icon-"]{margin-right:6px;}
 .citeplasm .topbar a:hover,.citeplasm .topbar a:hover{text-decoration:underline;background-color:none;}
 .citeplasm .topbar .brand,.citeplasm .topbar .brand:visited{line-height:40px;font-size:24px;letter-spacing:3px;text-shadow:none;}.citeplasm .topbar .brand img,.citeplasm .topbar .brand:visited img{height:30px;}
 .citeplasm .topbar .brand:hover,.citeplasm .topbar .brand:active{text-decoration:none;}
-.citeplasm .topbar .search{line-height:40px;margin-bottom:0px !important;}.citeplasm .topbar .search input{min-width:200px;background-color:#ffffff;position:relative;margin-bottom:0px;vertical-align:middle;}
+.citeplasm .topbar .search{line-height:40px;margin-bottom:0px !important;padding-right:0px !important;}.citeplasm .topbar .search input{width:200px;background-color:#ffffff;margin-bottom:0px;}
 .citeplasm .topbar .search input:active,.citeplasm .topbar .search input:focus{border-color:#0088cc;}
-.citeplasm .topbar .search .btn:hover,.citeplasm .topbar .search .btn:active{text-decoration:none;}
 .citeplasm .topbar .nav{margin-bottom:0;}.citeplasm .topbar .nav li{line-height:40px;}.citeplasm .topbar .nav li a{font-weight:bold;}.citeplasm .topbar .nav li a img{vertical-align:middle;margin-right:10px;}
 .citeplasm .topbar .nav li a i[class^="icon-"],.citeplasm .topbar .nav li a i[class*=" icon-"]{margin-right:10px;}
+.citeplasm .topbar .nav li a.only-icon i[class^="icon-"],.citeplasm .topbar .nav li a.only-icon i[class*=" icon-"]{margin-right:0px !important;}
 .citeplasm .topbar .nav li a:hover{background:none;}
 .citeplasm .topbar .nav li a.btn{margin-top:5px;}
 .citeplasm .topbar .nav .divider-vertical{height:40px !important;width:1px !important;margin:0 9px !important;overflow:hidden !important;background-color:#dfdfdf !important;border-right:1px solid #f0f0f0 !important;padding:0 !important;}
