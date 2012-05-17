@@ -2,8 +2,6 @@
 // A horizontal bar across the top of the screen
 // ---------------------------------------------
 
-@import "http://fonts.googleapis.com/css?family=Short+Stack:400normal&subset=all";
-
 .citeplasm{
     .topbar, .topsubbar {
         .container-fluid();
@@ -25,12 +23,15 @@
         }
 
         .brand, .brand:visited {
-            float: left;
+            //float: left;
             line-height: @topbarHeight;
-            font-family: "Short Stack", serif;
             font-size: 24px;
             letter-spacing: 3px;
             text-shadow: none;
+
+            img {
+                height: @topbarHeight * 0.75;
+            }
         }
 
         .brand:hover, .brand:active {
@@ -39,15 +40,19 @@
 
         .search {
             line-height: @topbarHeight;
-            margin-left: 60px;
+            //margin-left: 60px;
+            margin-bottom: 0px !important;
 
             input {
-                margin: 0 10px 0 0;
-                border: 1px solid @darkAccentColor;
-                line-height: 20px;
-                height: 20px;
-                min-width: 450px;
+                //margin: 0 10px 0 0;
+                //border: 1px solid @darkAccentColor;
+                //line-height: 20px;
+                //height: 20px;
+                min-width: 200px;
                 background-color: @white;
+                position: relative;
+                margin-bottom: 0px;
+                vertical-align: middle;
             }
 
             input:active, input:focus {
@@ -55,7 +60,7 @@
             }
 
             .btn {
-                color: @white;
+                //color: @white;
             }
 
             .btn:hover, .btn:active {
@@ -64,7 +69,6 @@
         }
 
         .nav {
-            .nav-horiz-right;
 
             margin-bottom: 0;
 
@@ -76,7 +80,7 @@
 
                     img {
                         vertical-align: middle;
-                        margin-left: 10px;
+                        margin-right: 10px;
                     }
 
                     i[class^="icon-"],
@@ -96,15 +100,24 @@
 
             // Dividers (basically a vertical hr)
             .divider-vertical {
-                height: @topbarHeight;
-                width: 1px;
-                margin: 0 9px;
-                overflow: hidden;
-                background-color: @darkAccentColor;
-                border-right: 1px solid @accentColor;
-                padding: 0;
+                height: @topbarHeight !important;
+                width: 1px !important;
+                margin: 0 9px !important;
+                overflow: hidden !important;
+                background-color: @darkAccentColor !important;
+                border-right: 1px solid @accentColor !important;
+                padding: 0 !important;
             }
         }
+
+        .nav.pull-left {
+            .nav-horiz-left;
+        }
+
+        .nav.pull-right {
+            .nav-horiz-right;
+        }
+
     }
 
     .topsubbar {

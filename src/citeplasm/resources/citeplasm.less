@@ -12,17 +12,21 @@
 /* import Dijit style */
 @import '../../dijit/themes/nihilo/nihilo.css';
 
+/* import web font from Google */
+@import 'http://fonts.googleapis.com/css?family=Karla:400normal,400italic,700normal,700italic&subset=all';
+
 // VARIABLE OVERRIDES
 // ------------------
 
-@topbarHeight: @navbarHeight * 1.75;
-@topsubbarHeight: @topbarHeight * .75;
+@topbarHeight: @navbarHeight;
+@topsubbarHeight: @topbarHeight;
 
 @primaryColor: @white;
 @accentColor: #f0f0f0;
 @darkAccentColor: #dfdfdf;
-
 @accentLinkColor: #777777;
+
+@baseFontFamily: 'Karla';
 
 // STRUCTURAL LAYOUT
 // -----------------
@@ -30,6 +34,7 @@
 html, body {
     height: 100%;
     width: 100%;
+    margin: 0;
 }
 
 body {

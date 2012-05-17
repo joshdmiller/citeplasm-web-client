@@ -51,7 +51,8 @@ define [
                         { type: "button", name: "Resource", iconClass: "icon-new-resource" },
                         { type: "button", name: "Note", iconClass: "icon-new-note" },
                         { type: "button", name: "Document", iconClass: "icon-new-doc" }
-                    ] }
+                    ] },
+                    { type: "button", name: "Settings", iconClass: "icon-settings" }
                 ]
             @setView view
             view.addDocs DocumentStore.query {}, { sort: [{ attribute: 'modified_at', descending: true }] }

@@ -103,18 +103,13 @@ define [
         # _initRouting is an internal method for configuring the routing engine.
         _initRouting: () ->
             @_router = new Router [
-                    path: "/dashboard"
-                    defaultRoute: true
-                    handler: lang.hitch(@, (params, route) ->
-                        @changeTitle "Dashboard"
-                    )
-                ,
                     path: "/resources"
                     handler: lang.hitch(@, (params, route) ->
                         @changeTitle "Resources"
                     )
                 ,
                     path: "/browser"
+                    defaultRoute: true
                     handler: lang.hitch @, @_connectController(BrowserController, "list")
                 ,
                     path: "/documents/:id"

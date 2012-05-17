@@ -13,18 +13,13 @@ define(["dojo/_base/declare", "dojo/_base/window", "dojo/_base/lang", "dojo/_bas
     _initRouting: function() {
       return this._router = new Router([
         {
-          path: "/dashboard",
-          defaultRoute: true,
-          handler: lang.hitch(this, function(params, route) {
-            return this.changeTitle("Dashboard");
-          })
-        }, {
           path: "/resources",
           handler: lang.hitch(this, function(params, route) {
             return this.changeTitle("Resources");
           })
         }, {
           path: "/browser",
+          defaultRoute: true,
           handler: lang.hitch(this, this._connectController(BrowserController, "list"))
         }, {
           path: "/documents/:id",

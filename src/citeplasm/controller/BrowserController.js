@@ -33,6 +33,10 @@ define(["dojo/_base/declare", "citeplasm/controller/_ControllerBase", "citeplasm
                 iconClass: "icon-new-doc"
               }
             ]
+          }, {
+            type: "button",
+            name: "Settings",
+            iconClass: "icon-settings"
           }
         ]
       });
